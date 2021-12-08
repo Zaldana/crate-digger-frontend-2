@@ -7,7 +7,7 @@ import FirstNameHook from "../hooks/FirstNameHook"
 import LastNameHook from "../hooks/LastNameHook"
 import PasswordHook from "../hooks/PasswordHook"
 import UsernameHook from "../hooks/UsernameHook"
-import AxiosBackend from "../../lib/axios/axiosBackend"
+import AxiosBackend from "../../lib/axios/AxiosBackend"
 
 function Signup() {
 
