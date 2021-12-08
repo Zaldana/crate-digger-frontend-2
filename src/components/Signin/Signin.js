@@ -1,10 +1,64 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext"
+import AxiosBackend from '../../lib/axios/axiosBackend';
+import { toast } from "react-toastify";
 
 function Signin() {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    const { dispatch } = useContext(AuthContext);
+
+    async function handleSubmit(e) {
+
+        e.preventDefault();
+
+        try {
+
+            let payload = await AxiosBackend.post(
+                'login/', {
+                    email,
+                    password,
+                },
+            );
+            
+            console.log("payload data", payload.data.jwtToken);
+
+            window.localStorage.setItem("jwtToken", payload.data.jwtToken);
+
+            let decodedToken = jwtDecode(payload.data.jwtToken);
+
+            dispatch({
+                type: "LOGIN",
+                email: decodedToken.email,
+                username: decodedToken.username
+            });
+
+            navigate("/protected-home");
+
+        } catch (e) {
+
+            toast.error(e.response.data.error, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }
+
     return (
         <div>
             <main>
-                <form onSubmit={console.log("submit")}>
+                <form onSubmit={handleSubmit}>
                     <h1>Please Sign In</h1>
 
                     <div>
@@ -15,7 +69,7 @@ function Signin() {
                             id="email"
                             placeholder="name@example.com"
                             name="email"
-                            // onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <div></div>
 
@@ -29,7 +83,7 @@ function Signin() {
                             id="password"
                             placeholder="Password"
                             name="password"
-                            // onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <br />
