@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import Home from "./components/Home/Home";
+import Nav from "./components/Nav/Nav";
+import Signin from "./components/Signin/Signin";
+import Signup from "./components/Signup/Signup";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastContainer theme="colored" />
+
+        <Router>
+
+          <Nav />
+
+          <Routes>
+
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/sign-in" element={<Signin />} />
+
+            <Route path="/" element={<Home />} />
+            <Route render={() => <h1>Not found 404</h1>} />
+
+          </Routes>
+        </Router>
+
     </div>
   );
 }
