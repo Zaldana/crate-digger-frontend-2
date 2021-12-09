@@ -14,6 +14,7 @@ import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Profile from "./components/protectedPages/Profile";
 import Search from "./components/protectedPages/search/Search";
 import Collection from "./components/protectedPages/Collection";
+import AlbumDetails from "./components/protectedPages/search/AlbumDetails";
 
 function App() {
 
@@ -63,6 +64,13 @@ function App() {
 
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/sign-in" element={<Signin />} />
+            <Route path="/album-details"
+              element={
+                <PrivateRoute>
+                  <AlbumDetails />
+                </PrivateRoute>
+              }
+            />
             <Route path="/search"
               element={
                 <PrivateRoute>

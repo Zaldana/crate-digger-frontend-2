@@ -17,29 +17,18 @@ function SearchDetails() {
         albumLabel,
     ) {
 
-        try {
+        fetchAlbumDetails(
+            albumName,
+            albumCover,
+            albumId,
+            albumArtist,
+            albumYear,
+            albumLabel,
+        )
+    }
 
-            let payload = await AxiosBackend.post(
-
-                "movie/add-movie/",
-
-                {
-                    movieTitle,
-                    moviePoster,
-                    imdbID,
-                    rating,
-                },
-            );
-
-            let newFavoriteArray = [...favoriteMovies, payload.data.favoriteMovie]
-            setFavoriteMovies(newFavoriteArray)
-
-        } catch (e) {
-
-            console.log(e.response);
-
-        }
-
+    const albumDetailsValue = {
+        resultsArray
     }
 
 
@@ -48,7 +37,11 @@ function SearchDetails() {
             <div>
             {resultsArray.map((item) => (
                 <div key={item.id}>
-                    <img src={item.thumb} />
+                    <SearchContext.Provider value={SearchContextValue}>
+                        <Link to="/album-details" onClick={ ()=> handleOnClick }>
+                            <img src={item.thumb} />
+                        </Link>
+                    </SearchContext.Provider>
                     <h3>{item.title}</h3>
                     <h5>Year: {item.year}</h5>
                     <h5>Country: {item.country}</h5>

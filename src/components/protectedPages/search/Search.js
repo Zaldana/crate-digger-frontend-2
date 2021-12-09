@@ -15,13 +15,7 @@ function Search() {
     const [isLoading, setIsLoading] = useState(false);
     const [searchResult, setSearchResult] = useState("");
     
-    //search results
-    // const [artist, setArtist] = useState("");
-    // const [cover, setCover] = useState("");
-    // const [year, setYear] = useState("");
-    // const [label, setLabel] = useState("");
-    // const [albumName, setAlbumName] = useState("");
-    // const [albumId, setAlbumId] = useState(0)
+
     const [resultsArray, setResultsArray] = useState([])
 
     useEffect(() => {
@@ -68,7 +62,7 @@ function Search() {
         fetchResult(searchResult);
     };
 
-    const SearchContextValue = {
+    const searchContextValue = {
         resultsArray
     }
 
@@ -102,7 +96,7 @@ function Search() {
                             <Loading />
                         </div>
                     ) : (
-                        <SearchContext.Provider value={SearchContextValue}>
+                        <SearchContext.Provider value={searchContextValue}>
                             <SearchDetails />
                         </SearchContext.Provider>
                     )}
