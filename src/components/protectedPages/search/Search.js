@@ -39,13 +39,13 @@ function Search() {
             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
             let result = await axios.get(
-                `https://api.discogs.com/database/search?q=${searchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`
+                `https://api.discogs.com/database/search?q=${searchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                    headers: { 'User-Agent': 'CrateDigger/0.1' }
+                }
             );
 
             setResultsArray(result.data.results)
             setIsLoading(false)
-
-            console.log("results",resultsArray);
 
         } catch (e) {
 

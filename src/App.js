@@ -64,7 +64,7 @@ function App() {
 
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/sign-in" element={<Signin />} />
-            <Route path="/album-details"
+            <Route path="/album-details/:id"
               element={
                 <PrivateRoute>
                   <AlbumDetails />

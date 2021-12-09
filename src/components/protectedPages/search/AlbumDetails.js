@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams, useLocation } from "react-router-dom";
+import axios from "axios";
+
 
 function AlbumDetails() {
 
-        //search results
-    // const [artist, setArtist] = useState("");
-    // const [cover, setCover] = useState("");
-    // const [year, setYear] = useState("");
-    // const [label, setLabel] = useState("");
-    // const [albumName, setAlbumName] = useState("");
-    // const [albumId, setAlbumId] = useState(0)
-    
+    const { id } = useParams();
+    const location = useLocation();
+
+    console.log(location.state.albumCover);
+
+    const [albumDetailsArray, setAlbumDetailsArray] = useState([])
+
+    useEffect(() => {
+      fetchAlbumDetails(id)
+    }, [])
+
+    async function fetchAlbumDetails(id) {
+
+        try {
+
+            let albumDetailsResult = await axios.get(
+                `https://api.discogs.com/releases/${id}`, {
+                headers: { 'User-Agent': 'CrateDigger/0.1' }
+            }
+            );
+
+            setAlbumDetailsArray(albumDetailsResult)
+
+            
+        } catch (e) {
+
+            console.log(e);
+
+        }
+    };
+
+    console.log(albumDetailsArray);
+
     return (
         <div>
             this is the album details
