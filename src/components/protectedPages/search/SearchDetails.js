@@ -8,6 +8,41 @@ function SearchDetails() {
         resultsArray,
     } = useContext(SearchContext)
 
+    async function handleOnClick(
+        albumName,
+        albumCover, 
+        albumId,
+        albumArtist,
+        albumYear,
+        albumLabel,
+    ) {
+
+        try {
+
+            let payload = await AxiosBackend.post(
+
+                "movie/add-movie/",
+
+                {
+                    movieTitle,
+                    moviePoster,
+                    imdbID,
+                    rating,
+                },
+            );
+
+            let newFavoriteArray = [...favoriteMovies, payload.data.favoriteMovie]
+            setFavoriteMovies(newFavoriteArray)
+
+        } catch (e) {
+
+            console.log(e.response);
+
+        }
+
+    }
+
+
     return (
         <div>
             <div>
@@ -18,9 +53,6 @@ function SearchDetails() {
                     <h5>Year: {item.year}</h5>
                     <h5>Country: {item.country}</h5>
                     <h5>Label: {item.label}</h5>
-                    <div>
-                        <button>Add To Collection</button>
-                    </div>
                 </div>
             ))} 
             </div>
