@@ -6,6 +6,7 @@ import { SearchContext } from '../../../context/SearchContext'
 function SearchDetails() {
     
     const { resultsArray } = useContext(SearchContext)
+    console.log(resultsArray);
 
     return (
         <div>
@@ -13,7 +14,7 @@ function SearchDetails() {
             {resultsArray.map((item) => (
                 <div key={item.id}>
                         <Link
-                        to={`/album-details/${item.id}`}
+                        to={`/album-details/${item.master_id}`}
                         state={{ albumCover: item.cover_image }}
                         >
                             <img src={item.thumb} />

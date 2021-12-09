@@ -42,17 +42,17 @@ function App() {
 
         let decodedToken = jwtDecode(jwtToken);
 
-        dispatch({
-          type: "LOGIN",
-          email: decodedToken.email,
-          username: decodedToken.username,
-        });
+          dispatch({
+            type: "LOGIN",
+            email: decodedToken.email,
+            username: decodedToken.username,
+          });
+
       }
     }
   }, []);
 
   return (
-    <AuthContextComponent>
     <div className="App">
       <ToastContainer theme="colored" />
 
@@ -107,7 +107,6 @@ function App() {
         </Router>
 
     </div>
-    </AuthContextComponent >
   );
 }
 

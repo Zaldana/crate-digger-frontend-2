@@ -68,9 +68,7 @@ function Search() {
 
     return (
         <div>
-            <div>
-                this is the search page
-            </div>
+          
             <div>
                 <div>
                     <div>
@@ -80,7 +78,9 @@ function Search() {
                         <Link to="/profile">Profile</Link>
                     </div>
                 </div>
-
+                <div>
+                    this is the search page
+                </div>
                 <div >
                     <input
                         name="searchResult"
