@@ -12,7 +12,7 @@ import ProtectedHome from "./components/protectedPages/ProtectedHome";
 import AuthContextComponent, { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Profile from "./components/protectedPages/Profile";
-import Search from "./components/protectedPages/Search";
+import Search from "./components/protectedPages/search/Search";
 import Collection from "./components/protectedPages/Collection";
 
 function App() {

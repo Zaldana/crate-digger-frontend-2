@@ -26,8 +26,6 @@ function Signin() {
                     password,
                 },
             );
-            
-            console.log("payload data", payload.data.jwtToken);
 
             window.localStorage.setItem("jwtToken", payload.data.jwtToken);
 
