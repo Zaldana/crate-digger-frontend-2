@@ -1,21 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
-import { SearchContext } from '../../../context/SearchContext'
+import { AlbumSearchContext } from '../../../context/SearchContext'
 
 
-function SearchDetails() {
+function AlbumSearchDetails() {
     
-    const { resultsArray } = useContext(SearchContext)
-    console.log(resultsArray);
+    const { albumResultsArray } = useContext(AlbumSearchContext)
 
     return (
         <div>
             <div>
-            {resultsArray.map((item) => (
+                {albumResultsArray.map((item) => (
                 <div key={item.id}>
                         <Link
                         to={`/album-details/${item.master_id}`}
-                        state={{ albumCover: item.cover_image }}
+                        state={{
+                            albumCover: item.cover_image,
+                            id: item.id
+                        }}
                         >
                             <img src={item.thumb} />
                         </Link>
@@ -31,4 +33,4 @@ function SearchDetails() {
     )
 }
 
-export default SearchDetails
+export default AlbumSearchDetails

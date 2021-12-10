@@ -10,13 +10,22 @@ function AlbumDetails() {
     const location = useLocation();
 
     const albumCover = location.state.albumCover;
-
     const [albumDetailsArray, setAlbumDetailsArray] = useState([])
+    const [tracklist, seTtracklist] = useState([])
+    const [artist, setArtist] = useState("")
 
-    console.log(id);
+    let altId = id;
+    let url = "";
+    
+    if (altId == 0) {
+        altId = location.state.id
+        url = "https://api.discogs.com/releases/"
+    } else {
+        url ="https://api.discogs.com/masters/"
+    }
 
     useEffect(() => {
-      fetchAlbumDetails(id)
+      fetchAlbumDetails(altId)
     }, [])
 
     async function fetchAlbumDetails(id) {
@@ -24,7 +33,7 @@ function AlbumDetails() {
         try {
 
             let albumDetailsResult = await axios.get(
-                `https://api.discogs.com/masters/${id}`, {
+                url+id, {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
             }
             );
@@ -38,8 +47,6 @@ function AlbumDetails() {
 
         }
     };
-
-    console.log(albumDetailsArray);
 
     return (
         <div>

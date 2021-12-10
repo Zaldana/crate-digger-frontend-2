@@ -15,6 +15,7 @@ import Profile from "./components/protectedPages/Profile";
 import Search from "./components/protectedPages/search/Search";
 import Collection from "./components/protectedPages/Collection";
 import AlbumDetails from "./components/protectedPages/search/AlbumDetails";
+import ArtistDetails from "./components/protectedPages/search/ArtistDetails";
 
 function App() {
 
@@ -63,7 +64,14 @@ function App() {
           <Routes>
 
             <Route path="/sign-up" element={<Signup />} />
-            <Route path="/sign-in" element={<Signin />} />
+          <Route path="/sign-in" element={<Signin />} />
+          <Route path="/artist-details/:artist"
+            element={
+              <PrivateRoute>
+                <ArtistDetails />
+              </PrivateRoute>
+            }
+          />
             <Route path="/album-details/:id"
               element={
                 <PrivateRoute>

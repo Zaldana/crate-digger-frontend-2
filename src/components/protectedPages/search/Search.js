@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { SearchContext } from "../../../context/SearchContext"
+import { ArtistSearchContext, AlbumSearchContext } from "../../../context/SearchContext"
 import Loading from "../../common/Loading";
-import SearchDetails from './SearchDetails';
+import AlbumSearchDetails from './AlbumSearchDetails';
+import ArtistSearchDetails from './ArtistSearchDetails'
 
 function Search() {
 
@@ -13,23 +14,30 @@ function Search() {
     const { search } = useLocation();
 
     const [isLoading, setIsLoading] = useState(false);
-    const [searchResult, setSearchResult] = useState("");
-    
-
-    const [resultsArray, setResultsArray] = useState([])
+    const [albumSearchResult, setAlbumSearchResult] = useState("");
+    const [artistSearchResult, setArtistSearchResult] = useState("");
+    const [albumResultsArray, setAlbumResultsArray] = useState([])
+    const [artistResultsArray, setArtistResultsArray] = useState([])
 
     useEffect(() => {
         const values = queryString.parse(search);
         if (values.s) {
-            fetchResult(values.s);
+            fetchAlbumResult(values.s);
         }
     }, []);
 
-    async function fetchResult(searchResult) {
+    useEffect(() => {
+        const values = queryString.parse(search);
+        if (values.s) {
+            fetchArtistResult(values.s);
+        }
+    }, []);
+
+    async function fetchAlbumResult(albumSearchResult) {
 
         setIsLoading(true)
 
-        navigate(`/search?s=${searchResult}`, {
+        navigate(`/search?s=${albumSearchResult}`, {
             replace: true,
         });
 
@@ -39,12 +47,12 @@ function Search() {
             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
             let result = await axios.get(
-                `https://api.discogs.com/database/search?q=${searchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
                     headers: { 'User-Agent': 'CrateDigger/0.1' }
                 }
             );
 
-            setResultsArray(result.data.results)
+            setAlbumResultsArray(result.data.results)
             setIsLoading(false)
 
         } catch (e) {
@@ -54,16 +62,60 @@ function Search() {
         }
     };
 
-    function handleOnChange(e) {
-        setSearchResult(e.target.value);
+
+    async function fetchArtistResult(artistSearchResult) {
+
+        setIsLoading(true)
+
+        navigate(`/search?s=${artistSearchResult}`, {
+            replace: true,
+        });
+
+        try {
+
+            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
+            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
+
+            let result = await axios.get(
+                `https://api.discogs.com/database/search?type=artist&q=${artistSearchResult}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                headers: { 'User-Agent': 'CrateDigger/0.1' }
+            }
+            );
+
+            setArtistResultsArray(result.data.results)
+            setIsLoading(false)
+
+        } catch (e) {
+
+            console.log(e);
+
+        }
     };
 
-    async function handleOnClick() {
-        fetchResult(searchResult);
+    function handleOnAlbumChange(e) {
+        setAlbumSearchResult(e.target.value);
     };
 
-    const searchContextValue = {
-        resultsArray
+    function handleOnArtistChange(e) {
+        setArtistSearchResult(e.target.value);
+    };
+
+
+    async function handleOnArtistClick() {
+        fetchArtistResult(artistSearchResult);
+    };
+
+    async function handleOnAlbumClick() {
+        fetchAlbumResult(albumSearchResult);
+    };
+
+
+    const albumContextValue = {
+        albumResultsArray
+    }
+
+    const artistContextValue = {
+        artistResultsArray
     }
 
     return (
@@ -83,12 +135,21 @@ function Search() {
                 </div>
                 <div >
                     <input
-                        name="searchResult"
-                        value={searchResult}
-                        onChange={handleOnChange}
-                        placeholder="Artist, Album, Barcode"
+                        name="albumSearchResult"
+                        value={albumSearchResult}
+                        onChange={handleOnAlbumChange}
+                        placeholder="Album Title or Barcode"
                     />
-                    <button onClick={handleOnClick}>Search</button>
+                    <button onClick={handleOnAlbumClick}>Search</button>
+                </div>
+                <div >
+                    <input
+                        name="artistSearchResult"
+                        value={artistSearchResult}
+                        onChange={handleOnArtistChange}
+                        placeholder="Artist"
+                    />
+                    <button onClick={handleOnArtistClick}>Search</button>
                 </div>
                 <div >
                     {isLoading ? (
@@ -96,12 +157,22 @@ function Search() {
                             <Loading />
                         </div>
                     ) : (
-                        <SearchContext.Provider value={searchContextValue}>
-                            <SearchDetails />
-                        </SearchContext.Provider>
+                        <AlbumSearchContext.Provider value={albumContextValue}>
+                            <AlbumSearchDetails />
+                        </AlbumSearchContext.Provider>
                     )}
                 </div>
-            
+                <div >
+                    {isLoading ? (
+                        <div style={styles.loading}>
+                            <Loading />
+                        </div>
+                    ) : (
+                        <ArtistSearchContext.Provider value={artistContextValue}>
+                            <ArtistSearchDetails />
+                        </ArtistSearchContext.Provider>
+                    )}
+                </div>
             </div>
         </div>
     )

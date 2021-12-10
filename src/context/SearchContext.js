@@ -1,3 +1,4 @@
 import React from "react";
 
-export const SearchContext = React.createContext({})
+export const AlbumSearchContext = React.createContext({})
+export const ArtistSearchContext = React.createContext({})
