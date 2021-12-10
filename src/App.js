@@ -16,6 +16,7 @@ import Search from "./components/protectedPages/search/Search";
 import Collection from "./components/protectedPages/collection/Collection";
 import AlbumDetails from "./components/protectedPages/search/AlbumDetails";
 import ArtistDetails from "./components/protectedPages/search/ArtistDetails";
+import AlbumEdit from "./components/protectedPages/collection/AlbumEdit";
 
 function App() {
 
@@ -65,6 +66,13 @@ function App() {
 
             <Route path="/sign-up" element={<Signup />} />
           <Route path="/sign-in" element={<Signin />} />
+          <Route path="/album-edit/:id"
+            element={
+              <PrivateRoute>
+                <AlbumEdit />
+              </PrivateRoute>
+            }
+          />
           <Route path="/artist-details/:artist"
             element={
               <PrivateRoute>

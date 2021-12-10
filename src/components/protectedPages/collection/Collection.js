@@ -6,32 +6,35 @@ function Collection() {
 
     useEffect(() => {
         fetchCollection()
-        }, [])
+    }, [])
 
     const [collectionArray, setCollectionArray] = useState([])
 
     async function fetchCollection() {
 
-    
-    try {
 
-        let collectionResult = await AxiosBackend.get(
-            'collection/',
-        );
+        try {
 
-        setCollectionArray(collectionResult.data.allCollection)
-        console.log(collectionResult.data.allCollection);
+            let collectionResult = await AxiosBackend.get(
+                'collection/',
+            );
+
+            setCollectionArray(collectionResult.data.allCollection)
+            console.log(collectionResult.data.allCollection);
 
 
-    } catch (e) {
+        } catch (e) {
 
-        console.log(e);
+            console.log(e);
+
+        }
+
 
     }
-}
+
     return (
         <div>
-            
+
             <div>
                 <div>
                     <div>
@@ -47,7 +50,7 @@ function Collection() {
             </div>
             <div>
                 {collectionArray.map((item) => (
-                    <div key={item.albumId}>
+                    <div key={item._Id}>
                         <Link
                             to={`/album-details/${item.albumId}`}
                             state={{
@@ -62,9 +65,14 @@ function Collection() {
                         <h5>Country: {item.albumCountry}</h5>
                         <h5>Label: {item.albumLabel}</h5>
                         <h5>Condition: {item.albumCondiiton}</h5>
+
+                        <Link to={`/album-edit/${item._id}`}>
+                            <button>Edit</button>
+                        </Link>
                     </div>
+
                 ))}
-                <button>Edit</button>
+
             </div>
         </div>
     )
