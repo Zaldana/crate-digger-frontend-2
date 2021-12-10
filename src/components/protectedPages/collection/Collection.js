@@ -1,54 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
 function Collection() {
 
-    // useEffect(() => {
-    //     effect
-    //     return () => {
-    //         cleanup
-    //     }
-    // }, [])
+    useEffect(() => {
+        fetchCollection()
+        }, [])
+
+    const [collectionArray, setCollectionArray] = useState([])
 
     async function fetchCollection() {
 
     
     try {
 
-        await AxiosBackend.get(
+        let collectionResult = await AxiosBackend.get(
             'collection/',
-            {
-                firstName,
-                lastName,
-                username,
-                email,
-                password,
-            }
         );
 
-        toast.success("Congrats~! now you please sign in", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        setCollectionArray(collectionResult.data.allCollection)
+        console.log(collectionResult.data.allCollection);
 
-        navigate("users/sign-in");
 
     } catch (e) {
 
-        toast.error(e.response.data.error, {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        console.log(e);
 
     }
 }
@@ -67,6 +44,27 @@ function Collection() {
                 <div>
                     this is the collection page
                 </div>
+            </div>
+            <div>
+                {collectionArray.map((item) => (
+                    <div key={item.albumId}>
+                        <Link
+                            to={`/album-details/${item.albumId}`}
+                            state={{
+                                albumCover: item.albumCover,
+                                id: item.albumId
+                            }}
+                        >
+                            <img src={item.albumThumb} />
+                        </Link>
+                        <h3>{item.albumName}</h3>
+                        <h5>Year: {item.albumYear}</h5>
+                        <h5>Country: {item.albumCountry}</h5>
+                        <h5>Label: {item.albumLabel}</h5>
+                        <h5>Condition: {item.albumCondiiton}</h5>
+                    </div>
+                ))}
+                <button>Edit</button>
             </div>
         </div>
     )
