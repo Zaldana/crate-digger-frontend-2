@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function ArtistDetails() {
@@ -9,6 +10,8 @@ function ArtistDetails() {
     useEffect(() => {
         fetchArtistDetails(artist)
     }, [])
+
+    const [releaseResultArray, setReleaseResultArray] = useState([])
 
     async function fetchArtistDetails(artist) {
 
@@ -23,9 +26,8 @@ function ArtistDetails() {
         }
         );
 
-
-        console.log(result);
-
+        setReleaseResultArray(result.data.results)
+        console.log(result.data.results);
     } catch (e) {
 
         console.log(e);
@@ -34,9 +36,27 @@ function ArtistDetails() {
 };
 
     return (
-        <div>
-            
-        </div>
+            <div>
+                <div>
+                    {releaseResultArray.map((item) => (
+                        <div key={item.id}>
+                            <Link
+                                to={`/album-details/${item.master_id}`}
+                                state={{
+                                    albumCover: item.cover_image,
+                                    id: item.id
+                                }}
+                            >
+                                <img src={item.thumb} />
+                            </Link>
+                            <h3>{item.title}</h3>
+                            <h5>Year: {item.year}</h5>
+                            <h5>Country: {item.country}</h5>
+                            <h5>Label: {item.label}</h5>
+                        </div>
+                    ))}
+                </div>
+            </div>
     )
 }
 

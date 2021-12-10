@@ -11,9 +11,9 @@ import Signup from "./components/Signup/Signup";
 import ProtectedHome from "./components/protectedPages/ProtectedHome";
 import AuthContextComponent, { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
-import Profile from "./components/protectedPages/Profile";
+import Profile from "./components/protectedPages/profile/Profile";
 import Search from "./components/protectedPages/search/Search";
-import Collection from "./components/protectedPages/Collection";
+import Collection from "./components/protectedPages/collection/Collection";
 import AlbumDetails from "./components/protectedPages/search/AlbumDetails";
 import ArtistDetails from "./components/protectedPages/search/ArtistDetails";
 

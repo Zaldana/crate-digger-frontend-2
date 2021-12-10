@@ -88,7 +88,7 @@ function Signup() {
                 progress: undefined,
             });
 
-            navigate("/sign-in");
+            navigate("users/sign-in");
 
         } catch (e) {
 
