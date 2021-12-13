@@ -41,7 +41,7 @@ function Signin() {
 
         } catch (e) {
 
-            toast.error(e.response.data.error, {
+            toast.error(e.response.data.message, {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -50,6 +50,8 @@ function Signin() {
                 draggable: true,
                 progress: undefined,
             });
+
+            navigate("/sign-up");
         }
     }
 

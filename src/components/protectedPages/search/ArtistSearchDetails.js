@@ -6,8 +6,6 @@ function ArtistSearchDetails() {
 
     const { artistResultsArray } = useContext(ArtistSearchContext)
 
-    console.log(artistResultsArray);
-
     return (
         <div>
             <div>

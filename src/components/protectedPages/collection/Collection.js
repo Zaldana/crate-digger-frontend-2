@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
 function Collection() {
@@ -19,9 +19,7 @@ function Collection() {
                 'collection/',
             );
 
-            setCollectionArray(collectionResult.data.allCollection)
-            console.log(collectionResult.data.allCollection);
-
+            setCollectionArray(collectionResult.data.userCollection)
 
         } catch (e) {
 
@@ -32,9 +30,29 @@ function Collection() {
 
     }
 
+    async function handleDeleteOnClick(id) {
+
+
+        try {
+
+            await AxiosBackend.delete(`collection/delete-album-by-id/${id}`);
+            let collectionResult = await AxiosBackend.get(
+                'collection/',
+            );
+
+            setCollectionArray(collectionResult.data.userCollection)
+
+
+        } catch (e) {
+
+            console.log(e);
+
+        }
+
+    }
+
     return (
         <div>
-
             <div>
                 <div>
                     <div>
@@ -58,7 +76,7 @@ function Collection() {
                                 id: item.albumId
                             }}
                         >
-                            <img src={item.albumThumb} />
+                            <img src={item.albumCover} />
                         </Link>
                         <h3>{item.albumName}</h3>
                         <h5>Year: {item.albumYear}</h5>
@@ -69,6 +87,7 @@ function Collection() {
                         <Link to={`/album-edit/${item._id}`}>
                             <button>Edit</button>
                         </Link>
+                        <button onClick={()=>handleDeleteOnClick(item._id)}>Delete</button>
                     </div>
 
                 ))}

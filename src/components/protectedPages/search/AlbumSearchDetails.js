@@ -16,7 +16,9 @@ function AlbumSearchDetails() {
                         to={`/album-details/${item.master_id}`}
                         state={{
                             albumCover: item.cover_image,
-                            id: item.id
+                            id: item.id,
+                            albumCountry: item.country,
+                            albumLabel: item.label
                         }}
                         >
                             <img src={item.thumb} />

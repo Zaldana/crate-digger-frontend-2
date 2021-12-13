@@ -15,19 +15,20 @@ function ArtistDetails() {
 
     async function fetchArtistDetails(artist) {
 
-    try {
+        try {
 
-        const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
-        const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
+            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
+            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
-        let result = await axios.get(
-            `https://api.discogs.com/database/search?format=Vinyl&type=master&artist=${artist}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-            headers: { 'User-Agent': 'CrateDigger/0.1' }
-        }
-        );
+            let result = await axios.get(
+                `https://api.discogs.com/database/search?format=Vinyl&type=master&artist=${artist}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                headers: { 'User-Agent': 'CrateDigger/0.1' }
+                }
+            );
 
         setReleaseResultArray(result.data.results)
         console.log(result.data.results);
+    
     } catch (e) {
 
         console.log(e);
@@ -44,7 +45,9 @@ function ArtistDetails() {
                                 to={`/album-details/${item.master_id}`}
                                 state={{
                                     albumCover: item.cover_image,
-                                    id: item.id
+                                    id: item.id,
+                                    albumCountry: item.country,
+                                    albumLabel: item.label
                                 }}
                             >
                                 <img src={item.thumb} />

@@ -51,7 +51,8 @@ function Search() {
                     headers: { 'User-Agent': 'CrateDigger/0.1' }
                 }
             );
-
+            
+            console.log(result.data.results);
             setAlbumResultsArray(result.data.results)
             setIsLoading(false)
 
@@ -79,9 +80,9 @@ function Search() {
             let result = await axios.get(
                 `https://api.discogs.com/database/search?type=artist&q=${artistSearchResult}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
-            }
-            );
+            });
 
+            console.log(result.data.results);
             setArtistResultsArray(result.data.results)
             setIsLoading(false)
 
