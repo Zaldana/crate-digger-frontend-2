@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container'
 
 function ProtectedHome() {
     return (
-        <div>
+        <Container>
             <div>
                 this is the protected Home
             </div>
@@ -23,7 +24,7 @@ function ProtectedHome() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

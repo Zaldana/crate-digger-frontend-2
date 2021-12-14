@@ -59,7 +59,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={styles.backgroundColor}>
+    <div className="App">
       <ToastContainer theme="colored" />
 
       <Router>
@@ -146,10 +146,4 @@ function App() {
   );
 }
 
-const styles = {
-  backgroundColor: {
-    background: "linear-gradient(147deg, #000000 0%, #04619f 74%)"
-  },
-
-}
 export default App;

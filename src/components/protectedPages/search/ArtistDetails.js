@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Container from 'react-bootstrap/Container'
 
 function ArtistDetails() {
 
@@ -37,7 +38,7 @@ function ArtistDetails() {
 };
 
     return (
-            <div>
+            <Container>
                 <div>
                     {releaseResultArray.map((item) => (
                         <div key={item.id}>
@@ -59,7 +60,7 @@ function ArtistDetails() {
                         </div>
                     ))}
                 </div>
-            </div>
+            </Container>
     )
 }
 

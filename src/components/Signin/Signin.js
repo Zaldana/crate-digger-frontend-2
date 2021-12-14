@@ -4,6 +4,15 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext"
 import AxiosBackend from '../../lib/axios/AxiosBackend';
+import bg from '../../images/bg.jpg'
+
+import {
+    Card,
+    Container,
+    Row,
+    Form,
+    Button
+} from 'react-bootstrap'
 
 function Signin() {
 
@@ -56,43 +65,68 @@ function Signin() {
     }
 
     return (
-        <div>
-            <main>
-                <form onSubmit={handleSubmit}>
-                    <h1>Please Sign In</h1>
+        <Container
+            className="d-flex align-items-center justify-content-center"
+            style={{
+                height: "calc(100vh - 56px)"
+            }}
+        >
+            <img src={bg} style={{
+                objectFit: "cover",
+                height: "calc(100vh - 56px)",
+                width: "100%",
+                zIndex: "-1",
+                position: "absolute"
+            }} />
+            <Row style={{ width: "100%" }}>
+                 <Card
+                    style={{
+                        width: "80%",
+                        padding: "2%",
+                    }}
+                    className="mx-auto mt-auto align-items-center transpCard"
+                    bg={"custom"}
+                >
+                    <Card.Body className="w-100">
+                <Form onSubmit={handleSubmit}>
+                            <h2
+                                className="d-flex justify-content-center"
+                                style={{
+                                    fontFamily: "Spartan",
+                                    fontWeight: "bold",
+                                    color: "darkslategray"
+                                }}>Please Sign In</h2>
 
-                    <div>
-                        <label>Email Address</label>
+                    <Form.Group>
+                        <Form.Label>Email Address</Form.Label>
                         < br />
-                        <input
+                        <Form.Control
                             type="email"
                             id="email"
                             placeholder="name@example.com"
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <div></div>
-
-                    </div>
-
-                    <div>
-                        <label>Password</label>
+                    
+                    </Form.Group>                    
+                        <Form.Label>Password</Form.Label>
                         <br />
-                        <input
+                        <Form.Control
                             type="password"
                             id="password"
                             placeholder="Password"
                             name="password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                    </div>
-                    <br />
-                    <button type="submit">
+                      <br />
+                    <Button type="submit">
                         Sign In
-                    </button>
-                </form>
-            </main>
-        </div>
+                    </Button>
+                </Form>
+                </Card.Body>
+                </Card>
+            </Row>
+        </Container>
     )
 }
 

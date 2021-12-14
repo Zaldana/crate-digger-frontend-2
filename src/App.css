@@ -1,9 +1,19 @@
+
 .transpCard {
   box-shadow: 5px 7px 5px rgba(27, 27, 27, 0.39);
-
 }
 
 .bg-custom {
-  background-color: #ffffffa6!important;
-  
+  background-color: #ffffffb4!important;
+  backdrop-filter: blur(6px);
+}
+
+.main-heading {
+  font-family: Erica One;
+  font-size: 300px;
+
+  background: -webkit-linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.801));
 }

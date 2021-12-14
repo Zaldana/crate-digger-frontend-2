@@ -1,7 +1,8 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
+import Container from 'react-bootstrap/Container'
 
 function AlbumEdit() {
 
@@ -37,7 +38,7 @@ function AlbumEdit() {
 
 
         return (
-            <div className="container">
+            <Container>
                 <div className="d-flex justify-content-center ">
                     <div className="input-group mb-3 w-75">
                         <input
@@ -85,7 +86,7 @@ function AlbumEdit() {
                     </div>
                 </div>
 
-            </div>
+            </Container>
         )
     }
 

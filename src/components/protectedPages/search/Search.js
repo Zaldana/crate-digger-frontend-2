@@ -7,6 +7,7 @@ import { ArtistSearchContext, AlbumSearchContext } from "../../../context/Search
 import Loading from "../../common/Loading";
 import AlbumSearchDetails from './AlbumSearchDetails';
 import ArtistSearchDetails from './ArtistSearchDetails'
+import Container from 'react-bootstrap/Container'
 
 function Search() {
 
@@ -119,7 +120,7 @@ function Search() {
     }
 
     return (
-        <div>
+        <Container style={{ height: "100vh" }}>
           
             <div>
                 <div>
@@ -174,7 +175,7 @@ function Search() {
                     )}
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

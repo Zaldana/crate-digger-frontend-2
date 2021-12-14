@@ -3,6 +3,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Container from 'react-bootstrap/Container'
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
 function CollectionDetails() {
@@ -92,7 +93,7 @@ function CollectionDetails() {
     }
 
     return (
-        <div>
+        <Container>
             <div>
                 <div>
                     <Link to="/search">Dig through crates</Link>
@@ -114,7 +115,7 @@ function CollectionDetails() {
                 <button>Edit</button>
             </Link>
             <button onClick={() => handleDeleteOnClick(objectId)}>Delete</button>
-        </div>
+        </Container>
     )
 }
 

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container'
 
 function Profile() {
     return (
-        <div>
+        <Container>
             <div>
                 this is the profile
             </div>
@@ -17,7 +18,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 

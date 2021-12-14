@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
+import Container from 'react-bootstrap/Container'
 
 function Collection() {
 
@@ -52,7 +53,7 @@ function Collection() {
     }
 
     return (
-        <div>
+        <Container>
             <div>
                 <div>
                     <div>
@@ -96,7 +97,7 @@ function Collection() {
                 ))}
 
             </div>
-        </div>
+        </Container>
     )
 }
 

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AxiosBackend from '../../../lib/axios/AxiosBackend';
-import axios from "axios";
 import { toast } from "react-toastify";
+import Container from 'react-bootstrap/Container'
+import axios from "axios";
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
 
 function AlbumDetails() {
@@ -148,7 +149,7 @@ function AlbumDetails() {
     }
 
     return (
-        <div>
+        <Container>
             <div>
                 <div>
                     <Link to="/search">Dig through crates</Link>
@@ -171,7 +172,7 @@ function AlbumDetails() {
             </div>
             <button onClick={addToCollection}>Add To Collection</button>
             <button onClick={addToWishlist}>Add To Wishlist</button>
-        </div>
+        </Container>
     )
 }
 

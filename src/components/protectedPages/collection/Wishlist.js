@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import AxiosBackend from '../../../lib/axios/AxiosBackend';
-import axios from "axios";
 import { toast } from "react-toastify";
+import Container from 'react-bootstrap/Container'
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
 function Wishlist() {
 
@@ -110,7 +110,7 @@ function Wishlist() {
     }
 
     return (
-        <div>
+        <Container>
             <div>
                 <div>
                     <div>
@@ -165,7 +165,7 @@ function Wishlist() {
                 ))}
 
             </div>
-        </div>
+        </Container>
     )
 }
 

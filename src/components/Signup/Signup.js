@@ -8,6 +8,7 @@ import LastNameHook from "../hooks/LastNameHook"
 import PasswordHook from "../hooks/PasswordHook"
 import UsernameHook from "../hooks/UsernameHook"
 import AxiosBackend from "../../lib/axios/AxiosBackend"
+import signUpBg from '../../images/signupbg.jpg'
 
 import {
     Card,
@@ -114,20 +115,39 @@ function Signup() {
     }
 
     return (
-        <Container style={{ height: "100vh" }} >
-            <Row className="align-items-center" style={{ height: "85vh" }}>
+        <Container
+            className="d-flex align-items-center justify-content-center"
+            style={{ height: "calc(100vh - 56px)" }}
+        >
+            <img src={signUpBg} style={{
+                objectFit: "cover",
+                height: "calc(100vh - 56px)",
+                width: "100%",
+                zIndex: "-1",
+                position: "absolute"
+            }} />
+            <Row style={{ width: "100%"}}>
                 <Card
-                    style={{ width: "90%" }}
+                    style={{
+                        width: "80%",
+                        padding: "2%"
+                    }}
                     className="mx-auto mt-auto align-items-center transpCard"
                     bg={"custom"}
                 >
-                    <Card.Body className="w-75">
+                    <Card.Body className="w-100">
                         <Form size="lg" onSubmit={handleSubmit} >
-                            <br />
-                            <h2 className="d-flex justify-content-center">Please Sign Up</h2>
+                            <h2
+                                className="d-flex justify-content-center"
+                                style={{
+                                    fontFamily: "Spartan",
+                                    fontWeight: "bold",
+                                    color: "darkslategray"
+                                }}
+                            >Please Sign Up</h2>
 
                             <Form.Group>
-                                <Form.Label>First Name</Form.Label>
+                                <Form.Label >First Name</Form.Label>
                                 <Form.Control
                                     type="text"
                                     id="firstName"

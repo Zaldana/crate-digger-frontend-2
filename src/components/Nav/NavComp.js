@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
+import logo from '../../images/logo.png'
 
 function NavComp() {
 
@@ -33,10 +34,23 @@ function NavComp() {
     }
     
     return (
-        <div>
-            <Navbar fixed="top" expand="xxl" variant="dark" style={styles.backgroundColor}>
+            <Navbar  expand="xxl" variant="dark" style={styles.backgroundColor}>
                 <Container>
-                    <Navbar.Brand  href={homeLink}>CrateDigger</Navbar.Brand>
+                <Navbar.Brand
+                    style={{
+                        fontFamily: "Erica One",
+                        color: "darkslategray"
+                    }}
+                    href={homeLink}
+                    className="d-flex align-items-center">
+                    <img
+                        src={logo}
+                        style={{
+                            height: "27px",
+                            paddingRight: "3px",
+                        }} />
+                    CrateDigger
+                </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
@@ -57,7 +71,6 @@ function NavComp() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </div>
     )
 }
 

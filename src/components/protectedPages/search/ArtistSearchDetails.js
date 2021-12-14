@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
+import Container from 'react-bootstrap/Container'
 import { ArtistSearchContext } from '../../../context/SearchContext'
 
 function ArtistSearchDetails() {
@@ -7,7 +8,7 @@ function ArtistSearchDetails() {
     const { artistResultsArray } = useContext(ArtistSearchContext)
 
     return (
-        <div>
+        <Container>
             <div>
                 {artistResultsArray.map((item) => (
                     <div key={item.id}>
@@ -20,7 +21,7 @@ function ArtistSearchDetails() {
                     </div>
                 ))}
             </div>
-        </div>
+        </Container>
     )
 }
 
