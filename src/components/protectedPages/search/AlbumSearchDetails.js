@@ -6,6 +6,7 @@ import { AlbumSearchContext } from '../../../context/SearchContext'
 function AlbumSearchDetails() {
     
     const { albumResultsArray } = useContext(AlbumSearchContext)
+    console.log(albumResultsArray);
 
     return (
         <div>
@@ -16,9 +17,9 @@ function AlbumSearchDetails() {
                         to={`/album-details/${item.master_id}`}
                         state={{
                             albumCover: item.cover_image,
-                            id: item.id,
                             albumCountry: item.country,
-                            albumLabel: item.label
+                            albumLabel: item.label,
+                            albumId: item.id
                         }}
                         >
                             <img src={item.thumb} />

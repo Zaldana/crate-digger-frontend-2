@@ -5,11 +5,11 @@ import jwtDecode from "jwt-decode";
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Home from "./components/Home/Home";
-import Nav from "./components/Nav/Nav";
+import Nav from "./components/Nav/NavComp";
 import Signin from "./components/Signin/Signin";
 import Signup from "./components/Signup/Signup";
 import ProtectedHome from "./components/protectedPages/ProtectedHome";
-import AuthContextComponent, { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Profile from "./components/protectedPages/profile/Profile";
 import Search from "./components/protectedPages/search/Search";
@@ -17,6 +17,10 @@ import Collection from "./components/protectedPages/collection/Collection";
 import AlbumDetails from "./components/protectedPages/search/AlbumDetails";
 import ArtistDetails from "./components/protectedPages/search/ArtistDetails";
 import AlbumEdit from "./components/protectedPages/collection/AlbumEdit";
+import CollectionDetails from "./components/protectedPages/collection/CollectionDetails";
+import Wishlist from "./components/protectedPages/collection/Wishlist";
+import NavComp from "./components/Nav/NavComp";
+
 
 function App() {
 
@@ -55,17 +59,26 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App" style={styles.backgroundColor}>
       <ToastContainer theme="colored" />
 
-        <Router>
-
-          <Nav />
+      <Router>
+        
+        <NavComp />
 
           <Routes>
-
-            <Route path="/sign-up" element={<Signup />} />
+     
+          
+          
+          <Route path="/sign-up" element={<Signup />} />
           <Route path="/sign-in" element={<Signin />} />
+          <Route path="/collection-details/:id"
+            element={
+              <PrivateRoute>
+                <CollectionDetails />
+              </PrivateRoute>
+            }
+          />
           <Route path="/album-edit/:id"
             element={
               <PrivateRoute>
@@ -87,20 +100,27 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="/search"
-              element={
-                <PrivateRoute>
-                  <Search />
-                </PrivateRoute>
-              }
-            />
+          <Route path="/wishlist/"
+            element={
+              <PrivateRoute>
+                <Wishlist />
+              </PrivateRoute>
+            }
+          />
             <Route path="/collection"
               element={
                 <PrivateRoute>
                   <Collection />
                 </PrivateRoute>
               }
-            />
+          />
+          <Route path="/search"
+            element={
+              <PrivateRoute>
+                <Search />
+              </PrivateRoute>
+            }
+          />
             <Route path="/profile"
               element={
                 <PrivateRoute>
@@ -126,4 +146,10 @@ function App() {
   );
 }
 
+const styles = {
+  backgroundColor: {
+    background: "linear-gradient(147deg, #000000 0%, #04619f 74%)"
+  },
+
+}
 export default App;

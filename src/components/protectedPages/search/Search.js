@@ -52,7 +52,6 @@ function Search() {
                 }
             );
             
-            console.log(result.data.results);
             setAlbumResultsArray(result.data.results)
             setIsLoading(false)
 

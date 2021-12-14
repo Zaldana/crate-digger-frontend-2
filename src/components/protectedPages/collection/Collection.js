@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
 function Collection() {
@@ -35,13 +35,13 @@ function Collection() {
 
         try {
 
-            await AxiosBackend.delete(`collection/delete-album-by-id/${id}`);
+            await AxiosBackend.delete(`collection/delete-album-by-id/${id}/`);
             let collectionResult = await AxiosBackend.get(
                 'collection/',
             );
 
             setCollectionArray(collectionResult.data.userCollection)
-
+           
 
         } catch (e) {
 
@@ -61,6 +61,9 @@ function Collection() {
                     <div>
                         <Link to="/profile">Profile</Link>
                     </div>
+                    <div>
+                        <Link to="/wishlist">Wishlist</Link>
+                    </div>
                 </div>
                 <div>
                     this is the collection page
@@ -68,9 +71,9 @@ function Collection() {
             </div>
             <div>
                 {collectionArray.map((item) => (
-                    <div key={item._Id}>
+                    <div key={item._id}>
                         <Link
-                            to={`/album-details/${item.albumId}`}
+                            to={`/collection-details/${item.albumId}`}
                             state={{
                                 albumCover: item.albumCover,
                                 id: item.albumId

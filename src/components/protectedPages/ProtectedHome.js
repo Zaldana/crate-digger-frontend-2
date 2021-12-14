@@ -18,6 +18,9 @@ function ProtectedHome() {
                     <div>
                         <Link to="/profile">Profile</Link>
                     </div>
+                    <div>
+                        <Link to="/wishlist">Wishlist</Link>
+                    </div>
                 </div>
             </div>
         </div>

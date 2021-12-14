@@ -9,6 +9,14 @@ import PasswordHook from "../hooks/PasswordHook"
 import UsernameHook from "../hooks/UsernameHook"
 import AxiosBackend from "../../lib/axios/AxiosBackend"
 
+import {
+    Card,
+    Container,
+    Row,
+    Form,
+    Button
+} from 'react-bootstrap'
+
 function Signup() {
 
     const [
@@ -106,87 +114,89 @@ function Signup() {
     }
 
     return (
-        <div>
-            <main>
-                <form onSubmit={handleSubmit} >
-                    <h1>Please Sign Up</h1>
+        <Container style={{ height: "100vh" }} >
+            <Row className="align-items-center" style={{ height: "85vh" }}>
+                <Card
+                    style={{ width: "90%" }}
+                    className="mx-auto mt-auto align-items-center transpCard"
+                    bg={"custom"}
+                >
+                    <Card.Body className="w-75">
+                        <Form size="lg" onSubmit={handleSubmit} >
+                            <br />
+                            <h2 className="d-flex justify-content-center">Please Sign Up</h2>
 
-                    <div>
-                        <label>First Name</label>
-                        <br />
-                        <input
-                            type="text"
-                            id="firstName"
-                            placeholder="First Name"
-                            onFocus={() => setFirstNameOnFocus(true)}
-                            onBlur={() => setFirstNameOnBlur(true)}
-                            onChange={handleFirstNameOnChange}
-                        />
-                        <div>{firstNameError && firstNameError}</div>
-                    </div>
-
-                    <div>
-                        <label>Last Name</label>
-                        <br />
-                        <input
-                            type="text"
-                            id="lastName"
-                            placeholder="last name"
-                            onFocus={() => setLastNameOnFocus(true)}
-                            onBlur={() => setLastNameOnBlur(true)}
-                            onChange={handleLastNameOnChange}
-                        />
-                        <div>{lastNameError && lastNameError}</div>
-                    </div>
-
-                    <div>
-                        <label>Username</label>
-                        <br />
-                        <input
-                            type="text"
-                            id="username"
-                            placeholder="username"
-                            onFocus={() => setUsernameOnFocus(true)}
-                            onBlur={() => setUsernameOnBlur(true)}
-                            onChange={handleUsernameOnChange}
-                        />
-                        <div>{usernameError && usernameError}</div>
-                    </div>
-
-                    <div>
-                        <label>Email address</label>
-                        <br />
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="name@example.com"
-                            onChange={handleEmailOnChange}
-                            onFocus={() => setEmailOnFocus(true)}
-                            onBlur={() => setEmailOnBlur(true)}
-                        />
-                        <div>{emailError && emailError}</div>
-                    </div>
-
-                    <div>
-                        <label>Password</label>
-                        <br />
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Password"
-                            onChange={handlePasswordOnChange}
-                            onFocus={() => setPasswordOnFocus(true)}
-                            onBlur={() => setPasswordOnBlur(true)}
-                        />
-                        <div>{passwordError && passwordError}</div>
-                    </div>
-                    <br />
-                    <button type="submit">
-                        Sign Up
-                    </button>
-                </form>
-            </main>
-        </div>
+                            <Form.Group>
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    id="firstName"
+                                    placeholder="First Name"
+                                    onFocus={() => setFirstNameOnFocus(true)}
+                                    onBlur={() => setFirstNameOnBlur(true)}
+                                    onChange={handleFirstNameOnChange}
+                                />
+                                <Form.Text muted>{firstNameError && firstNameError}</Form.Text>
+                                </Form.Group>
+                                <br />
+                                <Form.Group>
+                                    <Form.Label>Last Name</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        id="lastName"
+                                        placeholder="last name"
+                                        onFocus={() => setLastNameOnFocus(true)}
+                                        onBlur={() => setLastNameOnBlur(true)}
+                                        onChange={handleLastNameOnChange}
+                                    />
+                                    <Form.Text muted>{lastNameError && lastNameError}</Form.Text>
+                                </Form.Group>
+                                <br />
+                                <Form.Group>
+                                    <Form.Label>Username</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        id="username"
+                                        placeholder="username"
+                                        onFocus={() => setUsernameOnFocus(true)}
+                                        onBlur={() => setUsernameOnBlur(true)}
+                                        onChange={handleUsernameOnChange}
+                                    />
+                                    <Form.Text muted>{usernameError && usernameError}</Form.Text>
+                                </Form.Group>
+                                <br />
+                                <Form.Group>
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control
+                                        type="email"
+                                        id="email"
+                                        placeholder="name@example.com"
+                                        onChange={handleEmailOnChange}
+                                        onFocus={() => setEmailOnFocus(true)}
+                                        onBlur={() => setEmailOnBlur(true)}
+                                    />
+                                    <Form.Text muted>{emailError && emailError}</Form.Text>
+                                </Form.Group>
+                                <br />
+                                <Form.Group>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        id="password"
+                                        placeholder="Password"
+                                        onChange={handlePasswordOnChange}
+                                        onFocus={() => setPasswordOnFocus(true)}
+                                        onBlur={() => setPasswordOnBlur(true)}
+                                    />
+                                    <Form.Text>{passwordError && passwordError}</Form.Text>
+                                </Form.Group>
+                                <br />
+                            <Button type="submit">Sign Up</Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+            </Row>
+        </Container>
     )
 }
 

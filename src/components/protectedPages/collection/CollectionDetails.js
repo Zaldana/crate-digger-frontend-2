@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import axios from "axios";
 import { toast } from "react-toastify";
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
-
-function AlbumDetails() {
+function CollectionDetails() {
 
     const { id } = useParams();
     const location = useLocation();
@@ -26,25 +25,27 @@ function AlbumDetails() {
     const [albumLabel, setAlbumLabel] = useState([])
     const [albumTracklist, setAlbumTracklist] = useState([])
     const [albumGenre, setAlbumGenre] = useState([])
+    const [objectId, setObjectId] = useState("")
 
     let altId = id;
     let url = "";
 
-    if (id.length <= 1) {
+    if ( id.length <= 1) {
         altId = location.state.id
         url = "https://api.discogs.com/releases/"
     } else {
         url = "https://api.discogs.com/masters/"
     }
-    
+
     useEffect(() => {
 
-        fetchAlbumDetails(id)
+        fetchAlbumDetails(altId)
         setAlbumCover(albumCoverFromState)
+        setAlbumId(id)
         setAlbumCountry(albumCountryFromState)
         setAlbumLabel(albumLabelArrayFromState)
-        
-    
+
+
     }, [])
 
     async function fetchAlbumDetails(id) {
@@ -64,7 +65,7 @@ function AlbumDetails() {
             setAlbumYear(albumDetailsResult.data.year)
             setAlbumTracklist(albumDetailsResult.data.tracklist)
             setAlbumGenre(albumDetailsResult.data.styles)
-            setAlbumId(id)
+            setObjectId(albumDetailsResult.data._id)
 
         } catch (e) {
 
@@ -73,78 +74,21 @@ function AlbumDetails() {
         }
     };
 
-    async function addToCollection() {
+    async function handleDeleteOnClick(id) {
+
 
         try {
 
-            let payload = await AxiosBackend.post(
-                'collection/add/', {
-                    albumName,
-                    albumCover,
-                    albumId,
-                    albumArtist,
-                    albumYear,
-                    albumCountry,
-                    albumLabel,
-                    albumTracklist,
-                    albumGenre
-            });
-            
-            toast.success("Added To Collection", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            await AxiosBackend.delete(`collection/delete-album-by-id/${id}`);
 
             navigate("/collection");
 
         } catch (e) {
 
             console.log(e);
-         
-            
-        }
-    }
-
-    async function addToWishlist() {
-
-        try {
-
-            let payload = await AxiosBackend.post(
-                'wishlist/add/', {
-                albumName,
-                albumCover,
-                albumId,
-                albumArtist,
-                albumYear,
-                albumCountry,
-                albumLabel,
-                albumTracklist,
-                albumGenre
-            });
-
-            toast.success("Added To Wishlist", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-
-            navigate("/wishlist");
-
-        } catch (e) {
-
-            console.log(e);
-
 
         }
+
     }
 
     return (
@@ -159,20 +103,19 @@ function AlbumDetails() {
                 <div>
                     <Link to="/profile">Profile</Link>
                 </div>
-                <div>
-                    <Link to="/wishlist">Wishlist</Link>
-                </div>
             </div>
             <div>
-                this is the album details
+                this is the collection details
             </div>
             <div>
                 <img src={albumCover}></img>
             </div>
-            <button onClick={addToCollection}>Add To Collection</button>
-            <button onClick={addToWishlist}>Add To Wishlist</button>
+            <Link to={`/album-edit/${objectId}`}>
+                <button>Edit</button>
+            </Link>
+            <button onClick={() => handleDeleteOnClick(objectId)}>Delete</button>
         </div>
     )
 }
 
-export default AlbumDetails
+export default CollectionDetails
