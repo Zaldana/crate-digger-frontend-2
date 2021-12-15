@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import Container from 'react-bootstrap/Container'
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 
@@ -83,15 +83,15 @@ function Wishlist() {
                 albumGenre
             });
 
-            toast.success("Added To Collection", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.success("Added To Collection", {
+            //     position: "top-center",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
 
             await AxiosBackend.delete(`wishlist/delete-album-by-id/${objectId}`);
 

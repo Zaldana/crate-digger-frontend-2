@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import Container from 'react-bootstrap/Container'
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 

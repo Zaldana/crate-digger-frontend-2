@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import Container from 'react-bootstrap/Container'
 import axios from "axios";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
@@ -91,15 +91,15 @@ function AlbumDetails() {
                     albumGenre
             });
             
-            toast.success("Added To Collection", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.success("Added To Collection", {
+            //     position: "top-center",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
 
             navigate("/collection");
 
@@ -128,15 +128,15 @@ function AlbumDetails() {
                 albumGenre
             });
 
-            toast.success("Added To Wishlist", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.success("Added To Wishlist", {
+            //     position: "top-center",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
 
             navigate("/wishlist");
 

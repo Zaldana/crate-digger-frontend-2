@@ -15,14 +15,21 @@ function Home() {
                 zIndex: "-1",
                 position: "absolute"
             }} />
-            <h1
-                className="justify-content-center main-heading"
-
+            <Container                
+                style={{
+                    width: "100%",
+                    height: "90%",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
             >
-                Crate
-                <br />
-                Digger
-            </h1>
+                <h1 className="main-heading">Crate</h1>
+                <h1 className="main-heading">Digger</h1>
+                <h2 className="tag-line">find your next record</h2>
+            </Container>
         </Container>
     )
 }

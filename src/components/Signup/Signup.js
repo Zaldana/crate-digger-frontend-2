@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import CheckTokenHook from "../hooks/CheckTokenHook"
 import EmailHook from "../hooks/EmailHook"
@@ -87,29 +87,29 @@ function Signup() {
                 }
             );
 
-            toast.success("Congrats~! now you please sign in", {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.success("Congrats~! now you please sign in", {
+            //     position: "top-center",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
 
             navigate("users/sign-in");
 
         } catch (e) {
 
-            toast.error(e.response.data.error, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.error(e.response.data.error, {
+            //     position: "top-center",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
 
         }
     }

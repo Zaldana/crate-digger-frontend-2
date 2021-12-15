@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import jwtDecode from "jwt-decode";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext"
 import AxiosBackend from '../../lib/axios/AxiosBackend';
@@ -50,15 +50,15 @@ function Signin() {
 
         } catch (e) {
 
-            toast.error(e.response.data.message, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            // toast.error(e.response.data.message, {
+            //     position: "top-center",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
 
             navigate("/sign-up");
         }
