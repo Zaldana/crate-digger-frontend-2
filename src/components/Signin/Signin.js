@@ -11,7 +11,8 @@ import {
     Container,
     Row,
     Form,
-    Button
+    Button,
+    FormGroup
 } from 'react-bootstrap'
 
 function Signin() {
@@ -88,7 +89,7 @@ function Signin() {
                     bg={"custom"}
                 >
                     <Card.Body className="w-100">
-                <Form onSubmit={handleSubmit}>
+                        <Form onSubmit={handleSubmit}>
                             <h2
                                 className="d-flex justify-content-center"
                                 style={{
@@ -97,32 +98,35 @@ function Signin() {
                                     color: "darkslategray"
                                 }}>Please Sign In</h2>
 
-                    <Form.Group>
-                        <Form.Label>Email Address</Form.Label>
-                        < br />
-                        <Form.Control
-                            type="email"
-                            id="email"
-                            placeholder="name@example.com"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    
-                    </Form.Group>                    
-                        <Form.Label>Password</Form.Label>
-                        <br />
-                        <Form.Control
-                            type="password"
-                            id="password"
-                            placeholder="Password"
-                            name="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                      <br />
-                    <Button type="submit">
-                        Sign In
-                    </Button>
-                </Form>
+                            <Form.Group>
+                                <Form.Label>Email Address</Form.Label>
+                                < br />
+                                <Form.Control
+                                    type="email"
+                                    id="email"
+                                    placeholder="name@example.com"
+                                    name="email"
+                                    onChange={(e) => setEmail(e.target.value)}       
+                                />
+                            </Form.Group>                    
+                        
+                            <Form.Group>
+                                <Form.Label>Password</Form.Label>
+                                <br />
+                                <Form.Control
+                                    type="password"
+                                    id="password"
+                                    placeholder="Password"
+                                    name="password"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </Form.Group>
+                            
+                            <br />
+                        <Button type="submit">
+                            Sign In
+                        </Button>
+                    </Form>
                 </Card.Body>
                 </Card>
             </Row>

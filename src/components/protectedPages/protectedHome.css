@@ -1,5 +1,6 @@
 .main-card-group {
     height: 40%;
+    display: flex;
 }
 
 .card-styles {
@@ -51,4 +52,7 @@
     width: 100%;
     height: 100%;
     font-family: Spartan;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 }

@@ -7,7 +7,12 @@ import { ArtistSearchContext, AlbumSearchContext } from "../../../context/Search
 import Loading from "../../common/Loading";
 import AlbumSearchDetails from './AlbumSearchDetails';
 import ArtistSearchDetails from './ArtistSearchDetails'
-import Container from 'react-bootstrap/Container'
+
+import {
+    Container,
+    Breadcrumb,
+    Row,
+} from 'react-bootstrap'
 
 function Search() {
 
@@ -27,12 +32,27 @@ function Search() {
         }
     }, []);
 
-    useEffect(() => {
-        const values = queryString.parse(search);
-        if (values.s) {
-            fetchArtistResult(values.s);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const values = queryString.parse(search);
+    //     if (values.s) {
+    //         fetchArtistResult(values.s);
+    //     }
+    // }, []);
+
+    // useEffect(() => {
+    //     const listener = event => {
+    //         if (event.code === "Enter" || event.code === "NumpadEnter") {
+    //             console.log("Enter key was pressed. Run your function.");
+    //             event.preventDefault();
+    //             handleOnAlbumClick(albumSearchResult)
+    //         }
+    //     };
+    //     document.addEventListener("keydown", listener);
+    //     return () => {
+    //         document.removeEventListener("keydown", listener);
+    //     };
+    // }, []);
+
 
     async function fetchAlbumResult(albumSearchResult) {
 
@@ -49,17 +69,17 @@ function Search() {
 
             let result = await axios.get(
                 `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-                    headers: { 'User-Agent': 'CrateDigger/0.1' }
-                }
+                headers: { 'User-Agent': 'CrateDigger/0.1' }
+            }
             );
-            
+
             setAlbumResultsArray(result.data.results)
             setIsLoading(false)
 
         } catch (e) {
 
             console.log(e);
-           
+
         }
     };
 
@@ -119,27 +139,34 @@ function Search() {
         artistResultsArray
     }
 
+    function handleKeypress(e) {
+        if (e.keyCode === 13) {
+            handleOnAlbumClick(albumSearchResult);
+        }
+    }
+
     return (
         <Container style={{ height: "100vh" }}>
-          
-            <div>
-                <div>
-                    <div>
-                        <Link to="/collection">Collection</Link>
-                    </div>
-                    <div>
-                        <Link to="/profile">Profile</Link>
-                    </div>
-                </div>
-                <div>
-                    this is the search page
-                </div>
+            <Row>
+                <Breadcrumb className="breadcrumb-styles">
+                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                </Breadcrumb>
+            </Row>
+
+            <Row>
                 <div >
                     <input
                         name="albumSearchResult"
                         value={albumSearchResult}
                         onChange={handleOnAlbumChange}
                         placeholder="Album Title or Barcode"
+                        // onKeyPress={
+                        //     (e) => e.key === 'Enter' && handleOnAlbumClick(albumSearchResult)
+                        // }
                     />
                     <button onClick={handleOnAlbumClick}>Search</button>
                 </div>
@@ -174,7 +201,7 @@ function Search() {
                         </ArtistSearchContext.Provider>
                     )}
                 </div>
-            </div>
+            </Row>
         </Container>
     )
 }

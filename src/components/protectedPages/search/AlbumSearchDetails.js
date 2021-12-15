@@ -7,7 +7,6 @@ import { AlbumSearchContext } from '../../../context/SearchContext'
 function AlbumSearchDetails() {
     
     const { albumResultsArray } = useContext(AlbumSearchContext)
-    console.log(albumResultsArray);
 
     return (
         <Container>
