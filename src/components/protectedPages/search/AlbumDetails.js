@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-// import { toast } from "react-toastify";
-import Container from 'react-bootstrap/Container'
 import axios from "axios";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
+import Loading from "../../common/Loading";
+import './AlbumDetails.css'
 
+import {
+    Container,
+    Breadcrumb,
+    Row,
+    Col,
+    Button,
+    Nav,
+    Tab,
+} from 'react-bootstrap'
 
 function AlbumDetails() {
 
+    const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
@@ -27,6 +36,7 @@ function AlbumDetails() {
     const [albumLabel, setAlbumLabel] = useState([])
     const [albumTracklist, setAlbumTracklist] = useState([])
     const [albumGenre, setAlbumGenre] = useState([])
+    const [albumNotes, setAlbumNotes] = useState("")
 
     let altId = id;
     let url = "";
@@ -65,6 +75,7 @@ function AlbumDetails() {
             setAlbumYear(albumDetailsResult.data.year)
             setAlbumTracklist(albumDetailsResult.data.tracklist)
             setAlbumGenre(albumDetailsResult.data.styles)
+            setAlbumNotes(albumDetailsResult.data.notes)
             setAlbumId(id)
 
         } catch (e) {
@@ -129,7 +140,7 @@ function AlbumDetails() {
             });
 
             // toast.success("Added To Wishlist", {
-            //     position: "top-center",
+            //     position: "top-center",Sonnet
             //     autoClose: 5000,
             //     hideProgressBar: false,
             //     closeOnClick: true,
@@ -148,30 +159,72 @@ function AlbumDetails() {
         }
     }
 
+    console.log(albumDetailsArray);
+
+    console.log( albumTracklist );
+
     return (
         <Container>
-            <div>
-                <div>
-                    <Link to="/search">Dig through crates</Link>
-                </div>
-                <div>
-                    <Link to="/collection">Collection</Link>
-                </div>
-                <div>
-                    <Link to="/profile">Profile</Link>
-                </div>
-                <div>
-                    <Link to="/wishlist">Wishlist</Link>
-                </div>
-            </div>
-            <div>
-                this is the album details
-            </div>
-            <div>
-                <img src={albumCover}></img>
-            </div>
-            <button onClick={addToCollection}>Add To Collection</button>
-            <button onClick={addToWishlist}>Add To Wishlist</button>
+            <Row className="g-0">
+                <Breadcrumb className="breadcrumb-styles">
+                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                </Breadcrumb>
+            </Row>
+            <Row>
+                <Col>
+                    <img className="album-cover" src={albumCover}></img>     
+                </Col>
+                   
+                <Col className="tab-column">
+                    <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
+                        <Row>
+                            <Col sm={3}>
+                                <Nav variant="pills" className="flex-column">
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="first">Album Info</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="second">Tracklist</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
+                            </Col>
+                            <Col sm={9} >
+                                <Tab.Content >
+                                    <Tab.Pane eventKey="first">
+                                        <h1>{albumName}</h1>
+                                        <h4>{albumArtist}</h4>
+                                        <br />
+                                        <h5>Year: {albumYear}</h5>
+                                        <h5>Country: {albumCountry}</h5>
+                                        <h5>Genres:{albumGenre}</h5>
+                                        <h5>Labels:</h5>
+                                        {albumLabel.slice(0,3).map((item) => (
+                                            
+                                                <li>{item}</li>
+                                            
+                                        ))}
+                                        <p><b>Album Notes:</b> {albumNotes}</p>
+                                        
+                                        <Button onClick={addToCollection}>Add To Collection</Button>
+                                        <Button onClick={addToWishlist}>Add To Wishlist</Button>
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="second" >
+                                        <h1>{albumName}</h1>
+                                        {albumTracklist.map((item) => (
+                                            <h4>{item.position}. {item.title}</h4>
+                                        ))}
+                                    </Tab.Pane>
+                                </Tab.Content>
+                            </Col>
+                        </Row>
+                    </Tab.Container>
+                   
+                </Col>
+        </Row>
         </Container>
     )
 }

@@ -51,6 +51,9 @@ function AlbumSearchDetails() {
                     </CardGroup>
                 ))} 
             </Row>
+            <Row>
+                
+            </Row>
         </Container>
     )
 }

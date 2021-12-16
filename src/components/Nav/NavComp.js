@@ -58,7 +58,8 @@ function NavComp() {
                             <Nav.Link href={signinLink} onClick={() => logoutButton()}>{signinLabel}</Nav.Link>
                             {user ? (
                                 <NavDropdown title="dig" style={{ color: "white" }} id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/search">Search</NavDropdown.Item>
+                                    <NavDropdown.Item href="/album-search">Album Search</NavDropdown.Item>
+                                    <NavDropdown.Item href="/artist-search">Artist Search</NavDropdown.Item>
                                     <NavDropdown.Item href="/collection">My Collection</NavDropdown.Item>
                                     <NavDropdown.Item href="/wishlist">My Wishlist</NavDropdown.Item>
                                     <NavDropdown.Divider />
