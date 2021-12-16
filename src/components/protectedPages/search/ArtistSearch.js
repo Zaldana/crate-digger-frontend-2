@@ -33,20 +33,6 @@ function ArtistSearch() {
         }
     }, []);
 
-    // useEffect(() => {
-    //     const listener = event => {
-    //         if (event.code === "Enter" || event.code === "NumpadEnter") {
-    //             console.log("Enter key was pressed. Run your function.");
-    //             event.preventDefault();
-    //             handleOnAlbumClick(albumSearchResult)
-    //         }
-    //     };
-    //     document.addEventListener("keydown", listener);
-    //     return () => {
-    //         document.removeEventListener("keydown", listener);
-    //     };
-    // }, []);
-
     async function fetchArtistResult(artistSearchResult) {
 
         setIsLoading(true)
@@ -86,12 +72,6 @@ function ArtistSearch() {
     const artistContextValue = {
         artistResultsArray
     }
-
-    // function handleKeypress(e) {
-    //     if (e.keyCode === 13) {
-    //         handleOnAlbumClick(albumSearchResult);
-    //     }
-    // }
 
     return (
         <Container style={{ height: "100vh" }}>

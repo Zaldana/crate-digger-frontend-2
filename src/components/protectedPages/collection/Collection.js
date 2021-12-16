@@ -8,6 +8,10 @@ import {
     Container,
     CardGroup,
     Card,
+    Breadcrumb,
+    Button,
+    InputGroup,
+    FormControl,
 } from 'react-bootstrap'
 
 function Collection() {
@@ -60,24 +64,83 @@ function Collection() {
     }
 
     return (
-        <Container>
-            <div>
-                <div>
-                    <div>
-                        <Link to="/search">Dig through crates</Link>
-                    </div>
-                    <div>
-                        <Link to="/profile">Profile</Link>
-                    </div>
-                    <div>
-                        <Link to="/wishlist">Wishlist</Link>
-                    </div>
-                </div>
-                <div>
-                    this is the collection page
-                </div>
-            </div>
-            <div>
+        <Container className="results-container">
+            <Row className="g-0">
+                <Breadcrumb className="breadcrumb-styles">
+                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                </Breadcrumb>
+            </Row>
+
+            < Row className="g-0">
+                <InputGroup className="input-spacing">
+                    <FormControl
+                        name="collectionSearchResult"
+                        value=""
+                        onChange=""
+                        placeholder="Search Collection"
+                    />
+                    <Button onClick="">Search</Button>
+                </InputGroup>
+            </Row>
+            
+            <Row xs={1} md={3} lg={4} className="g-0 results-row" >
+
+                {collectionArray.map((item) => (
+                    <CardGroup style={{ marginBottom: "15px" }}>
+                        <Card
+                            key={item._id}
+                            className="results-card border-0"
+                        >
+                            <Link
+                                to={`/collection-details/${item.albumId}`}
+                                state={{
+                                    albumCover: item.cover_image,
+                                    id: item.albumId
+                                }}
+                            >
+                                <Card.Img
+                                    src={item.albumCover}
+                                    variant="top"
+                                    className="results-image"
+                                    style={{
+                                        minHeight: "180px",
+                                        maxHeight: "300px",
+                                        objectFit: "cover"
+                                    }}
+                                />
+                            </Link>
+                            <Card.Body className="results-card-body">
+                                <Card.Title className="text-title">{item.albumName}</Card.Title>
+                                <Card.Text className="text-size">Condition: {item.albumCondition}</Card.Text>
+                            </Card.Body>
+                            <Container
+                                fluid="true"
+                                className="button-container"
+                            >
+                                <Button
+                                    className="border-0 edit-button"
+                                    varient="primary"
+                                    href={`/album-edit/${item._id}`}
+                                >Edit
+                                </Button>
+                                <Button
+                                    className="border-0 delete-button"
+                                    varient="danger"
+                                    onClick={() => handleDeleteOnClick(item._id)}
+                                >Delete</Button>
+                            </Container>
+                            <br/>
+                        </Card>
+                    </CardGroup>
+                ))}
+            </Row>
+            {/* <div>
                 {collectionArray.map((item) => (
                     <div key={item._id}>
                         <Link
@@ -103,7 +166,7 @@ function Collection() {
 
                 ))}
 
-            </div>
+            </div> */}
         </Container>
     )
 }
