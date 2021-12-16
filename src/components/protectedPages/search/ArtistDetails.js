@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Container from 'react-bootstrap/Container'
+import './AlbumSearchDetails.css'
+
+import {
+    Row,
+    Container,
+    CardGroup,
+    Card,
+    Breadcrumb,
+} from 'react-bootstrap'
 
 function ArtistDetails() {
 
@@ -22,13 +30,12 @@ function ArtistDetails() {
             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
             let result = await axios.get(
-                `https://api.discogs.com/database/search?format=Vinyl&type=master&artist=${artist}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                `https://api.discogs.com/database/search?format=Vinyl&artist=${artist}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
                 }
             );
 
         setReleaseResultArray(result.data.results)
-        console.log(result.data.results);
     
     } catch (e) {
 
@@ -38,29 +45,47 @@ function ArtistDetails() {
 };
 
     return (
-            <Container>
-                <div>
-                    {releaseResultArray.map((item) => (
-                        <div key={item.id}>
+        <Container className="results-container">
+            <Row className="g-0">
+                <Breadcrumb className="breadcrumb-styles">
+                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/search">Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                </Breadcrumb>
+            </Row>
+            <Row xs={1} md={5} lg={6} className="g-0" style={{ paddingTop: "40px"}} >
+
+                {releaseResultArray.map((item) => (
+                    <CardGroup style={{ marginBottom: "15px" }}>
+                        <Card
+                            key={item.id}
+                            className="results-card border-0"
+                        >
                             <Link
                                 to={`/album-details/${item.master_id}`}
                                 state={{
                                     albumCover: item.cover_image,
-                                    id: item.id,
                                     albumCountry: item.country,
-                                    albumLabel: item.label
+                                    albumLabel: item.label,
+                                    albumId: item.id
                                 }}
                             >
-                                <img src={item.thumb} />
+                                <Card.Img
+                                    src={item.cover_image}
+                                    variant="top"
+                                />
                             </Link>
-                            <h3>{item.title}</h3>
-                            <h5>Year: {item.year}</h5>
-                            <h5>Country: {item.country}</h5>
-                            <h5>Label: {item.label}</h5>
-                        </div>
-                    ))}
-                </div>
-            </Container>
+                            <Card.Body className="results-card-body">
+                                <Card.Title className="text-title">{item.title}</Card.Title>
+                                <Card.Text className="text-size">Year: {item.year}<br />Country: {item.country}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </CardGroup>
+                ))}
+            </Row>
+        </Container>
     )
 }
 

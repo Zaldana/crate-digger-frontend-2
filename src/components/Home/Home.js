@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
-import homeBg from '../../images/homebg.jpg'
+
 import Button from 'react-bootstrap/Button'
 import './Home.css'
 
@@ -10,9 +10,9 @@ function Home() {
             className="full-container"
             style={{
                 flexDirection: "column",
+   
             }}
         >
-            <img src={homeBg} className="home-bg-image"/>
             <Container className="heading-container">
                 <h1 className="main-heading">Crate</h1>
                 <h1 className="main-heading">Digger</h1>

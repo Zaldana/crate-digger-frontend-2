@@ -20,6 +20,8 @@ import AlbumEdit from "./components/protectedPages/collection/AlbumEdit";
 import CollectionDetails from "./components/protectedPages/collection/CollectionDetails";
 import Wishlist from "./components/protectedPages/collection/Wishlist";
 import NavComp from "./components/Nav/NavComp";
+import AlbumSearch from "./components/protectedPages/search/AlbumSearch";
+import ArtistSearch from "./components/protectedPages/search/ArtistSearch";
 
 
 function App() {
@@ -68,60 +70,65 @@ function App() {
         <NavComp />
 
           <Routes>
-     
           
-          
-          <Route path="/sign-up" element={<Signup />} />
-          <Route path="/sign-in" element={<Signin />} />
-          <Route path="/collection-details/:id"
-            element={
-              <PrivateRoute>
-                <CollectionDetails />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/album-edit/:id"
-            element={
-              <PrivateRoute>
-                <AlbumEdit />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/artist-details/:artist"
-            element={
-              <PrivateRoute>
-                <ArtistDetails />
-              </PrivateRoute>
-            }
-          />
-            <Route path="/album-details/:id"
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/sign-in" element={<Signin />} />
+            <Route path="/collection-details/:id"
               element={
                 <PrivateRoute>
-                  <AlbumDetails />
+                  <CollectionDetails />
                 </PrivateRoute>
               }
             />
-          <Route path="/wishlist/"
-            element={
-              <PrivateRoute>
-                <Wishlist />
-              </PrivateRoute>
-            }
-          />
-            <Route path="/collection"
+            <Route path="/album-edit/:id"
               element={
                 <PrivateRoute>
-                  <Collection />
+                  <AlbumEdit />
                 </PrivateRoute>
               }
-          />
-          <Route path="/search"
-            element={
-              <PrivateRoute>
-                <Search />
-              </PrivateRoute>
-            }
-          />
+            />
+            <Route path="/artist-details/:artist"
+              element={
+                <PrivateRoute>
+                  <ArtistDetails />
+                </PrivateRoute>
+              }
+            />
+              <Route path="/album-details/:id"
+                element={
+                  <PrivateRoute>
+                    <AlbumDetails />
+                  </PrivateRoute>
+                }
+              />
+            <Route path="/wishlist/"
+              element={
+                <PrivateRoute>
+                  <Wishlist />
+                </PrivateRoute>
+              }
+            />
+              <Route path="/collection"
+                element={
+                  <PrivateRoute>
+                    <Collection />
+                  </PrivateRoute>
+                }
+            />
+            <Route path="/album-search"
+              element={
+                <PrivateRoute>
+                  <AlbumSearch />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/artist-search"
+              element={
+                <PrivateRoute>
+                  <ArtistSearch />
+                </PrivateRoute>
+              }
+            />
             <Route path="/profile"
               element={
                 <PrivateRoute>

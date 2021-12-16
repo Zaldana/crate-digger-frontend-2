@@ -34,7 +34,7 @@ function NavComp() {
     }
     
     return (
-            <Navbar  expand="xxl" variant="dark" style={styles.backgroundColor}>
+        <Navbar fixed="top" expand="xxl" variant="dark" style={styles.backgroundColor}>
                 <Container>
                 <Navbar.Brand
                     style={{

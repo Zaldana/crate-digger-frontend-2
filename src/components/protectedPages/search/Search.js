@@ -7,11 +7,15 @@ import { ArtistSearchContext, AlbumSearchContext } from "../../../context/Search
 import Loading from "../../common/Loading";
 import AlbumSearchDetails from './AlbumSearchDetails';
 import ArtistSearchDetails from './ArtistSearchDetails'
+import './Search.css'
 
 import {
     Container,
     Breadcrumb,
     Row,
+    InputGroup,
+    Button,
+    FormControl
 } from 'react-bootstrap'
 
 function Search() {
@@ -26,18 +30,23 @@ function Search() {
     const [artistResultsArray, setArtistResultsArray] = useState([])
 
     useEffect(() => {
-        const values = queryString.parse(search);
-        if (values.s) {
-            fetchAlbumResult(values.s);
-        }
+
+        let values = queryString.parse(search);
+        
+
+            if (values.s) {
+                fetchAlbumResult(values.s);
+            }
+        
+    
     }, []);
 
-    // useEffect(() => {
-    //     const values = queryString.parse(search);
-    //     if (values.s) {
-    //         fetchArtistResult(values.s);
-    //     }
-    // }, []);
+    useEffect(() => {
+        const values = queryString.parse(search);
+        if (values.s) {
+            fetchArtistResult(values.s);
+        }
+    }, []);
 
     // useEffect(() => {
     //     const listener = event => {
@@ -102,7 +111,6 @@ function Search() {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
             });
 
-            console.log(result.data.results);
             setArtistResultsArray(result.data.results)
             setIsLoading(false)
 
@@ -123,6 +131,7 @@ function Search() {
 
 
     async function handleOnArtistClick() {
+        
         fetchArtistResult(artistSearchResult);
     };
 
@@ -147,7 +156,7 @@ function Search() {
 
     return (
         <Container style={{ height: "100vh" }}>
-            <Row>
+            <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
                     <Breadcrumb.Item active>Search</Breadcrumb.Item>
@@ -157,9 +166,9 @@ function Search() {
                 </Breadcrumb>
             </Row>
 
-            <Row>
-                <div >
-                    <input
+            < Row className="g-0">
+                <InputGroup className="input-spacing">
+                    <FormControl
                         name="albumSearchResult"
                         value={albumSearchResult}
                         onChange={handleOnAlbumChange}
@@ -168,54 +177,46 @@ function Search() {
                         //     (e) => e.key === 'Enter' && handleOnAlbumClick(albumSearchResult)
                         // }
                     />
-                    <button onClick={handleOnAlbumClick}>Search</button>
-                </div>
-                <div >
-                    <input
+                    <Button onClick={handleOnAlbumClick}>Search</Button>
+                </InputGroup>
+                
+                <InputGroup className="input-spacing">
+                    <FormControl
                         name="artistSearchResult"
                         value={artistSearchResult}
                         onChange={handleOnArtistChange}
                         placeholder="Artist"
                     />
-                    <button onClick={handleOnArtistClick}>Search</button>
-                </div>
-                <div >
+                    <Button onClick={handleOnArtistClick}>Search</Button>
+                </InputGroup>
+            </Row>
+            
+                <Row className="results-row g-0">
                     {isLoading ? (
-                        <div style={styles.loading}>
+                        <Container className="loading-container">
                             <Loading />
-                        </div>
+                        </Container>
                     ) : (
                         <AlbumSearchContext.Provider value={albumContextValue}>
                             <AlbumSearchDetails />
                         </AlbumSearchContext.Provider>
                     )}
-                </div>
-                <div >
+                </Row>
+                <Row className="results-row g-0">
                     {isLoading ? (
-                        <div style={styles.loading}>
+                        <Container className="loading-container">
                             <Loading />
-                        </div>
+                        </Container>
                     ) : (
                         <ArtistSearchContext.Provider value={artistContextValue}>
                             <ArtistSearchDetails />
                         </ArtistSearchContext.Provider>
                     )}
-                </div>
-            </Row>
+                </Row>
+            
         </Container>
     )
 }
 
-const styles = {
 
-    loading: {
-        color: "white",
-        height: "100vh",
-        paddingTop: "12%",
-        fontSize: 80,
-        textShadow: "0px 0px 20px darkOrange",
-        fontWeight: 900
-    },
-
-}
 export default Search

@@ -69,12 +69,12 @@ function Signin() {
         <Container
             className="d-flex align-items-center justify-content-center"
             style={{
-                height: "calc(100vh - 56px)"
+                height: "100vh"
             }}
         >
             <img src={bg} style={{
                 objectFit: "cover",
-                height: "calc(100vh - 56px)",
+                height: "100vh",
                 width: "100%",
                 zIndex: "-1",
                 position: "absolute"

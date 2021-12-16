@@ -1,0 +1,14 @@
+.results-card{
+    background-color: rgba(0, 0, 0, 0.336) !important;
+    color: blanchedalmond !important;
+    margin: 10px;
+    font-family: Spartan;
+    height: 100%;
+    box-shadow: 5px 7px 5px rgba(27, 27, 27, 0.39);
+    backdrop-filter: blur(6px);
+}
+
+.text-title{
+    font-size: 1.5vh !important;
+    font-weight: bold;
+}
