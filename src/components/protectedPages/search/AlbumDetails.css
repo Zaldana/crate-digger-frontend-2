@@ -6,10 +6,57 @@
     backdrop-filter: blur(15px);
     font-family: Spartan;
     color: blanchedalmond;
+    margin-top: 3% !important;
 }
 
 .album-cover{
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.438);
-      border-radius: 10px;
+    border-radius: 10px;
 }
 
+.image-column {
+    margin-top: 3% !important;
+}
+
+.row-1{
+    height: 100vh;
+    padding-top: 50px;
+}
+
+.collection-button{
+    background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    margin-right: 1.5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.781);
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.788);
+}
+
+.wishlist-button{
+    background-image: linear-gradient(to right top, #602785, #88409b, #b05bb1, #d878c8, #ff96df);
+    margin-right: 1.5%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.781);
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.788);
+}
+
+@media only screen and (max-width: 1366px) {
+     
+    .album-cover{
+        max-width: 40vw !important;
+    }
+
+}
+
+@media only screen and (max-width: 1000px) {
+     
+    .tab-column{
+        min-width: 100% !important;
+    }
+
+    .image-column {
+        min-width: 100% !important;
+    }
+
+     .album-cover{
+        min-width: 100% !important;
+    }
+
+}

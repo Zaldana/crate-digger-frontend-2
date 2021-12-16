@@ -49,7 +49,7 @@ function ArtistDetails() {
             <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/protected-home">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>

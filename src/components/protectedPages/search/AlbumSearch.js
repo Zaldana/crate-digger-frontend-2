@@ -76,7 +76,7 @@ function AlbumSearch() {
         albumResultsArray
     }
 
-    console.log(albumResultsArray);
+    
 
     return (
         <Container style={{ height: "100vh" }}>
@@ -99,9 +99,6 @@ function AlbumSearch() {
                         value={albumSearchResult}
                         onChange={handleOnAlbumChange}
                         placeholder="Album Title or Barcode"
-                    // onKeyPress={
-                    //     (e) => e.key === 'Enter' && handleOnAlbumClick(albumSearchResult)
-                    // }
                     />
                     <Button onClick={handleOnAlbumClick}>Search</Button>
                 </InputGroup>

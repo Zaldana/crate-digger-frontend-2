@@ -168,18 +168,20 @@ function AlbumDetails() {
             <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
                     <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
             <Row>
-                <Col>
+                <Col className="image-column">
                     <img className="album-cover" src={albumCover}></img>     
                 </Col>
                    
-                <Col className="tab-column">
+                <Col className="tab-column" >
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
                         <Row>
                             <Col sm={3}>
@@ -187,35 +189,58 @@ function AlbumDetails() {
                                     <Nav.Item>
                                         <Nav.Link eventKey="first">Album Info</Nav.Link>
                                     </Nav.Item>
+                                    <br/>
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">Tracklist</Nav.Link>
+                                    </Nav.Item>
+                                    <br />
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="third">Labels</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Col>
                             <Col sm={9} >
-                                <Tab.Content >
+                                <Tab.Content  >
                                     <Tab.Pane eventKey="first">
-                                        <h1>{albumName}</h1>
+                                        <h1><b>{albumName}</b></h1>
                                         <h4>{albumArtist}</h4>
+                                        <p>
+                                            <b>Year:</b> {albumYear}
+                                            <br />
+                                            <b>Country:</b> {albumCountry}
+                                            <br />
+                                            <b>Genre:</b> {albumGenre}
+                                        </p>
+                                        <b>Album Notes:</b>
+                                        <p>{albumNotes}</p>
                                         <br />
-                                        <h5>Year: {albumYear}</h5>
-                                        <h5>Country: {albumCountry}</h5>
-                                        <h5>Genres:{albumGenre}</h5>
-                                        <h5>Labels:</h5>
-                                        {albumLabel.slice(0,3).map((item) => (
-                                            
-                                                <li>{item}</li>
-                                            
-                                        ))}
-                                        <p><b>Album Notes:</b> {albumNotes}</p>
-                                        
-                                        <Button onClick={addToCollection}>Add To Collection</Button>
-                                        <Button onClick={addToWishlist}>Add To Wishlist</Button>
+                                        <Button
+                                            onClick={addToCollection}
+                                            className="border-0 collection-button"
+                                            variant="danger"
+                                        >
+                                            Add To Collection
+                                        </Button>
+                                        <Button
+                                            onClick={addToWishlist}
+                                            className="border-0 wishlist-button"
+                                            variant="danger"
+                                        >
+                                            Add To Wishlist
+                                        </Button>
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second" >
-                                        <h1>{albumName}</h1>
+                                        <h1><b>{albumName}</b></h1>
+                                        <br/>
                                         {albumTracklist.map((item) => (
-                                            <h4>{item.position}. {item.title}</h4>
+                                            <h5>{item.position}. {item.title}</h5>
+                                        ))}
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="third" >
+                                        <h1><b>Labels</b></h1>
+                                        <br />
+                                        {albumLabel.map((item) => (
+                                            <li>{item}</li>
                                         ))}
                                     </Tab.Pane>
                                 </Tab.Content>

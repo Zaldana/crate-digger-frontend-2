@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
-import Container from 'react-bootstrap/Container'
+import "./Collection.css"
+
+import {
+    Row,
+    Container,
+    CardGroup,
+    Card,
+} from 'react-bootstrap'
 
 function Collection() {
 

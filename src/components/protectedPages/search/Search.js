@@ -173,9 +173,9 @@ function Search() {
                         value={albumSearchResult}
                         onChange={handleOnAlbumChange}
                         placeholder="Album Title or Barcode"
-                        // onKeyPress={
-                        //     (e) => e.key === 'Enter' && handleOnAlbumClick(albumSearchResult)
-                        // }
+                        onKeyPress={
+                            (e) => e.key === 'Enter' && handleOnAlbumClick(albumSearchResult)
+                        }
                     />
                     <Button onClick={handleOnAlbumClick}>Search</Button>
                 </InputGroup>
