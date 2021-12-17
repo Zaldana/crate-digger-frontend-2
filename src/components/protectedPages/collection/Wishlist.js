@@ -161,7 +161,7 @@ function Wishlist() {
                 </InputGroup>
             </Row>
 
-            <Row xs={1} lg={4} className="g-0" >
+            <Row xs={1} lg={4} className="g-0 d-flex justify-content-center" >
                 {wishlistArray.map((item) => (
                     <CardGroup style={{ marginBottom: "15px" }}>
                         <Card

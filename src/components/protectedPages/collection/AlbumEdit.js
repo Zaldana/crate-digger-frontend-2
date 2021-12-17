@@ -37,6 +37,9 @@ function AlbumEdit() {
     const [albumNotes, setAlbumNotes] = useState("");
     const [albumCondition, setAlbumCondition] = useState("");
 
+    const [inputCoditionResult, setInputCoditionResult] = useState("")
+    const [inputNotesResult, setInputNotesResult] = useState("")
+
     useEffect(() => {
         fetchAlbum(albumId);
     }, [])
@@ -69,16 +72,19 @@ function AlbumEdit() {
         }
     }
 
-    async function updateAlbumName(albumName) {
+    async function updateCondition(inputCoditionResult) {
 
         try {
 
             await AxiosBackend.put(
                 `collection/update-album-by-id/${albumId}`,
                 {
-                    albumName: albumName
+                    albumCondition: inputCoditionResult
                 }
             );
+
+            setAlbumCondition(inputCoditionResult)
+
         } catch(e) {
 
             console.log(e);
@@ -86,16 +92,43 @@ function AlbumEdit() {
         }
     }
 
-    function handleAlbumUpdateOnClick() {
-        updateAlbumName(albumName);
-    };
-
-    function handleAlbumUpdateOnChange(e) {
-        setAlbumName(e.target.value)
+    function handleConditonOnChange(e) {
+        setInputCoditionResult(e.target.value)
     }
 
+    function handleConditionOnClick() {
+        updateCondition(inputCoditionResult);
+    };
 
-        return (
+    async function updateNotes(inputNotesResult) {
+
+        try {
+
+            await AxiosBackend.put(
+                `collection/update-album-by-id/${albumId}`,
+                {
+                    albumNotes: inputNotesResult
+                }
+            );
+
+            setAlbumNotes(inputNotesResult)
+
+        } catch (e) {
+
+            console.log(e);
+
+        }
+    }
+
+    function handleNotesOnChange(e) {
+        setInputNotesResult(e.target.value)
+    }
+
+    function handleNotesOnClick() {
+        updateNotes(inputNotesResult);
+    };
+
+            return (
             <Container>
                 <Row className="g-0">
                     <Breadcrumb className="breadcrumb-styles">
@@ -143,58 +176,49 @@ function AlbumEdit() {
                                                 <b>Country:</b> {albumCountry}
                                                 <br />
                                                 <b>Genres:</b> {albumGenre.join(', ')}
-                                                <b>Condition:</b>{albumCondition}
                                             </p>
                                             <p><b>Condition:</b>{albumCondition}</p>
                                             <b>Album Notes:</b>
                                             <p>{albumNotes}</p>
+
                                             <Row className="d-flex justify-content-center ">
 
-                                                <InputGroup className="input-group">
+                                                    <InputGroup
+                                                        className="input-group"
+                                                        style={{marginBottom: "15px"}}
+                                                    >
+                                                        
                                                     <input
                                                         type="text"
                                                         className="form-control"
-                                                        placeholder={albumArtist}
-                                                        value={albumName}
-                                                        onChange={handleAlbumUpdateOnChange}
+                                                        placeholder="VG, Ex+..."
+                                                        value={inputCoditionResult}
+                                                        onChange={handleConditonOnChange}
                                                         aria-describedby="basic-addon2"
-                                                    />
+                                                    />        
                                                     <div className="input-group-append">
                                                         <button
                                                             className="btn btn-outline-secondary"
                                                             type="button"
-                                                            onClick={handleAlbumUpdateOnClick}
+                                                            onClick={handleConditionOnClick}
                                                         >Edit Condition</button>
                                                     </div>
                                                 </InputGroup>
 
-                                                <InputGroup className="input-group">
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder={albumArtist}
-                                                        value={albumName}
-                                                        onChange={handleAlbumUpdateOnChange}
-                                                        aria-describedby="basic-addon2"
-                                                    />
-                                                    <div className="input-group-append">
-                                                        <button
-                                                            className="btn btn-outline-secondary"
-                                                            type="button"
-                                                            onClick={handleAlbumUpdateOnClick}
-                                                        >New Cover</button>
-                                                    </div>
+                                                <InputGroup>
+                                                        <FormControl
+                                                            as="textarea"
+                                                            aria-label="With textarea"
+                                                            placeholder="Album notes..."
+                                                            value={inputNotesResult}
+                                                            onChange={handleNotesOnChange}
+                                                        />
+                                                    <button
+                                                        className="btn btn-outline-secondary"
+                                                        type="button"
+                                                        onClick={handleNotesOnClick}
+                                                    >Edit Notes</button>
                                                 </InputGroup>
-
-
-                                                <FloatingLabel controlId="floatingTextarea2" label="Comments">
-                                                    <Form.Control
-                                                        as="textarea"
-                                                        placeholder="Leave a comment here"
-                                                        style={{ height: '100px' }}
-                                                    />
-                                                    <Button type="submit">Submit</Button>
-                                                </FloatingLabel>
 
                                             </Row>
                                         </Tab.Pane>

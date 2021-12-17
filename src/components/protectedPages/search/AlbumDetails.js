@@ -223,8 +223,9 @@ function AlbumDetails() {
                                                 variant="danger"
                                             >Add To Collection
                                             </Button> 
-                                            </div> ) : (
-                                            <div>
+                                            </div>
+                                        ) : (
+                                                <div>
                                             <Button
                                                 onClick={addToCollection}
                                                 className="border-0 collection-button"
@@ -237,7 +238,7 @@ function AlbumDetails() {
                                                 variant="danger"
                                             >Add To Wishlist
                                             </Button>
-                                            </div>
+                                                </div>
                                         )}
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second" >

@@ -77,6 +77,7 @@ function Collection() {
         fetchSearchResults(collectionSearchResult);
     };
 
+    console.log(collectionArray);
     return (
         <Container className="results-container">
             <Row className="g-0">
@@ -110,10 +111,19 @@ function Collection() {
                             className="results-card border-0"
                         >
                             <Link
-                                to={`/collection-details/${item.albumId}`}
+                                to={`/collection-details/${item._id}`}
                                 state={{
-                                    albumCover: item.cover_image,
-                                    id: item.albumId
+                                    albumCover: item.albumCover,
+                                    albumCountry: item.albumCountry,
+                                    albumLabel: item.albumLabel,
+                                    albumId: item.albumId,
+                                    albumName: item.albumName,
+                                    albumArtist: item.albumArtist,
+                                    albumYear: item.albumYear,
+                                    albumCountry: item.albumCountry,
+                                    albumTracklist: item.albumTracklist,
+                                    albumGenre: item.albumGenre,
+                                    albumNotes: item.albumNotes
                                 }}
                             >
                                 <Card.Img

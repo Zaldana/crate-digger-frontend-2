@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import axios from "axios";
-// import { toast } from "react-toastify";
-import Container from 'react-bootstrap/Container'
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
+import Loading from "../../common/Loading";
+
+import {
+    Container,
+    Breadcrumb,
+    Row,
+    Col,
+    Button,
+    Nav,
+    Tab,
+} from 'react-bootstrap'
 
 function CollectionDetails() {
 
+    const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
 
     const albumCoverFromState = location.state.albumCover;
-    const albumCountryFromState = location.state.albumCountry
     const albumLabelArrayFromState = location.state.albumLabel
+    const albumIdFromState = location.state.albumId
+    const albumNameFromState = location.state.albumName
+    const albumArtistFromState = location.state.albumArtist
+    const albumYearFromState = location.state.albumYear
+    const albumCountryFromState = location.state.albumCountry
+    const albumTracklistFromState = location.state.albumTracklist
+    const albumGenreFromState = location.state.albumGenre
 
-    const [albumDetailsArray, setAlbumDetailsArray] = useState([])
     const [albumName, setAlbumName] = useState("")
     const [albumCover, setAlbumCover] = useState("")
     const [albumId, setAlbumId] = useState("")
@@ -26,54 +40,50 @@ function CollectionDetails() {
     const [albumLabel, setAlbumLabel] = useState([])
     const [albumTracklist, setAlbumTracklist] = useState([])
     const [albumGenre, setAlbumGenre] = useState([])
-    const [objectId, setObjectId] = useState("")
-
-    let altId = id;
-    let url = "";
-
-    if ( id.length <= 1) {
-        altId = location.state.id
-        url = "https://api.discogs.com/releases/"
-    } else {
-        url = "https://api.discogs.com/masters/"
-    }
+    const [albumNotes, setAlbumNotes] = useState("")
 
     useEffect(() => {
 
-        fetchAlbumDetails(altId)
         setAlbumCover(albumCoverFromState)
-        setAlbumId(id)
         setAlbumCountry(albumCountryFromState)
         setAlbumLabel(albumLabelArrayFromState)
-
+        setAlbumName(albumNameFromState)
+        setAlbumArtist(albumArtistFromState)
+        setAlbumYear(albumYearFromState)
+        setAlbumTracklist(albumTracklistFromState)
+        setAlbumGenre(albumGenreFromState)
+        setAlbumNotes(albumNameFromState)
+        setAlbumId(albumIdFromState)
 
     }, [])
 
-    async function fetchAlbumDetails(id) {
+    // async function fetchAlbumDetails(id) {
 
-        try {
+    //     try {
 
-            let albumDetailsResult = await axios.get(
-                url + id, {
-                headers: { 'User-Agent': 'CrateDigger/0.1' }
-            });
+    //         let albumDetailsResult = await axios.get(
+    //             url + id, {
+    //             headers: { 'User-Agent': 'CrateDigger/0.1' }
+    //         });
 
-            let artistArray = albumDetailsResult.data.artists[0]
+    //         let artistArray = albumDetailsResult.data.artists[0]
 
-            setAlbumDetailsArray(albumDetailsResult)
-            setAlbumName(albumDetailsResult.data.title)
-            setAlbumArtist(artistArray.name)
-            setAlbumYear(albumDetailsResult.data.year)
-            setAlbumTracklist(albumDetailsResult.data.tracklist)
-            setAlbumGenre(albumDetailsResult.data.styles)
-            setObjectId(albumDetailsResult.data._id)
+    //         setAlbumDetailsArray(albumDetailsResult)
+    //         setAlbumName(albumDetailsResult.data.title)
+    //         setAlbumArtist(artistArray.name)
+    //         setAlbumYear(albumDetailsResult.data.year)
+    //         setAlbumTracklist(albumDetailsResult.data.tracklist)
+    //         setAlbumGenre(albumDetailsResult.data.styles)
+    //         setAlbumNotes(albumDetailsResult.data.notes)
+    //         setAlbumId(id)
 
-        } catch (e) {
+    //     } catch (e) {
 
-            console.log(e);
+    //         console.log(e);
 
-        }
-    };
+    //     }
+    // };
+
 
     async function handleDeleteOnClick(id) {
 
@@ -93,28 +103,25 @@ function CollectionDetails() {
     }
 
     return (
-        <Container>
-            <div>
-                <div>
-                    <Link to="/search">Dig through crates</Link>
-                </div>
-                <div>
-                    <Link to="/collection">Collection</Link>
-                </div>
-                <div>
-                    <Link to="/profile">Profile</Link>
-                </div>
-            </div>
-            <div>
-                this is the collection details
-            </div>
-            <div>
+        <Container style={{ height: "100vh" }}>
+            <Row className="g-0">
+                <Breadcrumb className="breadcrumb-styles">
+                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                </Breadcrumb>
+            </Row>
+            {/* <div>
                 <img src={albumCover}></img>
             </div>
             <Link to={`/album-edit/${objectId}`}>
                 <button>Edit</button>
             </Link>
-            <button onClick={() => handleDeleteOnClick(objectId)}>Delete</button>
+            <button onClick={() => handleDeleteOnClick(objectId)}>Delete</button> */}
         </Container>
     )
 }

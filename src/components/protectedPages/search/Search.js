@@ -166,7 +166,7 @@ function Search() {
                 </Breadcrumb>
             </Row>
 
-            < Row className="g-0">
+            <Row className="g-0">
                 <InputGroup className="input-spacing">
                     <FormControl
                         name="albumSearchResult"
