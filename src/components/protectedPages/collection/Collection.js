@@ -123,7 +123,9 @@ function Collection() {
                                     albumCountry: item.albumCountry,
                                     albumTracklist: item.albumTracklist,
                                     albumGenre: item.albumGenre,
-                                    albumNotes: item.albumNotes
+                                    albumNotes: item.albumNotes,
+                                    albumCondition: item.albumCondition
+
                                 }}
                             >
                                 <Card.Img

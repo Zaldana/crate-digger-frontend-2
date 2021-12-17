@@ -30,6 +30,8 @@ function CollectionDetails() {
     const albumCountryFromState = location.state.albumCountry
     const albumTracklistFromState = location.state.albumTracklist
     const albumGenreFromState = location.state.albumGenre
+    const albumConditionFromState = location.state.albumCondition
+    const albumNotesFromState = location.state.albumNotes
 
     const [albumName, setAlbumName] = useState("")
     const [albumCover, setAlbumCover] = useState("")
@@ -41,6 +43,7 @@ function CollectionDetails() {
     const [albumTracklist, setAlbumTracklist] = useState([])
     const [albumGenre, setAlbumGenre] = useState([])
     const [albumNotes, setAlbumNotes] = useState("")
+    const [albumCondition, setAlbumCondition] = useState("")
 
     useEffect(() => {
 
@@ -54,36 +57,10 @@ function CollectionDetails() {
         setAlbumGenre(albumGenreFromState)
         setAlbumNotes(albumNameFromState)
         setAlbumId(albumIdFromState)
+        setAlbumNotes(albumNotesFromState)
+        setAlbumCondition(albumConditionFromState)
 
     }, [])
-
-    // async function fetchAlbumDetails(id) {
-
-    //     try {
-
-    //         let albumDetailsResult = await axios.get(
-    //             url + id, {
-    //             headers: { 'User-Agent': 'CrateDigger/0.1' }
-    //         });
-
-    //         let artistArray = albumDetailsResult.data.artists[0]
-
-    //         setAlbumDetailsArray(albumDetailsResult)
-    //         setAlbumName(albumDetailsResult.data.title)
-    //         setAlbumArtist(artistArray.name)
-    //         setAlbumYear(albumDetailsResult.data.year)
-    //         setAlbumTracklist(albumDetailsResult.data.tracklist)
-    //         setAlbumGenre(albumDetailsResult.data.styles)
-    //         setAlbumNotes(albumDetailsResult.data.notes)
-    //         setAlbumId(id)
-
-    //     } catch (e) {
-
-    //         console.log(e);
-
-    //     }
-    // };
-
 
     async function handleDeleteOnClick(id) {
 
@@ -115,15 +92,72 @@ function CollectionDetails() {
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
-            {/* <div>
-                <img src={albumCover}></img>
-            </div>
-            <Link to={`/album-edit/${objectId}`}>
-                <button>Edit</button>
-            </Link>
-            <button onClick={() => handleDeleteOnClick(objectId)}>Delete</button> */}
+            <Row>
+                <Col className="image-column">
+                    <img className="album-cover" src={albumCover}></img>
+                </Col>
+
+                <Col className="tab-column" >
+                    <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
+                        <Row>
+                            <Col sm={3}>
+                                <Nav variant="pills" className="flex-column">
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="first">Album Info</Nav.Link>
+                                    </Nav.Item>
+                                    <br />
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="second">Tracklist</Nav.Link>
+                                    </Nav.Item>
+                                    <br />
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="third">Labels</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
+                            </Col>
+                            <Col sm={9} >
+                                <Tab.Content  >
+                                    <Tab.Pane eventKey="first">
+                                        <h1><b>{albumName}</b></h1>
+                                        <h4>{albumArtist}</h4>
+                                        <p>
+                                            <b>Year:</b> {albumYear}
+                                            <br />
+                                            <b>Country:</b> {albumCountry}
+                                            <br />
+                                            <b>Genre:</b> {albumGenre.join(', ')}
+                                        </p>
+                                        <p>
+                                            <b>Condition:</b> {albumCondition}
+                                        </p>
+                                        <p>
+                                            <b>Album Notes:</b>
+                                            <p>{albumNotes}</p>
+                                         </p>
+                                      
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="second" >
+                                        <h1><b>{albumName}</b></h1>
+                                        <br />
+                                        {albumTracklist.map((item) => (
+                                            <h5>{item.position}. {item.title}</h5>
+                                        ))}
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="third" >
+                                        <h1><b>Labels</b></h1>
+                                        <br />
+                                        {albumLabel.map((item) => (
+                                            <li>{item}</li>
+                                        ))}
+                                    </Tab.Pane>
+                                </Tab.Content>
+                            </Col>
+                        </Row>
+                    </Tab.Container>
+
+                </Col>
+            </Row>
         </Container>
-    )
-}
+    )}
 
 export default CollectionDetails
