@@ -25,6 +25,7 @@ function AlbumDetails() {
     const albumCoverFromState = location.state.albumCover;
     const albumCountryFromState = location.state.albumCountry
     const albumLabelArrayFromState = location.state.albumLabel
+    const fromArrayFromState = location.state.from
 
     const [albumDetailsArray, setAlbumDetailsArray] = useState([])
     const [albumName, setAlbumName] = useState("")
@@ -164,7 +165,7 @@ function AlbumDetails() {
     console.log( albumTracklist );
 
     return (
-        <Container>
+        <Container style={{height: "100vh"}}>
             <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
@@ -209,25 +210,35 @@ function AlbumDetails() {
                                             <br />
                                             <b>Country:</b> {albumCountry}
                                             <br />
-                                            <b>Genre:</b> {albumGenre}
+                                            <b>Genre:</b> {albumGenre.join(', ')}
                                         </p>
                                         <b>Album Notes:</b>
                                         <p>{albumNotes}</p>
                                         <br />
-                                        <Button
-                                            onClick={addToCollection}
-                                            className="border-0 collection-button"
-                                            variant="danger"
-                                        >
-                                            Add To Collection
-                                        </Button>
-                                        <Button
-                                            onClick={addToWishlist}
-                                            className="border-0 wishlist-button"
-                                            variant="danger"
-                                        >
-                                            Add To Wishlist
-                                        </Button>
+                                        {fromArrayFromState === "wishlist" ? (
+                                            <div>
+                                            <Button
+                                                onClick={addToCollection}
+                                                className="border-0 collection-button"
+                                                variant="danger"
+                                            >Add To Collection
+                                            </Button> 
+                                            </div> ) : (
+                                            <div>
+                                            <Button
+                                                onClick={addToCollection}
+                                                className="border-0 collection-button"
+                                                variant="danger"
+                                            >Add To Collection
+                                            </Button>
+                                            <Button
+                                                onClick={addToWishlist}
+                                                className="border-0 wishlist-button"
+                                                variant="danger"
+                                            >Add To Wishlist
+                                            </Button>
+                                            </div>
+                                        )}
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second" >
                                         <h1><b>{albumName}</b></h1>

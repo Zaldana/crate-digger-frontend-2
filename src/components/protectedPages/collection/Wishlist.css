@@ -1,0 +1,49 @@
+.results-card{
+    background-color: rgba(0, 0, 0, 0.473) !important;
+    color: blanchedalmond !important;
+    margin: 10px;
+    font-family: Spartan;
+    height: 100%;
+    box-shadow: 5px 7px 5px rgba(27, 27, 27, 0.39);
+    backdrop-filter: blur(6px);
+
+}
+
+.results-image{
+    box-shadow: 0px 7px 5px rgba(27, 27, 27, 0.842);
+}
+
+.text-size{
+    font-size: 1.2vh !important;
+}
+
+.text-title{
+ font-size: 1.5vh !important;
+ font-weight: bold !important;
+}
+
+.results-container{
+    height: 100vh;
+}
+
+.add-to-collection{
+    background-image: linear-gradient(to right top, #0fa33c, #50b131, #7abe24, #a2ca14, #cbd400);   
+    margin-right: 5%;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.287);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.959);
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+.delete{
+    background-image: linear-gradient(315deg, #eb4511 0%, #b02e0c 74%);    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.781);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.534);
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.609);
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
+a{
+    color:aliceblue !important;
+    text-decoration: none !important;
+}

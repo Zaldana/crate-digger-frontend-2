@@ -71,12 +71,9 @@ function AlbumSearch() {
         fetchAlbumResult(albumSearchResult);
     };
 
-
     const albumContextValue = {
         albumResultsArray
     }
-
-    
 
     return (
         <Container style={{ height: "100vh" }}>
@@ -84,7 +81,6 @@ function AlbumSearch() {
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
                     <Breadcrumb.Item active>Album Search</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
                     <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>

@@ -21,9 +21,10 @@ function Collection() {
     }, [])
 
     const [collectionArray, setCollectionArray] = useState([])
+    const [searchCollectionArray, setSearchCollectionArray] = useState([])
+    const [collectionSearchResult, setCollectionSearchResult] = useState("");
 
     async function fetchCollection() {
-
 
         try {
 
@@ -32,18 +33,16 @@ function Collection() {
             );
 
             setCollectionArray(collectionResult.data.userCollection)
+            setSearchCollectionArray(collectionResult.data.userCollection)
 
         } catch (e) {
 
             console.log(e);
 
         }
-
-
     }
 
     async function handleDeleteOnClick(id) {
-
 
         try {
 
@@ -51,28 +50,42 @@ function Collection() {
             let collectionResult = await AxiosBackend.get(
                 'collection/',
             );
-
+           
             setCollectionArray(collectionResult.data.userCollection)
            
 
         } catch (e) {
-
             console.log(e);
-
         }
-
     }
+
+    function fetchSearchResults(collectionSearchResults) {
+
+        const filteredArray = searchCollectionArray.filter(
+            item => item.albumArtist.toString().toLowerCase().includes(collectionSearchResult.toString().toLowerCase()) ||
+                item.albumName.toString().toLowerCase().includes(collectionSearchResult.toString().toLowerCase()));
+
+        setCollectionArray(filteredArray)
+
+    };
+
+    function handleOnCollectionChange(e) {
+        setCollectionSearchResult(e.target.value);
+    };
+
+    async function handleOnCollectionClick() {
+        fetchSearchResults(collectionSearchResult);
+    };
 
     return (
         <Container className="results-container">
             <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Collection</Breadcrumb.Item>
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
@@ -81,11 +94,11 @@ function Collection() {
                 <InputGroup className="input-spacing">
                     <FormControl
                         name="collectionSearchResult"
-                        value=""
-                        onChange=""
-                        placeholder="Search Collection"
+                        value={collectionSearchResult}
+                        onChange={handleOnCollectionChange}
+                        placeholder="Search by Album Name or Artist"
                     />
-                    <Button onClick="">Search</Button>
+                    <Button onClick={handleOnCollectionClick}>Search</Button>
                 </InputGroup>
             </Row>
             
@@ -94,7 +107,6 @@ function Collection() {
                 {collectionArray.map((item) => (
                     <CardGroup style={{ marginBottom: "15px" }}>
                         <Card
-                            key={item._id}
                             className="results-card border-0"
                         >
                             <Link
@@ -140,33 +152,6 @@ function Collection() {
                     </CardGroup>
                 ))}
             </Row>
-            {/* <div>
-                {collectionArray.map((item) => (
-                    <div key={item._id}>
-                        <Link
-                            to={`/collection-details/${item.albumId}`}
-                            state={{
-                                albumCover: item.albumCover,
-                                id: item.albumId
-                            }}
-                        >
-                            <img src={item.albumCover} />
-                        </Link>
-                        <h3>{item.albumName}</h3>
-                        <h5>Year: {item.albumYear}</h5>
-                        <h5>Country: {item.albumCountry}</h5>
-                        <h5>Label: {item.albumLabel}</h5>
-                        <h5>Condition: {item.albumCondiiton}</h5>
-
-                        <Link to={`/album-edit/${item._id}`}>
-                            <button>Edit</button>
-                        </Link>
-                        <button onClick={()=>handleDeleteOnClick(item._id)}>Delete</button>
-                    </div>
-
-                ))}
-
-            </div> */}
         </Container>
     )
 }

@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { Link } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import logo from '../../images/logo.png'
+import "./NavComp.css"
 
 function NavComp() {
 
@@ -34,7 +34,7 @@ function NavComp() {
     }
     
     return (
-        <Navbar fixed="top" expand="xxl" variant="dark" style={styles.backgroundColor}>
+        <Navbar fixed="top" expand="xxl" style={styles.backgroundColor}>
                 <Container>
                 <Navbar.Brand
                     style={{
@@ -57,13 +57,27 @@ function NavComp() {
                             <Nav.Link href={signupLink}>{signupLabel}</Nav.Link>
                             <Nav.Link href={signinLink} onClick={() => logoutButton()}>{signinLabel}</Nav.Link>
                             {user ? (
-                                <NavDropdown title="dig" style={{ color: "white" }} id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/album-search">Album Search</NavDropdown.Item>
-                                    <NavDropdown.Item href="/artist-search">Artist Search</NavDropdown.Item>
-                                    <NavDropdown.Item href="/collection">My Collection</NavDropdown.Item>
-                                    <NavDropdown.Item href="/wishlist">My Wishlist</NavDropdown.Item>
-                                    <NavDropdown.Divider />
-                                    <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+                                <NavDropdown title="dig" id="basic-nav-dropdown">
+                                <NavDropdown.Item
+                                    href="/album-search"
+                                >Album Search
+                                </NavDropdown.Item>
+                                <NavDropdown.Item
+                                    href="/artist-search"
+                                >Artist Search
+                                </NavDropdown.Item>
+                                <NavDropdown.Item
+                                    href="/collection"
+                                >My Collection
+                                </NavDropdown.Item>
+                                <NavDropdown.Item
+                                    href="/wishlist"
+                                >My Wishlist
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item
+                                    href="/profile"
+                                >My Profile</NavDropdown.Item>
                                 </NavDropdown>
                             ) : (
                                 <div></div>
