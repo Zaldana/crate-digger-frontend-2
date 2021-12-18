@@ -48,7 +48,7 @@ function AlbumSearch() {
             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
             let result = await axios.get(
-                `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&page=1&per_page=100&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
             }
             );

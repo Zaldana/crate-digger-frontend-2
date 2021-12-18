@@ -62,7 +62,6 @@ function Wishlist() {
             console.log(e);
 
         }
-
     }
 
     async function handleMoveOnClick(
@@ -161,7 +160,7 @@ function Wishlist() {
                 </InputGroup>
             </Row>
 
-            <Row xs={1} lg={4} className="g-0 d-flex justify-content-center" >
+            <Row xs={1} lg={4} className="g-0 results-row" >
                 {wishlistArray.map((item) => (
                     <CardGroup style={{ marginBottom: "15px" }}>
                         <Card
@@ -182,11 +181,6 @@ function Wishlist() {
                                     src={item.albumCover}
                                     variant="top"
                                     className="results-image"
-                                    style={{
-                                        minHeight: "180px",
-                                        maxHeight: "300px",
-                                        objectFit: "cover"
-                                    }}
                                 />
                             </Link>
                             <Card.Body className="results-card-body">

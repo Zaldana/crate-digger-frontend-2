@@ -18,7 +18,7 @@ function Home() {
                 <h1 className="main-heading">Digger</h1>
                 <h2 className="tag-line">find your next record</h2>
             </Container>
-            <Container className="button-container">
+            <Container className="home-button-container">
                 <Button
                     className="border-0 log-in-button"
                     size="lg"

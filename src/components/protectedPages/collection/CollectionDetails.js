@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import Loading from "../../common/Loading";
 
@@ -9,7 +8,6 @@ import {
     Breadcrumb,
     Row,
     Col,
-    Button,
     Nav,
     Tab,
 } from 'react-bootstrap'

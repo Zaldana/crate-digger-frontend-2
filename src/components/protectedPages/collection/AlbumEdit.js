@@ -7,17 +7,12 @@ import "./AlbumEdit.css"
 import {
     Row,
     Container,
-    CardGroup,
-    Card,
     Breadcrumb,
-    Button,
     InputGroup,
     FormControl,
     Col,
     Tab,
     Nav,
-    Form,
-    FloatingLabel
 } from 'react-bootstrap'
 
 function AlbumEdit() {
@@ -27,7 +22,7 @@ function AlbumEdit() {
 
     const [album, setAlbum] = useState("");
     const [albumName, setAlbumName] = useState("");
-    const [albumCover, setAlbumCover] = useState("");
+    const [ , setAlbumCover] = useState("");
     const [albumArtist, setAlbumArtist] = useState("");
     const [albumYear, setAlbumYear] = useState(0);
     const [albumCountry, setAlbumCountry] = useState("");

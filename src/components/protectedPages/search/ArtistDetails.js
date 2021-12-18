@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import './AlbumSearchDetails.css'
+import record from "../../../images/blank-album.svg"
 
 import {
     Row,
@@ -30,19 +31,19 @@ function ArtistDetails() {
             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
             let result = await axios.get(
-                `https://api.discogs.com/database/search?format=Vinyl&artist=${artist}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+                `https://api.discogs.com/database/search?format=Vinyl&artist=${artist}&page=1&per_page=100&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
                 }
             );
-
+            
+        console.log(result);
         setReleaseResultArray(result.data.results)
     
-    } catch (e) {
+        } catch (e) {
 
-        console.log(e);
-
-    }
-};
+            console.log(e);
+        }
+    };
 
     return (
         <Container className="results-container">
@@ -57,28 +58,47 @@ function ArtistDetails() {
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
-            <Row xs={1} md={5} lg={6} className="g-0" style={{ paddingTop: "40px"}} >
+            <Row xs={1} md={2} lg={5} className="g-0" style={{ paddingTop: "40px"}} >
 
                 {releaseResultArray.map((item) => (
-                    <CardGroup style={{ marginBottom: "15px" }}>
+                    <CardGroup key={item.id} style={{ marginBottom: "15px" }}>
                         <Card
                             key={item.id}
                             className="results-card border-0"
                         >
-                            <Link
-                                to={`/album-details/${item.master_id}`}
-                                state={{
-                                    albumCover: item.cover_image,
-                                    albumCountry: item.country,
-                                    albumLabel: item.label,
-                                    albumId: item.id
-                                }}
-                            >
-                                <Card.Img
-                                    src={item.cover_image}
-                                    variant="top"
-                                />
-                            </Link>
+                            {item.cover_image.includes("spacer") ? (
+                                <Link
+                                    to={`/album-details/${item.master_id}`}
+                                    state={{
+                                        albumCover: record,
+                                        albumCountry: item.country,
+                                        albumLabel: item.label,
+                                        albumId: item.id
+                                    }}
+                                >
+                                    <Card.Img
+                                        src={record}
+                                        variant="top"
+                                        className="results-image"
+                                    />
+                                </Link>
+                            ) : (
+                                <Link
+                                    to={`/album-details/${item.master_id}`}
+                                    state={{
+                                        albumCover: item.cover_image,
+                                        albumCountry: item.country,
+                                        albumLabel: item.label,
+                                        albumId: item.id
+                                    }}
+                                >
+                                    <Card.Img
+                                        src={item.cover_image}
+                                        variant="top"
+                                        className="results-image"
+                                    />
+                                </Link>
+                            )}
                             <Card.Body className="results-card-body">
                                 <Card.Title className="text-title">{item.title}</Card.Title>
                                 <Card.Text className="text-size">Year: {item.year}<br />Country: {item.country}</Card.Text>

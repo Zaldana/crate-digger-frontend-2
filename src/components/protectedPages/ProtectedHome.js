@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import homeBg from '../../images/homebg.jpg'
 import collectionSmall from '../../images/collectionSmall.jpg'
 import './protectedHome.css'
 

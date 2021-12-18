@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import CheckTokenHook from "../hooks/CheckTokenHook"
 import EmailHook from "../hooks/EmailHook"

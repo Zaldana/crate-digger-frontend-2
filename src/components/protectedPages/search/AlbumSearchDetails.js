@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 import { AlbumSearchContext } from '../../../context/SearchContext'
 import './AlbumSearchDetails.css'
+import record from "../../../images/blank-album.svg"
 
 import {
     Row,
@@ -16,7 +17,7 @@ function AlbumSearchDetails() {
 
     return (
         <Container fluid="true" className="results-container">
-            <Row xs={1} md={5} lg={6} className="g-0" >
+            <Row xs={1} md={2} lg={5} className="g-0" >
          
                 {albumResultsArray.map((item) => (
                     <CardGroup style={{marginBottom: "15px"}}>
@@ -24,25 +25,40 @@ function AlbumSearchDetails() {
                             key={item.id}
                             className="results-card border-0"
                         >
-                        <Link
-                            to={`/album-details/${item.master_id}`}
-                            state={{
-                                albumCover: item.cover_image,
-                                albumCountry: item.country,
-                                albumLabel: item.label,
-                                albumId: item.id
-                            }}
-                        >    
-                                <Card.Img
-                                    src={item.cover_image}
-                                    variant="top"
-                                    className="results-image"
-                                    style={{
-                                        height: "200px",
-                                        objectFit: "cover"
+                            {item.cover_image.includes("spacer") ? (
+                                 <Link
+                                    to={`/album-details/${item.master_id}`}
+                                        state={{
+                                            albumCover: record,
+                                            albumCountry: item.country,
+                                            albumLabel: item.label,
+                                            albumId: item.id
+                                        }}
+                                    >    
+                                    <Card.Img
+                                        src={record}
+                                        variant="top"
+                                        className="results-image"
+                                    />
+                                </Link>
+                            ) : (
+                                <Link
+                                    to={`/album-details/${item.master_id}`}
+                                    state={{
+                                        albumCover: item.cover_image,
+                                        albumCountry: item.country,
+                                        albumLabel: item.label,
+                                        albumId: item.id
                                     }}
-                                />
-                            </Link>
+                                >    
+                                    <Card.Img
+                                        src={item.cover_image}
+                                        variant="top"
+                                        className="results-image"
+                                    />
+                                </Link>
+                            )}
+
                             <Card.Body className="results-card-body">
                                 <Card.Title className="text-title">{item.title}</Card.Title>
                                 <Card.Text className="text-size">Year: {item.year}<br />Country: {item.country}</Card.Text>

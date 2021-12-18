@@ -132,11 +132,6 @@ function Collection() {
                                     src={item.albumCover}
                                     variant="top"
                                     className="results-image"
-                                    style={{
-                                        minHeight: "180px",
-                                        maxHeight: "300px",
-                                        objectFit: "cover"
-                                    }}
                                 />
                             </Link>
                             <Card.Body className="results-card-body">

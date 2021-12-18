@@ -1,18 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
 import React, { useEffect, useContext } from 'react'
 import jwtDecode from "jwt-decode";
-import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Home from "./components/Home/Home";
-import Nav from "./components/Nav/NavComp";
 import Signin from "./components/Signin/Signin";
 import Signup from "./components/Signup/Signup";
 import ProtectedHome from "./components/protectedPages/ProtectedHome";
 import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Profile from "./components/protectedPages/profile/Profile";
-import Search from "./components/protectedPages/search/Search";
 import Collection from "./components/protectedPages/collection/Collection";
 import AlbumDetails from "./components/protectedPages/search/AlbumDetails";
 import ArtistDetails from "./components/protectedPages/search/ArtistDetails";
@@ -62,8 +58,6 @@ function App() {
 
   return (
     <div className="App">
-
-      <ToastContainer theme="colored" />
 
       <Router>
         

@@ -38,6 +38,13 @@
   text-align: left;
 }
 
+.home-button-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100vw;
+}
+
 .log-in-button{
     font-family: Erica One;
     margin-right: 2%;
@@ -52,7 +59,6 @@
     background-image: linear-gradient(to right top, #08606d, #008684, #00ac7e, #3acf5e, #a8eb12);
     box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.74);
     text-shadow: 3px 2px 5px rgba(0, 0, 0, 0.466);
-
 }
 
 @media only screen and (max-width: 810px) {
