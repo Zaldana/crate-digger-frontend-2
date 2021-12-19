@@ -70,13 +70,16 @@ function Signin() {
                 height: "100vh"
             }}
         >
-            <img src={bg} style={{
+            <img
+                src={bg} style={{
                 objectFit: "cover",
                 height: "100vh",
                 width: "100%",
                 zIndex: "-1",
                 position: "absolute"
-            }} />
+                }}
+                alt=""
+            />
             <Row style={{ width: "100%" }}>
                  <Card
                     style={{

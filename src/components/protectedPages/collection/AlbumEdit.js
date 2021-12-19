@@ -160,7 +160,7 @@ function AlbumEdit() {
 
                 <Row className="row-2">
                     <Col className="image-column">
-                        <img className="album-cover" src={album.albumCover}></img>
+                        <img className="album-cover" src={album.albumCover} alt="album cover"></img>
                     </Col>
 
                     <Col className="tab-column" >

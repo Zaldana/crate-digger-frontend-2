@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import AxiosBackend from '../../../lib/axios/AxiosBackend';
-import Loading from "../../common/Loading";
+import { useLocation } from "react-router-dom";
 
 import {
     Container,
@@ -14,10 +12,7 @@ import {
 
 function CollectionDetails() {
 
-    const [isLoading, setIsLoading] = useState(false);
-    const { id } = useParams();
     const location = useLocation();
-    const navigate = useNavigate();
 
     const albumCoverFromState = location.state.albumCover;
     const albumLabelArrayFromState = location.state.albumLabel
@@ -33,7 +28,7 @@ function CollectionDetails() {
 
     const [albumName, setAlbumName] = useState("")
     const [albumCover, setAlbumCover] = useState("")
-    const [albumId, setAlbumId] = useState("")
+    const [ , setAlbumId] = useState("")
     const [albumArtist, setAlbumArtist] = useState("")
     const [albumYear, setAlbumYear] = useState(0)
     const [albumCountry, setAlbumCountry] = useState("")
@@ -60,23 +55,6 @@ function CollectionDetails() {
 
     }, [])
 
-    async function handleDeleteOnClick(id) {
-
-
-        try {
-
-            await AxiosBackend.delete(`collection/delete-album-by-id/${id}`);
-
-            navigate("/collection");
-
-        } catch (e) {
-
-            console.log(e);
-
-        }
-
-    }
-
     return (
         <Container style={{ height: "100vh" }}>
             <Row className="g-0">
@@ -92,7 +70,7 @@ function CollectionDetails() {
             </Row>
             <Row md={1}>
                 <Col className="image-column">
-                    <img className="album-cover" src={albumCover}></img>
+                    <img className="album-cover" src={albumCover} alt="album cover"></img>
                 </Col>
 
                 <Col className="tab-column" >

@@ -18,7 +18,7 @@ import Wishlist from "./components/protectedPages/collection/Wishlist";
 import NavComp from "./components/Nav/NavComp";
 import AlbumSearch from "./components/protectedPages/search/AlbumSearch";
 import ArtistSearch from "./components/protectedPages/search/ArtistSearch";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {

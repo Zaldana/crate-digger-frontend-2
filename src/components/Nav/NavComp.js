@@ -54,6 +54,7 @@ function NavComp() {
                             height: "27px",
                             paddingRight: "3px",
                         }}
+                        alt="logo"
                     />CrateDigger
                 </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

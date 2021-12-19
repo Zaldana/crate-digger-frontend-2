@@ -131,7 +131,6 @@ function Collection() {
                                     albumName: item.albumName,
                                     albumArtist: item.albumArtist,
                                     albumYear: item.albumYear,
-                                    albumCountry: item.albumCountry,
                                     albumTracklist: item.albumTracklist,
                                     albumGenre: item.albumGenre,
                                     albumNotes: item.albumNotes,

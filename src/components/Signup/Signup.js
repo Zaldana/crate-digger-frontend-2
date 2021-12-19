@@ -121,13 +121,16 @@ function Signup() {
             className="d-flex align-items-center justify-content-center"
             style={{ height: "100vh", }}
         >
-            <img src={signUpBg} style={{
-                objectFit: "cover",
-                height: "100vh",
-                width: "100%",
-                zIndex: "-1",
-                position: "absolute"
-            }} />
+            <img
+                src={signUpBg} style={{
+                    objectFit: "cover",
+                    height: "100vh",
+                    width: "100%",
+                    zIndex: "-1",
+                    position: "absolute"
+                }}
+                alt=""
+            />
             <Row style={{
                 marginTop: "9%",
                 width: "100%"
@@ -135,7 +138,6 @@ function Signup() {
                 <Card
                     style={{
                         width: "80%",
-           
                     }}
                     className="mx-auto mt-auto align-items-center transpCard"
                     bg={"custom"}

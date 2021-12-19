@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import './AlbumDetails.css'
 
@@ -170,7 +170,7 @@ function AlbumDetails() {
             </Row>
             <Row>
                 <Col className="image-column">
-                    <img className="album-cover" src={albumCover}></img>     
+                    <img className="album-cover" src={albumCover} alt="album cover"></img>     
                 </Col>
                    
                 <Col className="tab-column" >

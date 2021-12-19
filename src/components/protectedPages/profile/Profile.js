@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { AuthContext } from '../../../context/AuthContext';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
-import CheckTokenHook from "../../hooks/CheckTokenHook"
 import EmailHook from "../../hooks/EmailHook"
 import FirstNameHook from "../../hooks/FirstNameHook"
 import LastNameHook from "../../hooks/LastNameHook"
@@ -52,9 +51,7 @@ ChartJS.register(
 
 function Profile() {
 
-    const { checkJwtToken } = CheckTokenHook();
-
-    const [userInfo, setUserInfo] = useState([]);
+    const [ , setUserInfo] = useState([]);
     const [userFirstName, setUserFirstName] = useState("");
     const [userLastName, setUserLastName] = useState("");
     const [userName, setUserName] = useState("");
