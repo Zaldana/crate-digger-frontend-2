@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import "./AlbumEdit.css"
 
@@ -80,6 +81,16 @@ function AlbumEdit() {
 
             setAlbumCondition(inputCoditionResult)
 
+            toast.success(`Edit Saved`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
         } catch(e) {
 
             console.log(e);
@@ -107,6 +118,16 @@ function AlbumEdit() {
             );
 
             setAlbumNotes(inputNotesResult)
+
+            toast.success(`Edit Saved`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         } catch (e) {
 
@@ -172,7 +193,7 @@ function AlbumEdit() {
                                                 <br />
                                                 <b>Genres:</b> {albumGenre.join(', ')}
                                             </p>
-                                            <p><b>Condition:</b>{albumCondition}</p>
+                                            <p><b>Condition:</b> {albumCondition}</p>
                                             <b>Album Notes:</b>
                                             <p>{albumNotes}</p>
 

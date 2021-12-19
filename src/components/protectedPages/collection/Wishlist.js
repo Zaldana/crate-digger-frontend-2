@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import "./Wishlist.css"
 
@@ -56,6 +57,15 @@ function Wishlist() {
             
             setWishlistArray(wishlistResult.data.userWishlist)
 
+            toast.error("Removed from Wishlist", {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         } catch (e) {
 
@@ -92,15 +102,15 @@ function Wishlist() {
                 albumGenre
             });
 
-            // toast.success("Added To Collection", {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            toast.success(`Added ${albumName} To Collection`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
             await AxiosBackend.delete(`wishlist/delete-album-by-id/${objectId}`);
 

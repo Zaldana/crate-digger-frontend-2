@@ -18,7 +18,8 @@ import Wishlist from "./components/protectedPages/collection/Wishlist";
 import NavComp from "./components/Nav/NavComp";
 import AlbumSearch from "./components/protectedPages/search/AlbumSearch";
 import ArtistSearch from "./components/protectedPages/search/ArtistSearch";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -58,13 +59,10 @@ function App() {
 
   return (
     <div className="App">
-
+      <ToastContainer theme="dark" />
       <Router>
-        
         <NavComp />
-
           <Routes>
-          
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/sign-in" element={<Signin />} />
             <Route path="/collection-details/:id"
@@ -137,13 +135,11 @@ function App() {
                 </PrivateRoute>
               }
             />
-
             <Route path="/" element={<Home />} />
             <Route render={() => <h1>Not found 404</h1>} />
 
           </Routes>
         </Router>
-
     </div>
   );
 }

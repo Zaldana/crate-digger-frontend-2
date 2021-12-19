@@ -10,6 +10,7 @@ import ConfirmPasswordHook from "../../hooks/ConfirmPasswordHook"
 import UsernameHook from "../../hooks/UsernameHook"
 import { useNavigate } from "react-router-dom";
 import { Line, Pie, } from 'react-chartjs-2';
+import { toast } from 'react-toastify';
 
 import {
     Row,
@@ -360,29 +361,32 @@ function Profile() {
                 }
             );
 
-            // toast.success("Congrats~! now you please sign in", {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            toast.success("Changes Saved Please Sign In", {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
             logout()
             
 
         } catch (e) {
 
-            // toast.error(e.response.data.error, {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            let errorMessage = Object.values((e.response.data.error))
+
+            toast.error(errorMessage.toString(), {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }
     }

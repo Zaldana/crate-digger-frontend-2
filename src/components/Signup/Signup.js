@@ -7,6 +7,7 @@ import LastNameHook from "../hooks/LastNameHook"
 import PasswordHook from "../hooks/PasswordHook"
 import UsernameHook from "../hooks/UsernameHook"
 import AxiosBackend from "../../lib/axios/AxiosBackend"
+import { toast } from 'react-toastify';
 import signUpBg from '../../images/signupbg.jpg'
 
 import {
@@ -86,29 +87,31 @@ function Signup() {
                 }
             );
 
-            // toast.success("Congrats~! now you please sign in", {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            toast.success(`Welcome ${firstName}, Please Sign-in`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
             navigate("/sign-in");
 
         } catch (e) {
 
-            // toast.error(e.response.data.error, {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            let errorMessage = Object.values((e.response.data.error))
+
+            toast.error(errorMessage.toString(), {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
         }
     }
@@ -137,14 +140,14 @@ function Signup() {
                     className="mx-auto mt-auto align-items-center transpCard"
                     bg={"custom"}
                 >
-                    <Card.Body className="w-100">
+                    <Card.Body >
                         <Form size="lg" onSubmit={handleSubmit} >
                             <h2
                                 className="d-flex justify-content-center"
                                 style={{
                                     fontFamily: "Spartan",
                                     fontWeight: "bold",
-                                    color: "darkslategray"
+                                    color: "white"
                                 }}
                             >Please Sign Up</h2>
 
@@ -212,8 +215,10 @@ function Signup() {
                                     />
                                     <Form.Text>{passwordError && passwordError}</Form.Text>
                                 </Form.Group>
-                                <br />
-                            <Button type="submit">Sign Up</Button>
+                            <br />
+                            <Container fluid="true" className="d-flex justify-content-end">
+                                <Button type="submit">Sign Up</Button>
+                            </Container>
                         </Form>
                     </Card.Body>
                 </Card>

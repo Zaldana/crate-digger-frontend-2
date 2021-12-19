@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { AuthContext } from "../../context/AuthContext"
 import AxiosBackend from '../../lib/axios/AxiosBackend';
 import bg from '../../images/bg.jpg'
@@ -49,17 +50,16 @@ function Signin() {
 
         } catch (e) {
 
-            // toast.error(e.response.data.message, {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            toast.error(e.response.data.message, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
-            navigate("/sign-up");
         }
     }
 
@@ -93,7 +93,7 @@ function Signin() {
                                 style={{
                                     fontFamily: "Spartan",
                                     fontWeight: "bold",
-                                    color: "darkslategray"
+                                    color: "white"
                                 }}>Please Sign In</h2>
 
                             <Form.Group>

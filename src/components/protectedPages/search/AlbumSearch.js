@@ -57,9 +57,7 @@ function AlbumSearch() {
             setIsLoading(false)
 
         } catch (e) {
-
             console.log(e);
-
         }
     };
 

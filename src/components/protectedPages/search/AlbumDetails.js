@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import './AlbumDetails.css'
 
@@ -98,15 +99,15 @@ function AlbumDetails() {
                     albumGenre
             });
             
-            // toast.success("Added To Collection", {
-            //     position: "top-center",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            toast.success(`Added ${albumName} to Collection`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
             navigate("/collection");
 
@@ -132,15 +133,15 @@ function AlbumDetails() {
                 albumGenre
             });
 
-            // toast.success("Added To Wishlist", {
-            //     position: "top-center",Sonnet
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+            toast.success(`Added ${albumName} To Wishlist`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
 
             navigate("/wishlist");
 

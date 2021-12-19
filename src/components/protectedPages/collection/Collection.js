@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import "./Collection.css"
 
@@ -52,6 +53,16 @@ function Collection() {
             );
            
             setCollectionArray(collectionResult.data.userCollection)
+
+            toast.error("Removed from Collection", {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
            
 
         } catch (e) {
