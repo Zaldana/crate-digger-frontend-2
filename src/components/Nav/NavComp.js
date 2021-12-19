@@ -34,12 +34,17 @@ function NavComp() {
     }
     
     return (
-        <Navbar fixed="top" expand="xxl" style={styles.backgroundColor}>
-                <Container>
+        <Navbar
+            fixed="top"
+            expand="xxl"
+            style={{
+                background: "linear-gradient(-60deg, #ff5858 0%, #f09819 100%)"
+            }}
+        >
+            <Container>
                 <Navbar.Brand
                     style={{
                         fontFamily: "Erica One",
-                        color: "darkslategray"
                     }}
                     href={homeLink}
                     className="d-flex align-items-center">
@@ -48,8 +53,8 @@ function NavComp() {
                         style={{
                             height: "27px",
                             paddingRight: "3px",
-                        }} />
-                    CrateDigger
+                        }}
+                    />CrateDigger
                 </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -87,13 +92,6 @@ function NavComp() {
                 </Container>
             </Navbar>
     )
-}
-
-const styles = {
-    backgroundColor: {
-        background: "linear-gradient(-60deg, #ff5858 0%, #f09819 100%)"
-    },
-
 }
 
 export default NavComp

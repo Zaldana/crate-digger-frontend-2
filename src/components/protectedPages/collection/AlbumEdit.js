@@ -177,12 +177,10 @@ function AlbumEdit() {
                                             <p>{albumNotes}</p>
 
                                             <Row className="d-flex justify-content-center ">
-
-                                                    <InputGroup
-                                                        className="input-group"
-                                                        style={{marginBottom: "15px"}}
-                                                    >
-                                                        
+                                                <InputGroup
+                                                    className="input-group"
+                                                    style={{marginBottom: "15px"}}
+                                                >
                                                     <input
                                                         type="text"
                                                         className="form-control"
@@ -199,7 +197,6 @@ function AlbumEdit() {
                                                         >Edit Condition</button>
                                                     </div>
                                                 </InputGroup>
-
                                                 <InputGroup>
                                                         <FormControl
                                                             as="textarea"
@@ -214,7 +211,6 @@ function AlbumEdit() {
                                                         onClick={handleNotesOnClick}
                                                     >Edit Notes</button>
                                                 </InputGroup>
-
                                             </Row>
                                         </Tab.Pane>
                                         <Tab.Pane eventKey="second" >
@@ -235,11 +231,8 @@ function AlbumEdit() {
                                 </Col>
                             </Row>
                         </Tab.Container>
-
                     </Col>
                 </Row>
-
-               
             </Container>
         )
     }

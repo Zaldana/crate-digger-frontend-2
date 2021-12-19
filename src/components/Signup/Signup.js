@@ -76,7 +76,7 @@ function Signup() {
         try {
 
             await AxiosBackend.post(
-                'create-user/',
+                'users/create-user/',
                 {
                     firstName,
                     lastName,
@@ -96,7 +96,7 @@ function Signup() {
             //     progress: undefined,
             // });
 
-            navigate("users/sign-in");
+            navigate("/sign-in");
 
         } catch (e) {
 
@@ -166,7 +166,7 @@ function Signup() {
                                     <Form.Control
                                         type="text"
                                         id="lastName"
-                                        placeholder="last name"
+                                        placeholder="Last Name"
                                         onFocus={() => setLastNameOnFocus(true)}
                                         onBlur={() => setLastNameOnBlur(true)}
                                         onChange={handleLastNameOnChange}
@@ -179,7 +179,7 @@ function Signup() {
                                     <Form.Control
                                         type="text"
                                         id="username"
-                                        placeholder="username"
+                                        placeholder="Username"
                                         onFocus={() => setUsernameOnFocus(true)}
                                         onBlur={() => setUsernameOnBlur(true)}
                                         onChange={handleUsernameOnChange}
