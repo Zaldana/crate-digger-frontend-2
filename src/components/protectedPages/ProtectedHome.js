@@ -1,5 +1,8 @@
 import React from 'react'
 import collectionSmall from '../../images/collectionSmall.jpg'
+import profile from '../../images/profile.jpg'
+import search from '../../images/search.jpg'
+import wishlist from '../../images/wishlist.jpg'
 import './protectedHome.css'
 
 import {
@@ -14,16 +17,12 @@ import {
 function ProtectedHome() {
     return (
         <Container fluid="true" className="protected-home">
-        
             <Row xs={1} className="row-1 g-0">
-                
                 <CardGroup className="main-card-group">
-                
-             
                     <Card className="mx-2 border-0 card-styles">
                         <Card.Img
                             variant="top"
-                            src={collectionSmall}
+                            src={search}
                             className="card-image"
                         />
                         <Card.ImgOverlay style={{ padding: "0%" }}>
@@ -51,7 +50,7 @@ function ProtectedHome() {
                     <Card className="mx-2 border-0 card-styles">
                         <Card.Img
                             variant="top"
-                            src={collectionSmall}
+                            src={search}
                             className="card-image"
                         />
                         <Card.ImgOverlay style={{ padding: "0%" }}>
@@ -59,7 +58,7 @@ function ProtectedHome() {
                                 <Card.Title className="main-title">artist search</Card.Title>
                                 <br />
                                 <Card.Text className="main-text">
-                                    Find your next record
+                                    Find by Artist Name
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer className="border-0 card-footer">
@@ -76,11 +75,10 @@ function ProtectedHome() {
                         </Card.ImgOverlay>
                     </Card>
   
-
                 <Card className="mx-2 border-0 card-styles">
                     <Card.Img
                         variant="top"
-                        src={collectionSmall}
+                        src={wishlist}
                         className="card-image"
                     />
                     <Card.ImgOverlay style={{ padding: "0%" }}>
@@ -136,7 +134,7 @@ function ProtectedHome() {
                 <Card className="mx-2 border-0 card-styles">
                     <Card.Img
                         variant="top"
-                        src={collectionSmall}
+                        src={profile}
                         className="card-image"
                         href="/collection"
                     />

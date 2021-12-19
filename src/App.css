@@ -21,15 +21,11 @@
   align-items: center;
 }
 
-.loading-container {
-  color: white; 
-  height: 100vh;
-  padding-top: 12%;
-  font-size: 80px;
-  text-shadow: 0px 0px 20px darkOrange;
-  font-weight: 900;
-  display: flex;
-  justify-content: center;
+.custom-pill {
+  background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%)!important;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.781)!important;
+  text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.788)!important;
+  cursor: help!important;
 }
 
 .modal-content{
@@ -40,5 +36,13 @@
 @media only screen and (max-width: 990px) {
   .breadcrumb-styles{
     visibility: hidden;
+    height: 1px!important;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .tab-pane{
+    padding-top: 20px!important;
+    margin-top: 20px!important;
   }
 }

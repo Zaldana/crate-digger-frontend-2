@@ -35,8 +35,7 @@ function ArtistDetails() {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
                 }
             );
-            
-        console.log(result);
+
         setReleaseResultArray(result.data.results)
     
         } catch (e) {

@@ -114,7 +114,7 @@ function Collection() {
                 </InputGroup>
             </Row>
             
-            <Row xs={1} md={3} lg={4} className="g-0 results-row" >
+            <Row xs={1} md={2} lg={3} xl={4} className="g-0 results-row" >
 
                 {collectionArray.map((item) => (
                     <CardGroup style={{ marginBottom: "15px" }}>

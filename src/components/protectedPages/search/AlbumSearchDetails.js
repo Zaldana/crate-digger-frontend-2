@@ -17,7 +17,7 @@ function AlbumSearchDetails() {
 
     return (
         <Container fluid="true" className="results-container">
-            <Row xs={1} md={2} lg={5} className="g-0" >
+            <Row xs={1} md={2} lg={3} xl={4}  className="g-0" >
          
                 {albumResultsArray.map((item) => (
                     <CardGroup style={{marginBottom: "15px"}}>

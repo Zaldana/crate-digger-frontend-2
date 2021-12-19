@@ -24,7 +24,7 @@
 }
 
 .collection-button{
-    background: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    background-image: linear-gradient(to right top, #0fa33c, #50b131, #7abe24, #a2ca14, #cbd400);
     margin-right: 1.5%;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.781);
     text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.788);

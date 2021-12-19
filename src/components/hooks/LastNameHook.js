@@ -15,7 +15,7 @@ function LastNameHook() {
             if (lastName.length > 0) {
 
                 if (!isAlpha(lastName)) {
-                    setError("cannot have special character or #");
+                    setError("Cannot have special character or #");
 
                 } if (isAlpha(lastName)) {
                     setError("");
@@ -25,7 +25,7 @@ function LastNameHook() {
 
         if (onBlur) {
             if (lastName.length === 0) {
-                setError("last name cannot be empty")
+                setError("Last name cannot be empty")
             }
         }
 

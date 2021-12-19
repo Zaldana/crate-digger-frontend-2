@@ -90,7 +90,7 @@ function CollectionDetails() {
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
-            <Row>
+            <Row md={1}>
                 <Col className="image-column">
                     <img className="album-cover" src={albumCover}></img>
                 </Col>
@@ -98,22 +98,22 @@ function CollectionDetails() {
                 <Col className="tab-column" >
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
                         <Row>
-                            <Col sm={3}>
+                            <Col sm={4}>
                                 <Nav variant="pills" className="flex-column">
                                     <Nav.Item>
-                                        <Nav.Link eventKey="first">Album Info</Nav.Link>
+                                        <Nav.Link className="custom-pill" eventKey="first">Album Info</Nav.Link>
                                     </Nav.Item>
                                     <br />
                                     <Nav.Item>
-                                        <Nav.Link eventKey="second">Tracklist</Nav.Link>
+                                        <Nav.Link className="custom-pill" eventKey="second">Tracklist</Nav.Link>
                                     </Nav.Item>
                                     <br />
                                     <Nav.Item>
-                                        <Nav.Link eventKey="third">Labels</Nav.Link>
+                                        <Nav.Link className="custom-pill" eventKey="third">Labels</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Col>
-                            <Col sm={9} >
+                            <Col sm={8} details-col>
                                 <Tab.Content  >
                                     <Tab.Pane eventKey="first">
                                         <h1><b>{albumName}</b></h1>

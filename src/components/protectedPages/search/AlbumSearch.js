@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import queryString from "query-string";
+import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from "react-router-dom";
 import AlbumSearchDetails from './AlbumSearchDetails';
 import { AlbumSearchContext } from "../../../context/SearchContext"
@@ -14,7 +15,8 @@ import {
     InputGroup,
     Button,
     FormControl,
-    Spinner
+    Spinner,
+    Alert
 } from 'react-bootstrap'
 
 function AlbumSearch() {
@@ -25,6 +27,7 @@ function AlbumSearch() {
     const [isLoading, setIsLoading] = useState(false);
     const [albumSearchResult, setAlbumSearchResult] = useState("");
     const [albumResultsArray, setAlbumResultsArray] = useState([])
+    const [alert, setAlert] = useState(true);
 
     useEffect(() => {
 
@@ -50,14 +53,30 @@ function AlbumSearch() {
             let result = await axios.get(
                 `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&page=1&per_page=100&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
                 headers: { 'User-Agent': 'CrateDigger/0.1' }
-            }
-            );
+            });
+            
+            if (result.data.results.length === 0) {
 
-            setAlbumResultsArray(result.data.results)
-            setIsLoading(false)
+                throw 'Album Not Found Please Check Spelling And Try Again'
+
+            } else {
+
+                setAlbumResultsArray(result.data.results)
+                setIsLoading(false)
+            
+            }
 
         } catch (e) {
-            console.log(e);
+
+            toast.error(e, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
     };
 
@@ -67,6 +86,7 @@ function AlbumSearch() {
 
     async function handleOnAlbumClick() {
         fetchAlbumResult(albumSearchResult);
+        setAlert(false)
     };
 
     const albumContextValue = {
@@ -97,24 +117,39 @@ function AlbumSearch() {
                     <Button onClick={handleOnAlbumClick}>Search</Button>
                 </InputGroup>
             </Row>
-
-            <Row className="results-row g-0">
-                {isLoading ? (
-                    <Container className="loading-container">
-                        <Spinner animation="border" variant="primary" />
-                        <Spinner animation="border" variant="secondary" />
-                        <Spinner animation="border" variant="success" />
-                        <Spinner animation="border" variant="danger" />
-                        <Spinner animation="border" variant="warning" />
-                        <Spinner animation="border" variant="info" />
-                        <Spinner animation="border" variant="light" />
-                    </Container>
-                ) : (
-                    <AlbumSearchContext.Provider value={albumContextValue}>
-                        <AlbumSearchDetails />
-                    </AlbumSearchContext.Provider>
-                )}
-            </Row>
+   
+            { alert ? (
+                <Alert variant="success">  
+                    <Alert.Heading>Hello Fellow Crate Digger,</Alert.Heading>
+                    <p>
+                        To find your next album just type in the album name or the bar code in the
+                        search bar above. Our album search does not like misspelled album names, so make
+                        sure you get the spelling right
+                    </p>
+                    <hr />
+                    <p className="mb-0">
+                        Thank you for using CrateDigger, happy hunting!
+                    </p>
+                </Alert>
+            ) : (
+                <Row className="results-row g-0">
+                    {isLoading ? (
+                        <Container className="loading-container">
+                            <Spinner animation="border" variant="primary" />
+                            <Spinner animation="border" variant="secondary" />
+                            <Spinner animation="border" variant="success" />
+                            <Spinner animation="border" variant="danger" />
+                            <Spinner animation="border" variant="warning" />
+                            <Spinner animation="border" variant="info" />
+                            <Spinner animation="border" variant="light" />
+                        </Container>
+                    ) : (
+                        <AlbumSearchContext.Provider value={albumContextValue}>
+                            <AlbumSearchDetails />
+                        </AlbumSearchContext.Provider>
+                    )}
+                </Row>
+            )}
         </Container>
     )
 }
