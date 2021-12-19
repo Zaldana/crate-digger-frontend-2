@@ -30,6 +30,11 @@
   justify-content: center;
 }
 
+.modal-content{
+  background-color: rgba(31, 31, 31, 0.918) !important;
+  color: #ffffff !important;
+} 
+
 @media only screen and (max-width: 990px) {
   .breadcrumb-styles{
     visibility: hidden;

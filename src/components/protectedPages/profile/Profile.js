@@ -442,6 +442,7 @@ function Profile() {
                     onHide={handleClose}
                     backdrop="static"
                     keyboard={false}
+                    style={{color: "black"}}
                 >
                     <Modal.Header closeButton>
                         <Modal.Title>Edit User Info</Modal.Title>
@@ -527,7 +528,14 @@ function Profile() {
                             </Form.Group>
                             <br/>
                             <Container className="d-flex justify-content-end">
-                                <Button type="submit">Submit</Button>
+                                <Button
+                                    type="submit"
+                                    style={{marginRight: "10px"}}
+                                >Submit</Button>
+                                <Button 
+                                    variant="danger"
+                                    onClick={handleClose}
+                                >Cancel</Button>
                             </Container>
                         </Form>
                     </Modal.Body>

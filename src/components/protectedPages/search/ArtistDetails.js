@@ -59,7 +59,7 @@ function ArtistDetails() {
                 </Breadcrumb>
             </Row>
             <Row xs={1} md={2} lg={5} className="g-0" style={{ paddingTop: "40px"}} >
-
+        
                 {releaseResultArray.map((item) => (
                     <CardGroup key={item.id} style={{ marginBottom: "15px" }}>
                         <Card

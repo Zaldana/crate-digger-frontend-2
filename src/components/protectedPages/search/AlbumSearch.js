@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import queryString from "query-string";
 import { useLocation, useNavigate } from "react-router-dom";
-import Loading from "../../common/Loading";
 import AlbumSearchDetails from './AlbumSearchDetails';
 import { AlbumSearchContext } from "../../../context/SearchContext"
 import './Search.css'
@@ -14,7 +13,8 @@ import {
     Row,
     InputGroup,
     Button,
-    FormControl
+    FormControl,
+    Spinner
 } from 'react-bootstrap'
 
 function AlbumSearch() {
@@ -103,7 +103,13 @@ function AlbumSearch() {
             <Row className="results-row g-0">
                 {isLoading ? (
                     <Container className="loading-container">
-                        <Loading />
+                        <Spinner animation="border" variant="primary" />
+                        <Spinner animation="border" variant="secondary" />
+                        <Spinner animation="border" variant="success" />
+                        <Spinner animation="border" variant="danger" />
+                        <Spinner animation="border" variant="warning" />
+                        <Spinner animation="border" variant="info" />
+                        <Spinner animation="border" variant="light" />
                     </Container>
                 ) : (
                     <AlbumSearchContext.Provider value={albumContextValue}>

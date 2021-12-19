@@ -14,7 +14,8 @@ import {
     Row,
     InputGroup,
     Button,
-    FormControl
+    FormControl,
+   Spinner,
 } from 'react-bootstrap'
 
 function ArtistSearch() {
@@ -102,7 +103,13 @@ function ArtistSearch() {
             <Row className="results-row g-0">
                 {isLoading ? (
                     <Container className="loading-container">
-                        <Loading />
+                        <Spinner animation="border" variant="primary" />
+                        <Spinner animation="border" variant="secondary" />
+                        <Spinner animation="border" variant="success" />
+                        <Spinner animation="border" variant="danger" />
+                        <Spinner animation="border" variant="warning" />
+                        <Spinner animation="border" variant="info" />
+                        <Spinner animation="border" variant="light" />
                     </Container>
                 ) : (
                     <ArtistSearchContext.Provider value={artistContextValue}>

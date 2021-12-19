@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
-import Loading from "../../common/Loading";
 import './AlbumDetails.css'
 
 import {
@@ -17,7 +16,6 @@ import {
 
 function AlbumDetails() {
 
-    const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
     const location = useLocation();
     const navigate = useNavigate();
@@ -36,7 +34,7 @@ function AlbumDetails() {
     const [albumCountry, setAlbumCountry] = useState("")
     const [albumLabel, setAlbumLabel] = useState([])
     const [albumTracklist, setAlbumTracklist] = useState([])
-    const [albumGenre, setAlbumGenre] = useState([])
+    const [albumGenre, setAlbumGenre] = useState("")
     const [albumNotes, setAlbumNotes] = useState("")
 
     let altId = id;
@@ -56,7 +54,6 @@ function AlbumDetails() {
         setAlbumCountry(albumCountryFromState)
         setAlbumLabel(albumLabelArrayFromState)
         
-    
     }, [])
 
     async function fetchAlbumDetails(id) {
@@ -75,7 +72,7 @@ function AlbumDetails() {
             setAlbumArtist(artistArray.name)
             setAlbumYear(albumDetailsResult.data.year)
             setAlbumTracklist(albumDetailsResult.data.tracklist)
-            setAlbumGenre(albumDetailsResult.data.styles)
+            setAlbumGenre(albumDetailsResult.data.styles.join(', '))
             setAlbumNotes(albumDetailsResult.data.notes)
             setAlbumId(id)
 
@@ -87,9 +84,7 @@ function AlbumDetails() {
     };
 
     async function addToCollection() {
-
         try {
-
             let payload = await AxiosBackend.post(
                 'collection/add/', {
                     albumName,
@@ -116,10 +111,7 @@ function AlbumDetails() {
             navigate("/collection");
 
         } catch (e) {
-
             console.log(e);
-         
-            
         }
     }
 
@@ -153,9 +145,7 @@ function AlbumDetails() {
             navigate("/wishlist");
 
         } catch (e) {
-
             console.log(e);
-
 
         }
     }
@@ -210,7 +200,7 @@ function AlbumDetails() {
                                             <br />
                                             <b>Country:</b> {albumCountry}
                                             <br />
-                                            <b>Genre:</b> {albumGenre.join(', ')}
+                                            <b>Genre:</b> {albumGenre}
                                         </p>
                                         <b>Album Notes:</b>
                                         <p>{albumNotes}</p>

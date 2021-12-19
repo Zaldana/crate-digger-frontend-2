@@ -35,7 +35,7 @@ function ArtistSearchDetails() {
                             ) : (
                                     <Link to={`/artist-details/${item.title}`}>
                                         <Card.Img
-                                    src ={ item.cover_image }
+                                             src ={ item.cover_image }
                                             variant="top"
                                             className="results-image"
                                     />
