@@ -153,7 +153,7 @@ function Collection() {
                             >
                                 <Button
                                     className="border-0 edit-button"
-                                    varient="primary"
+                                    varient="success"
                                     href={`/album-edit/${item._id}`}
                                 >Edit
                                 </Button>

@@ -169,15 +169,15 @@ function AlbumEdit() {
                                 <Col sm={3}>
                                     <Nav variant="pills" className="flex-column">
                                         <Nav.Item>
-                                            <Nav.Link eventKey="first">Album Info</Nav.Link>
+                                                <Nav.Link className="custom-pill" eventKey="first">Album Info</Nav.Link>
                                         </Nav.Item>
                                         <br />
                                         <Nav.Item>
-                                            <Nav.Link eventKey="second">Tracklist</Nav.Link>
+                                                <Nav.Link className="custom-pill" eventKey="second">Tracklist</Nav.Link>
                                         </Nav.Item>
                                         <br />
                                         <Nav.Item>
-                                            <Nav.Link eventKey="third">Labels</Nav.Link>
+                                                <Nav.Link className="custom-pill" eventKey="third">Labels</Nav.Link>
                                         </Nav.Item>
                                     </Nav>
                                 </Col>

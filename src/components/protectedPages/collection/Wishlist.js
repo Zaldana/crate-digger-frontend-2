@@ -212,13 +212,13 @@ function Wishlist() {
                                             item.albumGenre
                                         )}
                                         className="border-0 add-to-collection"
-                                        varient="danger"
+                                        varient="info"
                                     >Add to Collection</Button>
 
                                     <Button
                                         onClick={() => handleDeleteOnClick(item._id)}
                                         className="border-0 delete"
-                                        varient="primary"
+                                        varient="danger"
                                     >Delete</Button>
 
                                 </Container>

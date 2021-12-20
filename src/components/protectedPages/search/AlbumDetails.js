@@ -225,13 +225,13 @@ function AlbumDetails() {
                                                             <Button
                                                                 onClick={addToCollection}
                                                                 className="border-0 collection-button"
-                                                                variant="danger"
+                                                                variant="success"
                                                             >Add To Collection
                                                             </Button>
                                                             <Button
                                                                 onClick={addToWishlist}
                                                                 className="border-0 wishlist-button"
-                                                                variant="danger"
+                                                                variant="dark"
                                                             >Add To Wishlist
                                                             </Button>
                                                         </div>
