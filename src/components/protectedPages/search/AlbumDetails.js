@@ -35,8 +35,10 @@ function AlbumDetails() {
     const [albumCountry, setAlbumCountry] = useState("")
     const [albumLabel, setAlbumLabel] = useState([])
     const [albumTracklist, setAlbumTracklist] = useState([])
-    const [albumGenre, setAlbumGenre] = useState("")
     const [albumNotes, setAlbumNotes] = useState("")
+    const [albumGenre, setAlbumGenre] = useState([])
+
+    const [albumGenreDisplay, setAlbumGenreDisplay] = useState("")
 
     let altId = id;
     let url = "";
@@ -73,9 +75,11 @@ function AlbumDetails() {
             setAlbumArtist(artistArray.name)
             setAlbumYear(albumDetailsResult.data.year)
             setAlbumTracklist(albumDetailsResult.data.tracklist)
-            setAlbumGenre(albumDetailsResult.data.styles.join(', '))
+            setAlbumGenre(albumDetailsResult.data.styles)
             setAlbumNotes(albumDetailsResult.data.notes)
             setAlbumId(id)
+
+            setAlbumGenreDisplay(albumDetailsResult.data.styles.join(', '))
 
         } catch (e) {
 
@@ -201,7 +205,7 @@ function AlbumDetails() {
                                             <br />
                                             <b>Country:</b> {albumCountry}
                                             <br />
-                                            <b>Genre:</b> {albumGenre}
+                                            <b>Genre:</b> {albumGenreDisplay}
                                         </p>
                                         <b>Album Notes:</b>
                                         <p>{albumNotes}</p>

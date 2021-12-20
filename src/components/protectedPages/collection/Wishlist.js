@@ -172,7 +172,7 @@ function Wishlist() {
 
             <Row xs={1} md={2} lg={3} xl={4} className="g-0 results-row" >
                 {wishlistArray.map((item) => (
-                    <CardGroup style={{ marginBottom: "15px" }}>
+                    <CardGroup key={item._id} style={{ marginBottom: "15px" }}>
                         <Card
                             key={item._id}
                             className="results-card border-0"

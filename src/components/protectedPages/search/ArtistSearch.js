@@ -95,19 +95,14 @@ function ArtistSearch() {
     return (
         <Container style={{ height: "100vh", fontFamily: "Spartan"}}>
             <Row className="g-0">
-                <Container
-                    className="loading-container d-flex justify-content-center alialign-items-center"
-                    style={{minHeight: "10vh"}}
-                >
-                    <Breadcrumb className="breadcrumb-styles">
-                        <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                        <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Artist Search</Breadcrumb.Item>
-                        <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
-                        <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
-                        <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
-                    </Breadcrumb>
-                </Container>
+                <Breadcrumb className="breadcrumb-styles">
+                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                </Breadcrumb>
             </Row>
 
             < Row className="g-0">
@@ -139,7 +134,10 @@ function ArtistSearch() {
             ) : (
                 <Row className="results-row g-0">
                     {isLoading ? (
-                        <Container className="loading-container">
+                        <Container
+                            className="loading-container d-flex justify-content-center alialign-items-center"
+                            style={{ minHeight: "10vh" }}
+                        >
                             <Spinner animation="border" variant="primary" />
                             <Spinner animation="border" variant="secondary" />
                             <Spinner animation="border" variant="success" />

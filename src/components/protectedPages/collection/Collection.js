@@ -116,9 +116,10 @@ function Collection() {
             <Row xs={1} md={2} lg={3} xl={4} className="g-0 results-row" >
 
                 {collectionArray.map((item) => (
-                    <CardGroup style={{ marginBottom: "15px" }}>
+                    <CardGroup key={item._id} style={{ marginBottom: "15px" }}>
                         <Card
                             className="results-card border-0"
+                            key={item._id}
                         >
                             <Link
                                 to={`/collection-details/${item._id}`}
