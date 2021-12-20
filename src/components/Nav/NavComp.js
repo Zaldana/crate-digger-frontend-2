@@ -60,29 +60,34 @@ function NavComp() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <Nav.Link href={signupLink}>{signupLabel}</Nav.Link>
-                            <Nav.Link href={signinLink} onClick={() => logoutButton()}>{signinLabel}</Nav.Link>
+                            <Nav.Link style={{fontFamily: "Spartan"}} href={signupLink}>{signupLabel}</Nav.Link>
+                        <Nav.Link style={{ fontFamily: "Spartan" }} href={signinLink} onClick={() => logoutButton()}>{signinLabel}</Nav.Link>
                             {user ? (
-                                <NavDropdown title="dig" id="basic-nav-dropdown">
+                            <NavDropdown style={{ fontFamily: "Spartan" }} title="dig" id="basic-nav-dropdown">
                                 <NavDropdown.Item
+                                    style={{ fontFamily: "Spartan" }}
                                     href="/album-search"
                                 >Album Search
                                 </NavDropdown.Item>
                                 <NavDropdown.Item
                                     href="/artist-search"
+                                    style={{ fontFamily: "Spartan" }}
                                 >Artist Search
                                 </NavDropdown.Item>
                                 <NavDropdown.Item
                                     href="/collection"
+                                    style={{ fontFamily: "Spartan" }}
                                 >My Collection
                                 </NavDropdown.Item>
                                 <NavDropdown.Item
                                     href="/wishlist"
+                                    style={{ fontFamily: "Spartan" }}
                                 >My Wishlist
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item
                                     href="/profile"
+                                    style={{ fontFamily: "Spartan" }}
                                 >My Profile</NavDropdown.Item>
                                 </NavDropdown>
                             ) : (

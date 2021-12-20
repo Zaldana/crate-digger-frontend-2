@@ -156,7 +156,7 @@ function AlbumDetails() {
     console.log( albumTracklist );
 
     return (
-        <Container style={{height: "100vh"}}>
+        <Container style={{height: "100vh", fontFamily: "Spartan"}}>
             <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>

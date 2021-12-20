@@ -145,7 +145,7 @@ function AlbumEdit() {
     };
 
             return (
-            <Container>
+            <Container style={{fontFamily: "Spartan"}}>
                 <Row className="g-0">
                     <Breadcrumb className="breadcrumb-styles">
                         <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
