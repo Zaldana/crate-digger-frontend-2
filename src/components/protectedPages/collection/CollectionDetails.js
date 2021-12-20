@@ -68,7 +68,7 @@ function CollectionDetails() {
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
-            <Row md={1}>
+            <Row md={2}>
                 <Col className="image-column">
                     <img className="album-cover" src={albumCover} alt="album cover"></img>
                 </Col>
@@ -81,11 +81,9 @@ function CollectionDetails() {
                                     <Nav.Item>
                                         <Nav.Link className="custom-pill" eventKey="first">Album Info</Nav.Link>
                                     </Nav.Item>
-                                    <br />
                                     <Nav.Item>
                                         <Nav.Link className="custom-pill" eventKey="second">Tracklist</Nav.Link>
                                     </Nav.Item>
-                                    <br />
                                     <Nav.Item>
                                         <Nav.Link className="custom-pill" eventKey="third">Labels</Nav.Link>
                                     </Nav.Item>

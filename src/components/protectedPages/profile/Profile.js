@@ -237,7 +237,6 @@ function Profile() {
         ]
     }
 
-
     useEffect(() => {
         getUser()
         fetchCollection()
@@ -334,9 +333,7 @@ function Profile() {
             setNovData(dec.length + jan.length + feb.length + mar.length + apr.length + jun.length + aug.length + sep.length + oct.length + nov.length)
 
         } catch (e) {
-
             console.log(e);
-
         }
     }
 

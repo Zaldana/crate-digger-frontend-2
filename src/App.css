@@ -26,6 +26,8 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.781)!important;
   text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.788)!important;
   cursor: help!important;
+  margin-top: 22px;
+
 }
 
 .modal-content{

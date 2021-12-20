@@ -176,7 +176,7 @@ function AlbumDetails() {
                 <Col className="tab-column" >
                     <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
                         <Row>
-                            <Col sm={3}>
+                            <Col sm={4}>
                                 <Nav variant="pills" className="flex-column">
                                     <Nav.Item>
                                         <Nav.Link className="custom-pill" eventKey="first">Album Info</Nav.Link>
@@ -191,7 +191,7 @@ function AlbumDetails() {
                                     </Nav.Item>
                                 </Nav>
                             </Col>
-                            <Col sm={9} >
+                            <Col sm={8} >
                                 <Tab.Content  >
                                     <Tab.Pane eventKey="first">
                                         <h1><b>{albumName}</b></h1>

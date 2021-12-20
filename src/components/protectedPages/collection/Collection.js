@@ -88,7 +88,6 @@ function Collection() {
         fetchSearchResults(collectionSearchResult);
     };
 
-    console.log(collectionArray);
     return (
         <Container className="results-container">
             <Row className="g-0">
@@ -135,7 +134,6 @@ function Collection() {
                                     albumGenre: item.albumGenre,
                                     albumNotes: item.albumNotes,
                                     albumCondition: item.albumCondition
-
                                 }}
                             >
                                 <Card.Img

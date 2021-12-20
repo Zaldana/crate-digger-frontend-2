@@ -95,14 +95,19 @@ function ArtistSearch() {
     return (
         <Container style={{ height: "100vh", fontFamily: "Spartan"}}>
             <Row className="g-0">
-                <Breadcrumb className="breadcrumb-styles">
-                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Artist Search</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
-                </Breadcrumb>
+                <Container
+                    className="loading-container d-flex justify-content-center alialign-items-center"
+                    style={{minHeight: "10vh"}}
+                >
+                    <Breadcrumb className="breadcrumb-styles">
+                        <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+                        <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
+                        <Breadcrumb.Item active>Artist Search</Breadcrumb.Item>
+                        <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+                        <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+                        <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+                    </Breadcrumb>
+                </Container>
             </Row>
 
             < Row className="g-0">

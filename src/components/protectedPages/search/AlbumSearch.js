@@ -134,7 +134,10 @@ function AlbumSearch() {
             ) : (
                 <Row className="results-row g-0">
                     {isLoading ? (
-                        <Container className="loading-container">
+                            <Container
+                                className="loading-container d-flex justify-content-center alialign-items-center"
+                                style={{minHeight: "10vh"}}
+                            >
                             <Spinner animation="border" variant="primary" />
                             <Spinner animation="border" variant="secondary" />
                             <Spinner animation="border" variant="success" />
