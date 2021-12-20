@@ -24,6 +24,7 @@ function ProtectedHome() {
                             variant="top"
                             src={search}
                             className="card-image"
+                            alt=""
                         />
                         <Card.ImgOverlay style={{ padding: "0%" }}>
                             <Card.Body className="card-body">
@@ -52,6 +53,7 @@ function ProtectedHome() {
                             variant="top"
                             src={search}
                             className="card-image"
+                            alt=""
                         />
                         <Card.ImgOverlay style={{ padding: "0%" }}>
                             <Card.Body className="card-body">
@@ -79,7 +81,8 @@ function ProtectedHome() {
                     <Card.Img
                         variant="top"
                         src={wishlist}
-                        className="card-image"
+                            className="card-image"
+                            alt=""
                     />
                     <Card.ImgOverlay style={{ padding: "0%" }}>
                         <Card.Body className="card-body">
@@ -104,11 +107,12 @@ function ProtectedHome() {
                 </Card>
 
                 <Card className="mx-2 border-0 card-styles">
-                    <Card.Img
-                        variant="top"
-                        src={collectionSmall}
-                        className="card-image"
-                    />
+                        <Card.Img
+                            variant="top"
+                            src={collectionSmall}
+                            className="card-image"
+                            alt=""
+                        />
                     <Card.ImgOverlay style={{ padding: "0%" }}>
                         <Card.Body className="card-body">
                             <Card.Title className="main-title">collection</Card.Title>
@@ -136,7 +140,8 @@ function ProtectedHome() {
                         variant="top"
                         src={profile}
                         className="card-image"
-                        href="/collection"
+                            href="/collection"
+                            alt=""
                     />
                     <Card.ImgOverlay style={{ padding: "0%" }}>
                         <Card.Body className="card-body">
