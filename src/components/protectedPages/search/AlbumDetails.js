@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import AxiosBackend from '../../../lib/axios/AxiosBackend';
@@ -19,7 +19,6 @@ function AlbumDetails() {
 
     const { id } = useParams();
     const location = useLocation();
-    const navigate = useNavigate();
 
     const albumCoverFromState = location.state.albumCover;
     const albumCountryFromState = location.state.albumCountry
@@ -39,6 +38,7 @@ function AlbumDetails() {
     const [albumGenre, setAlbumGenre] = useState([])
 
     const [albumGenreDisplay, setAlbumGenreDisplay] = useState("")
+    const [added, setAdded] = useState(false)
 
     let altId = id;
     let url = "";
@@ -89,6 +89,7 @@ function AlbumDetails() {
     };
 
     async function addToCollection() {
+
         try {
             let payload = await AxiosBackend.post(
                 'collection/add/', {
@@ -113,7 +114,7 @@ function AlbumDetails() {
                 progress: undefined,
             });
 
-            navigate("/collection");
+            setAdded(true)
 
         } catch (e) {
             console.log(e);
@@ -147,17 +148,13 @@ function AlbumDetails() {
                 progress: undefined,
             });
 
-            navigate("/wishlist");
+            setAdded(true)
 
         } catch (e) {
             console.log(e);
 
         }
     }
-
-    console.log(albumDetailsArray);
-
-    console.log( albumTracklist );
 
     return (
         <Container style={{height: "100vh", fontFamily: "Spartan"}}>
@@ -210,31 +207,38 @@ function AlbumDetails() {
                                         <b>Album Notes:</b>
                                         <p>{albumNotes}</p>
                                         <br />
-                                        {fromArrayFromState === "wishlist" ? (
-                                            <div>
-                                            <Button
-                                                onClick={addToCollection}
-                                                className="border-0 collection-button"
-                                                variant="danger"
-                                            >Add To Collection
-                                            </Button> 
-                                            </div>
+                                        {added ? (
+                                            <div></div>
                                         ) : (
-                                                <div>
-                                            <Button
-                                                onClick={addToCollection}
-                                                className="border-0 collection-button"
-                                                variant="danger"
-                                            >Add To Collection
-                                            </Button>
-                                            <Button
-                                                onClick={addToWishlist}
-                                                className="border-0 wishlist-button"
-                                                variant="danger"
-                                            >Add To Wishlist
-                                            </Button>
-                                                </div>
+                                            <div>
+                                                { fromArrayFromState === "wishlist" ? (
+                                                    <div>
+                                                        <Button
+                                                            onClick={addToCollection}
+                                                            className="border-0 collection-button"
+                                                            variant="danger"
+                                                        >Add To Collection
+                                                        </Button>
+                                                    </div>
+                                                    ) : (
+                                                        <div>
+                                                            <Button
+                                                                onClick={addToCollection}
+                                                                className="border-0 collection-button"
+                                                                variant="danger"
+                                                            >Add To Collection
+                                                            </Button>
+                                                            <Button
+                                                                onClick={addToWishlist}
+                                                                className="border-0 wishlist-button"
+                                                                variant="danger"
+                                                            >Add To Wishlist
+                                                            </Button>
+                                                        </div>
+                                                )}
+                                            </div>
                                         )}
+                                        
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second" >
                                         <h1><b>{albumName}</b></h1>

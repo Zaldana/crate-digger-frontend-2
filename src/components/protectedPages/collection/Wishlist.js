@@ -164,9 +164,9 @@ function Wishlist() {
                         name="wishlistSearchResult"
                         value={wishlistSearchResult}
                         onChange={handleOnChange}
-                        placeholder="Search by Album Name or Artist"
+                        placeholder="Search Your Wishlist"
                     />
-                    <Button onClick={handleOnClick}>Search</Button>
+                    <Button variant="success" onClick={handleOnClick}>Search Wishlist</Button>
                 </InputGroup>
             </Row>
 

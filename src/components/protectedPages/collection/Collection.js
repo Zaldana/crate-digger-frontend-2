@@ -107,9 +107,9 @@ function Collection() {
                         name="collectionSearchResult"
                         value={collectionSearchResult}
                         onChange={handleOnCollectionChange}
-                        placeholder="Search by Album Name or Artist"
+                        placeholder="Search Your Collection"
                     />
-                    <Button onClick={handleOnCollectionClick}>Search</Button>
+                    <Button variant="success" onClick={handleOnCollectionClick}>Search Collection</Button>
                 </InputGroup>
             </Row>
             
