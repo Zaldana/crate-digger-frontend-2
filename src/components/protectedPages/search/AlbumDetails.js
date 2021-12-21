@@ -180,11 +180,11 @@ function AlbumDetails() {
                             <Col sm={4}>
                                 <Nav variant="pills" className="flex-column">
                                     <Nav.Item>
-                                        <Nav.Link className="custom-pill" eventKey="first">Album Info</Nav.Link>
+                                        <Nav.Link className="custom-pill" eventKey="first">Tracklist</Nav.Link>
                                     </Nav.Item>
                                     <br/>
                                     <Nav.Item>
-                                        <Nav.Link className="custom-pill" eventKey="second">Tracklist</Nav.Link>
+                                        <Nav.Link className="custom-pill" eventKey="second">Album Info</Nav.Link>
                                     </Nav.Item>
                                     <br />
                                     <Nav.Item>
@@ -194,7 +194,7 @@ function AlbumDetails() {
                             </Col>
                             <Col sm={8} >
                                 <Tab.Content  >
-                                    <Tab.Pane eventKey="first">
+                                    <Tab.Pane eventKey="second">
                                         <h1><b>{albumName}</b></h1>
                                         <h4>{albumArtist}</h4>
                                         <p>
@@ -240,7 +240,7 @@ function AlbumDetails() {
                                         )}
                                         
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="second" >
+                                    <Tab.Pane eventKey="first" >
                                         <h1><b>{albumName}</b></h1>
                                         <br/>
                                         {albumTracklist.map((item) => (
