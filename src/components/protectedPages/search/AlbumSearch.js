@@ -35,6 +35,7 @@ function AlbumSearch() {
         if (values.s) {
             fetchAlbumResult(values.s);
         }
+        
     }, []);
 
     async function fetchAlbumResult(albumSearchResult) {

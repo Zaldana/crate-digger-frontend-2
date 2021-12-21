@@ -20,7 +20,7 @@ function AlbumSearchDetails() {
             <Row xs={1} md={2} lg={3} xl={4}  className="g-0" >
          
                 {albumResultsArray.map((item) => (
-                    <CardGroup style={{marginBottom: "15px"}}>
+                    <CardGroup key={item.id} style={{marginBottom: "15px"}}>
                         <Card
                             key={item.id}
                             className="results-card border-0"

@@ -28,31 +28,20 @@ function App() {
   } = useContext(AuthContext)
 
   useEffect(() => {
-
     let jwtToken = window.localStorage.getItem("jwtToken");
-
     if (jwtToken) {
-
       let decodedToken = jwtDecode(jwtToken);
-
       const currentTime = Date.now() / 1000;
-
       if (decodedToken.exp < currentTime) {
-
         window.localStorage.removeItem("jwtToken");
-        
         dispatch({ type: "LOGOUT" });
-
       } else {
-
         let decodedToken = jwtDecode(jwtToken);
-
           dispatch({
             type: "LOGIN",
             email: decodedToken.email,
             username: decodedToken.username,
           });
-
       }
     }
   }, []);
