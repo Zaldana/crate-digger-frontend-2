@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# **CrateDigger**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Problem:**
 
-## Available Scripts
+I seem to find record shops when I least expect it, and I’m never prepared for it. I can’t seem to keep track of what is in my current collection and I cant remember what releases I want to pick up. I sometimes avoid going into shops because I don’t have enough time to dig through all the crates to refresh my memory. If only I had some kind of collection database with a wish list feature that I could access from anywhere. 
 
-In the project directory, you can run:
+**Solution:**
 
-### `npm start`
+Step 1: Build Crate Digger.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Step 2: Go buy records. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br/>
 
-### `npm test`
+# **Technology Stack**
+<br/>
+<img src="./src/images/stack.png" />
+<br/>
+<br/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **Back-End**
 
-### `npm run build`
+**MongoDB + Node.js + Express**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The site has three collections that stores the users information, the main vinyl collection, and a wish-list collection. The data models for the vinyl and wish-list collections are comprised of 12 different fields, 11 are used to store the incoming information from the Discogs api request from the front end and the final links the album to the user. The user is authenticated with JWT-Passport an authenticating middleware that extracts a JSON web token which is created in the sign-in response.  Validation for the user is handled through validation middleware that uses the validator library.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Discogs API**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Discogs  is a digital marketplace for users from around the world to buy and sell music in physical formats. The site has a rich music database and gives users the ability to catalog their collections.  Discogs provides acces to their API for developers looking to make  projects using their database. Crate Digger utilizes the Discogs Api to find vinyl record specific releases. 
 
-### `npm run eject`
+<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## **Front-End**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**React + React-Bootstrap**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Crate Digger is designed to focus the abilities of the Discogs API to vinyl specific releases, and allow a curation of the user’s personal library, and to help make quick purchasing decisions. A mobile and full browser work flow are both necessary to achieve the goals of the site. With that in mind the front-end is styled with React-Bootstrap, Chart.js library to visualize user data, and React-Toastify for alerts.
 
-## Learn More
+<br />
+<img src="./src/images/unprotectedhome.png" height=200 width=300/>
+<img src="./src/images/signup.png" height=200 width=300/>
+<img src="./src/images/protectedhome.png" height=200 width=300/>
+<img src="./src/images/profile.png" height=200 width=300/>
+<img src="./src/images/search.png" height=200 width=300/>
+<img src="./src/images/detail.png" height=200 width=300/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br />
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **Crate Digger is organized into 11 different pages:**
+<br />
 
-### Code Splitting
+**Unprotected Home:** Landing page with log-in & sign-up buttons.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Log-in/Sign-Up Pages:** Set up with custom hooks for validation and toast alerts.
 
-### Analyzing the Bundle Size
+**Protected Home:** Home page once user is signed in, sets up navigation to other pages. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Album Search:** Allows user to serach via album name and allows the user to add album to wishlist, collection or see album in detail view.
 
-### Making a Progressive Web App
+**Artist Search:** Allows user to serach via artist name and allows the user to add album to their wishlist, collection or see album in detail view.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Wish-list:** Grid view of user's wishlist. 
 
-### Advanced Configuration
+**Collection:** Grid view of user's collection. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Album Details:** Detailed view of album. The detailed view changes based on context. The detailed view from the collection page allows the user to edit album details.
 
-### Deployment
+**Profile:**  Page where the user can change account settings and also view graphical representation of their collection.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Mobile:** All pages are optimized for mobile view.
 
-### `npm run build` fails to minify
+<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# **Improvements Needed**
+
+Pagination
+
+Results Filtering
+
+Dynamic Search List 
+
+Album Search
+
+Fuzzy Search
+
+Consolidation of Pages
+
+Home Page Features
+
+Expanded Edit Options
+
+Expanded User Statistics
+
+Code Re-factor For Modularity
+
+Styles Consolidation
+
+Accessibility Improvements
+
+Better Album Notes
