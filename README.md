@@ -19,6 +19,8 @@ Step 2: Go buy records.
 <br/>
 
 ## **Back-End**
+Back-End Repo:
+https://github.com/Zaldana/backend-crate-digger
 
 **MongoDB + Node.js + Express**
 
@@ -38,12 +40,12 @@ Discogs  is a digital marketplace for users from around the world to buy and sel
 Crate Digger is designed to focus the abilities of the Discogs API to vinyl specific releases, and allow a curation of the user’s personal library, and to help make quick purchasing decisions. A mobile and full browser work flow are both necessary to achieve the goals of the site. With that in mind the front-end is styled with React-Bootstrap, Chart.js library to visualize user data, and React-Toastify for alerts.
 
 <br />
-<img src="./src/images/unprotectedhome.png" height=200 width=300/>
-<img src="./src/images/signup.png" height=200 width=300/>
-<img src="./src/images/protectedhome.png" height=200 width=300/>
-<img src="./src/images/profile.png" height=200 width=300/>
-<img src="./src/images/search.png" height=200 width=300/>
-<img src="./src/images/detail.png" height=200 width=300/>
+<img src="./src/images/unprotectedhome.png" height=150 width=250/>
+<img src="./src/images/signup.png" height=150 width=250/>
+<img src="./src/images/protectedhome.png" height=150 width=250/>
+<img src="./src/images/profile.png" height=150 width=250/>
+<img src="./src/images/search.png" height=150 width=250/>
+<img src="./src/images/detail.png" height=150 width=250/>
 
 <br />
 
