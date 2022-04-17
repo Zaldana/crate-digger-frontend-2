@@ -37,7 +37,7 @@ Discogs  is a digital marketplace for users from around the world to buy and sel
 
 **React + React-Bootstrap**
 
-Crate Digger is designed to focus the abilities of the Discogs API to vinyl specific releases, and allow a curation of the user’s personal library, and to help make quick purchasing decisions. A mobile and full browser work flow are both necessary to achieve the goals of the site. With that in mind the front-end is styled with React-Bootstrap, Chart.js library to visualize user data, and React-Toastify for alerts.
+Crate Digger is designed to focus the abilities of the Discogs API to find vinyl specific releases, and allow a curation of the user’s personal library, and to help make quick purchasing decisions. A mobile and full browser work flow are both necessary to achieve the goals of the site. With that in mind the front-end is styled with React-Bootstrap, Chart.js library to visualize user data, and React-Toastify for alerts.
 
 <br />
 <img src="./src/images/unprotectedhome.png" height=150 width=250/>
