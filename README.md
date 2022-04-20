@@ -76,6 +76,8 @@ Crate Digger is designed to focus the abilities of the Discogs API to find vinyl
 
 # **Improvements Needed**
 
+Discogs API call needs to be moved to back-end
+
 Pagination
 
 Results Filtering
