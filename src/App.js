@@ -20,21 +20,26 @@ import AlbumSearch from "./components/protectedPages/search/AlbumSearch";
 import ArtistSearch from "./components/protectedPages/search/ArtistSearch";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Demo from "./components/Demo/Demo";
 
 function App() {
 
   const {
-    dispatch,
+    dispatch
   } = useContext(AuthContext)
 
   useEffect(() => {
+
     let jwtToken = window.localStorage.getItem("jwtToken");
+    
     if (jwtToken) {
       let decodedToken = jwtDecode(jwtToken);
       const currentTime = Date.now() / 1000;
+      
       if (decodedToken.exp < currentTime) {
         window.localStorage.removeItem("jwtToken");
         dispatch({ type: "LOGOUT" });
+      
       } else {
         let decodedToken = jwtDecode(jwtToken);
           dispatch({
@@ -53,7 +58,8 @@ function App() {
         <NavComp />
           <Routes>
             <Route path="/sign-up" element={<Signup />} />
-            <Route path="/sign-in" element={<Signin />} />
+          <Route path="/sign-in" element={<Signin />} />
+          <Route path="/demo" element={<Demo />} />
             <Route path="/collection-details/:id"
               element={
                 <PrivateRoute>

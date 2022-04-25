@@ -16,7 +16,8 @@ import {
     Button,
     FormControl,
     Spinner,
-    Alert
+    Alert,
+    Form
 } from 'react-bootstrap'
 
 function ArtistSearch() {
@@ -83,7 +84,8 @@ function ArtistSearch() {
         setArtistSearchResult(e.target.value);
     };
 
-    async function handleOnArtistClick() {
+    async function handleOnArtistSubmit(event) {
+        event.preventDefault();
         fetchArtistResult(artistSearchResult);
         setAlert(false)
     };
@@ -105,7 +107,7 @@ function ArtistSearch() {
                 </Breadcrumb>
             </Row>
 
-            < Row className="g-0">
+            <Form className="g-0" onSubmit={handleOnArtistSubmit}>
                 <InputGroup className="input-spacing">
                     <FormControl
                         name="artistSearchResult"
@@ -113,9 +115,9 @@ function ArtistSearch() {
                         onChange={handleOnArtistChange}
                         placeholder="Artist"
                     />
-                    <Button onClick={handleOnArtistClick}>Search</Button>
+                    <Button type="submit">Search</Button>
                 </InputGroup>
-            </Row>
+            </Form>
 
             {alert ? (
                 <Alert variant="info">

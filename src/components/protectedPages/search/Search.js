@@ -1,222 +1,195 @@
-import React from 'react'
-import { useState, useEffect } from "react";
-import axios from "axios";
-import queryString from "query-string";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ArtistSearchContext, AlbumSearchContext } from "../../../context/SearchContext"
-import Loading from "../../common/Loading";
-import AlbumSearchDetails from './AlbumSearchDetails';
-import ArtistSearchDetails from './ArtistSearchDetails'
-import './Search.css'
+// import React from 'react'
+// import { useState, useEffect } from "react";
+// import axios from "axios";
+// import queryString from "query-string";
+// import { Link, useLocation, useNavigate } from "react-router-dom";
+// import { ArtistSearchContext, AlbumSearchContext } from "../../../context/SearchContext"
+// import Loading from "../../common/Loading";
+// import AlbumSearchDetails from './AlbumSearchDetails';
+// import ArtistSearchDetails from './ArtistSearchDetails'
+// import './Search.css'
 
-import {
-    Container,
-    Breadcrumb,
-    Row,
-    InputGroup,
-    Button,
-    FormControl
-} from 'react-bootstrap'
+// import {
+//     Container,
+//     Breadcrumb,
+//     Row,
+//     InputGroup,
+//     Button,
+//     FormControl
+// } from 'react-bootstrap'
 
-function Search() {
+// function Search() {
 
-    const navigate = useNavigate();
-    const { search } = useLocation();
+//     const navigate = useNavigate();
+//     const { search } = useLocation();
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [albumSearchResult, setAlbumSearchResult] = useState("");
-    const [artistSearchResult, setArtistSearchResult] = useState("");
-    const [albumResultsArray, setAlbumResultsArray] = useState([])
-    const [artistResultsArray, setArtistResultsArray] = useState([])
+//     const [isLoading, setIsLoading] = useState(false);
+//     const [albumSearchResult, setAlbumSearchResult] = useState("");
+//     const [artistSearchResult, setArtistSearchResult] = useState("");
+//     const [albumResultsArray, setAlbumResultsArray] = useState([])
+//     const [artistResultsArray, setArtistResultsArray] = useState([])
 
-    useEffect(() => {
+//     useEffect(() => {
 
-        let values = queryString.parse(search);
+//         let values = queryString.parse(search);
         
-
-            if (values.s) {
-                fetchAlbumResult(values.s);
-            }
+//             if (values.s) {
+//                 fetchAlbumResult(values.s);
+//             }
         
-    
-    }, []);
+//     }, []);
 
-    useEffect(() => {
-        const values = queryString.parse(search);
-        if (values.s) {
-            fetchArtistResult(values.s);
-        }
-    }, []);
+//     useEffect(() => {
+//         const values = queryString.parse(search);
+//         if (values.s) {
+//             fetchArtistResult(values.s);
+//         }
+//     }, []);
 
-    // useEffect(() => {
-    //     const listener = event => {
-    //         if (event.code === "Enter" || event.code === "NumpadEnter") {
-    //             console.log("Enter key was pressed. Run your function.");
-    //             event.preventDefault();
-    //             handleOnAlbumClick(albumSearchResult)
-    //         }
-    //     };
-    //     document.addEventListener("keydown", listener);
-    //     return () => {
-    //         document.removeEventListener("keydown", listener);
-    //     };
-    // }, []);
+//     async function fetchAlbumResult(albumSearchResult) {
 
+//         setIsLoading(true)
 
-    async function fetchAlbumResult(albumSearchResult) {
+//         navigate(`/search?s=${albumSearchResult}`, {
+//             replace: true,
+//         });
 
-        setIsLoading(true)
+//         try {
 
-        navigate(`/search?s=${albumSearchResult}`, {
-            replace: true,
-        });
+//             const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
+//             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
-        try {
+//             let result = await axios.get(
+//                 `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+//                 headers: { 'User-Agent': 'CrateDigger/0.1' }
+//             }
+//             );
 
-            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
-            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
+//             setAlbumResultsArray(result.data.results)
+//             setIsLoading(false)
 
-            let result = await axios.get(
-                `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-                headers: { 'User-Agent': 'CrateDigger/0.1' }
-            }
-            );
+//         } catch (e) {
 
-            setAlbumResultsArray(result.data.results)
-            setIsLoading(false)
+//             console.log(e);
 
-        } catch (e) {
-
-            console.log(e);
-
-        }
-    };
+//         }
+//     };
 
 
-    async function fetchArtistResult(artistSearchResult) {
+//     async function fetchArtistResult(artistSearchResult) {
 
-        setIsLoading(true)
+//         setIsLoading(true)
 
-        navigate(`/search?s=${artistSearchResult}`, {
-            replace: true,
-        });
+//         navigate(`/search?s=${artistSearchResult}`, {
+//             replace: true,
+//         });
 
-        try {
+//         try {
 
-            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
-            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
+//             const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
+//             const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
 
-            let result = await axios.get(
-                `https://api.discogs.com/database/search?type=artist&q=${artistSearchResult}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-                headers: { 'User-Agent': 'CrateDigger/0.1' }
-            });
+//             let result = await axios.get(
+//                 `https://api.discogs.com/database/search?type=artist&q=${artistSearchResult}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
+//                 headers: { 'User-Agent': 'CrateDigger/0.1' }
+//             });
 
-            setArtistResultsArray(result.data.results)
-            setIsLoading(false)
+//             setArtistResultsArray(result.data.results)
+//             setIsLoading(false)
 
-        } catch (e) {
+//         } catch (e) {
 
-            console.log(e);
+//             console.log(e);
 
-        }
-    };
+//         }
+//     };
 
-    function handleOnAlbumChange(e) {
-        setAlbumSearchResult(e.target.value);
-    };
+//     function handleOnAlbumChange(e) {
+//         setAlbumSearchResult(e.target.value);
+//     };
 
-    function handleOnArtistChange(e) {
-        setArtistSearchResult(e.target.value);
-    };
+//     function handleOnArtistChange(e) {
+//         setArtistSearchResult(e.target.value);
+//     };
 
 
-    async function handleOnArtistClick() {
+//     async function handleOnArtistClick() {
         
-        fetchArtistResult(artistSearchResult);
-    };
+//         fetchArtistResult(artistSearchResult);
+//     };
 
-    async function handleOnAlbumClick() {
-        fetchAlbumResult(albumSearchResult);
-    };
+//     async function handleOnAlbumClick() {
+//         fetchAlbumResult(albumSearchResult);
+//     };
 
 
-    const albumContextValue = {
-        albumResultsArray
-    }
+//     const albumContextValue = {
+//         albumResultsArray
+//     }
 
-    const artistContextValue = {
-        artistResultsArray
-    }
+//     const artistContextValue = {
+//         artistResultsArray
+//     }
 
-    function handleKeypress(e) {
-        if (e.keyCode === 13) {
-            handleOnAlbumClick(albumSearchResult);
-        }
-    }
+//     return (
+//         <Container style={{ height: "100vh" }}>
+//             <Row className="g-0">
+//                 <Breadcrumb className="breadcrumb-styles">
+//                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
+//                     <Breadcrumb.Item active>Search</Breadcrumb.Item>
+//                     <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
+//                     <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
+//                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
+//                 </Breadcrumb>
+//             </Row>
 
-    return (
-        <Container style={{ height: "100vh" }}>
-            <Row className="g-0">
-                <Breadcrumb className="breadcrumb-styles">
-                    <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Search</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>
-                </Breadcrumb>
-            </Row>
-
-            <Row className="g-0">
-                <InputGroup className="input-spacing">
-                    <FormControl
-                        name="albumSearchResult"
-                        value={albumSearchResult}
-                        onChange={handleOnAlbumChange}
-                        placeholder="Album Title or Barcode"
-                        onKeyPress={
-                            (e) => e.key === 'Enter' && handleOnAlbumClick(albumSearchResult)
-                        }
-                    />
-                    <Button onClick={handleOnAlbumClick}>Search</Button>
-                </InputGroup>
+//             <Row className="g-0">
+//                 <InputGroup className="input-spacing">
+//                     <FormControl
+//                         name="albumSearchResult"
+//                         value={albumSearchResult}
+//                         onChange={handleOnAlbumChange}
+//                         placeholder="Album Title or Barcode"
+//                     />
+//                     <Button onClick={handleOnAlbumClick}>Search</Button>
+//                 </InputGroup>
                 
-                <InputGroup className="input-spacing">
-                    <FormControl
-                        name="artistSearchResult"
-                        value={artistSearchResult}
-                        onChange={handleOnArtistChange}
-                        placeholder="Artist"
-                    />
-                    <Button onClick={handleOnArtistClick}>Search</Button>
-                </InputGroup>
-            </Row>
+//                 <InputGroup className="input-spacing">
+//                     <FormControl
+//                         name="artistSearchResult"
+//                         value={artistSearchResult}
+//                         onChange={handleOnArtistChange}
+//                         placeholder="Artist"
+//                     />
+//                     <Button onClick={handleOnArtistClick}>Search</Button>
+//                 </InputGroup>
+//             </Row>
             
-                <Row className="results-row g-0">
-                    {isLoading ? (
-                        <Container className="loading-container">
-                            <Loading />
-                        </Container>
-                    ) : (
-                        <AlbumSearchContext.Provider value={albumContextValue}>
-                            <AlbumSearchDetails />
-                        </AlbumSearchContext.Provider>
-                    )}
-                </Row>
-                <Row className="results-row g-0">
-                    {isLoading ? (
-                        <Container className="loading-container">
-                            <Loading />
-                        </Container>
-                    ) : (
-                        <ArtistSearchContext.Provider value={artistContextValue}>
-                            <ArtistSearchDetails />
-                        </ArtistSearchContext.Provider>
-                    )}
-                </Row>
+//                 <Row className="results-row g-0">
+//                     {isLoading ? (
+//                         <Container className="loading-container">
+//                             <Loading />
+//                         </Container>
+//                     ) : (
+//                         <AlbumSearchContext.Provider value={albumContextValue}>
+//                             <AlbumSearchDetails />
+//                         </AlbumSearchContext.Provider>
+//                     )}
+//                 </Row>
+//                 <Row className="results-row g-0">
+//                     {isLoading ? (
+//                         <Container className="loading-container">
+//                             <Loading />
+//                         </Container>
+//                     ) : (
+//                         <ArtistSearchContext.Provider value={artistContextValue}>
+//                             <ArtistSearchDetails />
+//                         </ArtistSearchContext.Provider>
+//                     )}
+//                 </Row>
             
-        </Container>
-    )
-}
+//         </Container>
+//     )
+// }
 
-
-export default Search
+// export default Search

@@ -13,8 +13,11 @@ function NavComp() {
         state: { user },
         dispatch,
     } = useContext(AuthContext)
-    
+
     const homeLink = user ? "/protected-home" : "/";
+
+    const demoLink = user?.isAuth ? "/" : "/demo";
+    const demoLabel = user?.isAuth ? "" : "demo";
 
     const signinLink = user?.isAuth ? "/" : "/sign-in";
     const signinLabel = user?.isAuth ? "logout" : "login";
@@ -32,7 +35,7 @@ function NavComp() {
 
         window.localStorage.removeItem("jwtToken");
     }
-    
+
     return (
         <Navbar
             fixed="top"
@@ -57,12 +60,14 @@ function NavComp() {
                         alt="logo"
                     />CrateDigger
                 </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto">
-                            <Nav.Link style={{fontFamily: "Spartan"}} href={signupLink}>{signupLabel}</Nav.Link>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ms-auto">
+                        <Nav.Link style={{ fontFamily: "Spartan" }} href={demoLink} onClick={() => logoutButton()}><b>{demoLabel}</b></Nav.Link>
+                        <Nav.Link style={{ fontFamily: "Spartan" }} href={signupLink}>{signupLabel}</Nav.Link>
                         <Nav.Link style={{ fontFamily: "Spartan" }} href={signinLink} onClick={() => logoutButton()}>{signinLabel}</Nav.Link>
-                            {user ? (
+                       
+                        {user ? (
                             <NavDropdown style={{ fontFamily: "Spartan" }} title="dig" id="basic-nav-dropdown">
                                 <NavDropdown.Item
                                     style={{ fontFamily: "Spartan" }}
@@ -89,14 +94,14 @@ function NavComp() {
                                     href="/profile"
                                     style={{ fontFamily: "Spartan" }}
                                 >My Profile</NavDropdown.Item>
-                                </NavDropdown>
-                            ) : (
-                                <div></div>
-                            )}
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+                            </NavDropdown>
+                        ) : (
+                            <div></div>
+                        )}
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     )
 }
 

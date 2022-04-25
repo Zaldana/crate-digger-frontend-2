@@ -16,7 +16,8 @@ import {
     Button,
     FormControl,
     Spinner,
-    Alert
+    Alert,
+    Form
 } from 'react-bootstrap'
 
 function AlbumSearch() {
@@ -85,7 +86,8 @@ function AlbumSearch() {
         setAlbumSearchResult(e.target.value);
     };
 
-    async function handleOnAlbumClick() {
+    async function handleOnAlbumSubmit(event) {
+        event.preventDefault()
         fetchAlbumResult(albumSearchResult);
         setAlert(false)
     };
@@ -107,7 +109,7 @@ function AlbumSearch() {
                 </Breadcrumb>
             </Row>
 
-            < Row className="g-0">
+            <Form className="g-0" onSubmit={handleOnAlbumSubmit}>
                 <InputGroup className="input-spacing">
                     <FormControl
                         name="albumSearchResult"
@@ -115,9 +117,9 @@ function AlbumSearch() {
                         onChange={handleOnAlbumChange}
                         placeholder="Album Title or Barcode"
                     />
-                    <Button onClick={handleOnAlbumClick}>Search</Button>
+                    <Button type="submit">Search</Button>
                 </InputGroup>
-            </Row>
+            </Form>
    
             { alert ? (
                 <Alert variant="success">  
