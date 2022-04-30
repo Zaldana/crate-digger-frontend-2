@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import './AlbumSearchDetails.css'
 import record from "../../../images/blank-album.svg"
 
@@ -27,13 +27,8 @@ function ArtistDetails() {
 
         try {
 
-            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
-            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
-
-            let result = await axios.get(
-                `https://api.discogs.com/database/search?format=Vinyl&artist=${artist}&page=1&per_page=100&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-                headers: { 'User-Agent': 'CrateDigger/0.1' }
-                }
+            let result = await AxiosBackend.get(
+                `discogs/artist-details:${artist}`
             );
 
         setReleaseResultArray(result.data.results)
@@ -49,9 +44,8 @@ function ArtistDetails() {
             <Row className="g-0">
                 <Breadcrumb className="breadcrumb-styles">
                     <Breadcrumb.Item href="/protected-home">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/album-search">Album Search</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/artist-search">Artist Search</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Artist Search</Breadcrumb.Item>
                     <Breadcrumb.Item href="/wishlist">Wishlist</Breadcrumb.Item>
                     <Breadcrumb.Item href="/collection">Collection</Breadcrumb.Item>
                     <Breadcrumb.Item href="/profile">Profile</Breadcrumb.Item>

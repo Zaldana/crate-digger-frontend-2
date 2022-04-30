@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import axios from "axios";
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import queryString from "query-string";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -47,13 +47,9 @@ function ArtistSearch() {
 
         try {
 
-            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
-            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
-
-            let result = await axios.get(
-                `https://api.discogs.com/database/search?type=artist&q=${artistSearchResult}&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-                headers: { 'User-Agent': 'CrateDigger/0.1' }
-            });
+            let result = await AxiosBackend.get(
+                `discogs/get-artist:${artistSearchResult}`
+            );
 
             if (result.data.results.length === 0) {
 
@@ -62,7 +58,6 @@ function ArtistSearch() {
             } else {
                 setArtistResultsArray(result.data.results)
                 setIsLoading(false)
-                console.log(result);
             }
 
         } catch (e) {

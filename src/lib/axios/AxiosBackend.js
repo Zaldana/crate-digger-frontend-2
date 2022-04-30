@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 let url =
-    process.env.NODE_ENV === "production"
-        ? "https://crate-digger.herokuapp.com/api/"
+    process.env.NODE_ENV === "development"
+        ? "http://localhost.localdomain:3001/api/"
         : "/api/"
 
 const AxiosBackend = axios.create({

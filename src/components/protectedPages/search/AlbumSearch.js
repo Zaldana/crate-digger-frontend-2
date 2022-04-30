@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import axios from "axios";
+import AxiosBackend from '../../../lib/axios/AxiosBackend';
 import queryString from "query-string";
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -25,10 +25,10 @@ function AlbumSearch() {
     const navigate = useNavigate();
     const { search } = useLocation();
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [albumSearchResult, setAlbumSearchResult] = useState("");
-    const [albumResultsArray, setAlbumResultsArray] = useState([])
-    const [alert, setAlert] = useState(true);
+    const [ isLoading, setIsLoading ] = useState(false);
+    const [ albumSearchResult, setAlbumSearchResult ] = useState("");
+    const [ albumResultsArray, setAlbumResultsArray ] = useState([])
+    const [ alert, setAlert ] = useState(true);
 
     useEffect(() => {
 
@@ -36,7 +36,7 @@ function AlbumSearch() {
         if (values.s) {
             fetchAlbumResult(values.s);
         }
-        
+
     }, []);
 
     async function fetchAlbumResult(albumSearchResult) {
@@ -49,14 +49,9 @@ function AlbumSearch() {
 
         try {
 
-            const CONSUMER_KEY = process.env.REACT_APP_DISCOGS_CONSUMER_KEY;
-            const CONSUMER_SECRET = process.env.REACT_APP_DISCOGS_CONSUMER_SECRET;
+            let result = await AxiosBackend.get(
+                `discogs/get-album:${albumSearchResult}`);
 
-            let result = await axios.get(
-                `https://api.discogs.com/database/search?q=${albumSearchResult}&format=Vinyl&page=1&per_page=100&key=${CONSUMER_KEY}&secret=${CONSUMER_SECRET}`, {
-                headers: { 'User-Agent': 'CrateDigger/0.1' }
-            });
-            
             if (result.data.results.length === 0) {
 
                 throw 'Album Not Found Please Check Spelling And Try Again'
@@ -65,7 +60,7 @@ function AlbumSearch() {
 
                 setAlbumResultsArray(result.data.results)
                 setIsLoading(false)
-            
+
             }
 
         } catch (e) {
@@ -120,9 +115,9 @@ function AlbumSearch() {
                     <Button type="submit">Search</Button>
                 </InputGroup>
             </Form>
-   
-            { alert ? (
-                <Alert variant="success">  
+
+            {alert ? (
+                <Alert variant="success">
                     <Alert.Heading>Hello Fellow Crate Digger,</Alert.Heading>
                     <p>
                         To find your next album just type in the album name or the bar code in the
@@ -137,10 +132,10 @@ function AlbumSearch() {
             ) : (
                 <Row className="results-row g-0">
                     {isLoading ? (
-                            <Container
-                                className="loading-container d-flex justify-content-center alialign-items-center"
-                                style={{minHeight: "10vh"}}
-                            >
+                        <Container
+                            className="loading-container d-flex justify-content-center alialign-items-center"
+                            style={{ minHeight: "10vh" }}
+                        >
                             <Spinner animation="border" variant="primary" />
                             <Spinner animation="border" variant="secondary" />
                             <Spinner animation="border" variant="success" />

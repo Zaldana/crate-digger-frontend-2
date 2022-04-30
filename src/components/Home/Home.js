@@ -26,11 +26,17 @@ function Home() {
                     href="/sign-in"
                 >Log In</Button>
                 <Button
-                    className="border-0 sign-in-button"
+                    className="border-0 sign-up-button"
                     size="lg"
                     variant="success"
                     href="/sign-up"
                 >Sign Up</Button>
+                <Button
+                    className="border-0 demo-button"
+                    size="lg"
+                    variant="success"
+                    href="/demo"
+                >Demo</Button>
             </Container>
         </Container>
     )
