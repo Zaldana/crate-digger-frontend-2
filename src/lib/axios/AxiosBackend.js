@@ -4,7 +4,8 @@ let url =
     process.env.NODE_ENV === "development"
         ? "/api/"
         : "http://localhost.localdomain:3001/api/"
-        
+
+
 const AxiosBackend = axios.create({
     baseURL: url,
     timeout: 50000,
